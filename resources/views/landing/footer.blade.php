@@ -51,14 +51,14 @@
               <li class="clearfix">
                 <div class="widget-posts-image"><a href="#"><img src="{{asset('lassets/images/rp-1.jpg')}}" alt="Post Thumbnail"/></a></div>
                 <div class="widget-posts-body">
-                  <div class="widget-posts-title"><a href="{{ route('posts.all') }}">Best Way to Set-up</a></div>
+                  <div class="widget-posts-title"><a href="{{ route('posts.view', "best-way-to-set-up-1706157765") }}">Best Way to Set-up</a></div>
                   <div class="widget-posts-meta">30 Dec 2023</div>
                 </div>
               </li>
               <li class="clearfix">
                 <div class="widget-posts-image"><a href="#"><img src="{{asset('lassets/images/rp-2.jpg')}}" alt="Post Thumbnail"/></a></div>
                 <div class="widget-posts-body">
-                  <div class="widget-posts-title"><a href="{{ route('posts.all') }}">Project Management System</a></div>
+                  <div class="widget-posts-title"><a href="{{ route('posts.view', "project-management-system-1706157933") }}">Project Management System</a></div>
                   <div class="widget-posts-meta">15 Nov 2023</div>
                 </div>
               </li>
