@@ -6,7 +6,9 @@
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
                 <h2 class="module-title font-alt">Perpetual Licensing</h2>
-                <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
+                <div class="module-subtitle font-serif">
+                A one-time payment with a long-term fixed solution
+                </div>
               </div>
             </div>
           </div>
@@ -23,8 +25,8 @@
                   <ul class="icon-list">
                     <li><a href="#">Current State</a></li>
                     <li><a href="#">Pros and Cons</a></li>
-                    <li><a href="#">The Decision</a></li>
-                    <li><a href="#">The Choice</a></li>
+                    <li><a href="#">Decision</a></li>
+                    <li><a href="#">Choice</a></li>
                   </ul>
                 </div>
               </div>
@@ -89,8 +91,7 @@
                     <p><b><h4>Choice</h4></b>
                       Investing high amount of money upfront for product that goes outdated sooner is never a good choice.
                       It is better to leave pepetual license and go for subscription based license for growing organizations.
-                       
-                    </p>
+                      </p>
  
 
                   </div>
