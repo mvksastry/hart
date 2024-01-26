@@ -45,7 +45,7 @@
         </div>
         <div class="col-sm-3">
           <div class="widget">
-            <h5 class="widget-title font-alt">Blogs</h5>
+            <h5 class="widget-title font-alt">HART - Blogs</h5>
             <ul class="widget-posts">
               <li class="clearfix">
                 <div class="widget-posts-image"><a href="#"><img src="{{asset('lassets/images/rp-1.jpg')}}" alt="Post Thumbnail"/></a></div>
