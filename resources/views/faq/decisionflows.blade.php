@@ -7,10 +7,10 @@
             <div class="row">
               <div class="col-sm-8">
                 <div class="post">
-                  <div class="post-thumbnail"><img src="assets/images/post-4.jpg" alt="Blog Featured Image"/></div>
+                  <div class="post-thumbnail"><img src="{{ asset('lassets/images/post-4.jpg') }}" alt="Blog Featured Image"/></div>
                   <div class="post-header font-alt">
-                    <h1 class="post-title">Our trip to the Alps</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
+                    <h1 class="post-title">Decision Flows: The Beating Heart of Progress</h1>
+                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 
                     </div>
                   </div>
                   <div class="post-entry">
@@ -28,7 +28,9 @@
                     <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>
                   </div>
                 </div>
+                
                 <div class="comments">
+                <!--
                   <h4 class="comment-title font-alt">There are 3 comments</h4>
                   <div class="comment clearfix">
                     <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/ryanbattles/128.jpg" alt="avatar"/></div>
@@ -63,8 +65,10 @@
                       </div>
                     </div>
                   </div>
+                  -->
                 </div>
                 <div class="comment-form">
+                  <!--
                   <h4 class="comment-form-title font-alt">Add your comment</h4>
                   <form method="post">
                     <div class="form-group">
@@ -80,6 +84,7 @@
                     </div>
                     <button class="btn btn-round btn-d" type="submit">Post comment</button>
                   </form>
+                  -->
                 </div>
               </div>
               <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
@@ -92,41 +97,41 @@
                   </form>
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">Blog Categories</h5>
+                  <h5 class="widget-title font-alt">Authorities</h5>
                   <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
+                    <li><a href="#">Director</a></li>
+                    <li><a href="#">Administration</a></li>
+                    <li><a href="#">Finance</a></li>
+                    <li><a href="#">Managers</a></li>
+                    <li><a href="#">Employees</a></li>
                   </ul>
                 </div>
                 <div class="widget">
                   <h5 class="widget-title font-alt">Popular Posts</h5>
                   <ul class="widget-posts">
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="{{ asset('lassets/images/rp-1.jpg') }}" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
                         <div class="widget-posts-meta">23 january</div>
                       </div>
                     </li>
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="{{ asset('lassets/images/rp-2.jpg') }}" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
                         <div class="widget-posts-meta">15 February</div>
                       </div>
                     </li>
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-3.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="{{ asset('lassets/images/rp-3.jpg') }}" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Eco bag Mockup</a></div>
                         <div class="widget-posts-meta">21 February</div>
                       </div>
                     </li>
                     <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-image"><a href="#"><img src="{{ asset('lassets/images/rp-4.jpg') }}" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
                         <div class="widget-posts-title"><a href="#">Bottle Mockup</a></div>
                         <div class="widget-posts-meta">2 March</div>
@@ -135,15 +140,19 @@
                   </ul>
                 </div>
                 <div class="widget">
+                  <!--
                   <h5 class="widget-title font-alt">Tag</h5>
                   <div class="tags font-serif"><a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
                   </div>
+                  -->
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">Text</h5>The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.
+                  <h5 class="widget-title font-alt">Comments</h5>
+                  Comments are disabled at present. However, you are free to send through contact form.
                 </div>
                 <div class="widget">
                   <h5 class="widget-title font-alt">Recent Comments</h5>
+                  <!--
                   <ul class="icon-list">
                     <li>Maria on <a href="#">Designer Desk Essentials</a></li>
                     <li>John on <a href="#">Realistic Business Card Mockup</a></li>
@@ -151,6 +160,7 @@
                     <li>Jack on <a href="#">Bottle Mockup</a></li>
                     <li>Mark on <a href="#">Our trip to the Alps</a></li>
                   </ul>
+                  -->
                 </div>
               </div>
             </div>
