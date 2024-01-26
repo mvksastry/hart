@@ -14,29 +14,42 @@ use Mail;
 
 class ContactEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+  use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+  
+  protected $contactMailData;
+  
+  public $tries = 2;
+  
+  public $timeout = 600;
     
-    protected $contactMailData;
-    public $tries = 2;
-    public $timeout = 600;
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct($contactMailData)
-    {
-      $this->contactMailData = $contactMailData;
-    }
+  /**
+   * Create a new job instance.
+   *
+   * @return void
+   */
+  public function __construct($contactMailData)
+  {
+    $this->contactMailData = $contactMailData;
+  }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
+  /**
+   * Execute the job.
+   *
+   * @return void
+   */
+  public function handle()
+  {
+    
+    $contEmail = new ContactMail($this->contactMailData);
+    
+    Mail::to($this->contactMailData['email'])->send($contEmail);
+    
+    if (Mail::flushMacros()) 
     {
-      $contEmail = new ContactMail($this->contactMailData);
-      Mail::to($this->contactMailData['email'])->send($contEmail);
+      Log::channel('contactmail')->info('Ack Mail to [ '.$this->contactMailData['email'].' ] Failed');
+    } else {
+      Log::channel('contactmail')->info('Ack Mail to [ '.$this->contactMailData['email'].' ] Successful');
     }
+    
+  }
 }

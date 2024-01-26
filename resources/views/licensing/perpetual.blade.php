@@ -37,7 +37,7 @@
                   </div>
                   <div class="post-header font-alt">
                     <h1 class="post-title">Perpetual License: Myth or Reality?</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 
+                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 7 Minute Read
                     </div>
                   </div>
                   <div class="post-entry">

@@ -461,6 +461,13 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
             let x = $('#contactForm input[name=name]').val();
             let y = $('#contactForm input[name=email]').val();
             let z = $('#contactForm input[name=message]').val();
+            let xyz = $('#contactForm input[name=botCheck]').val();
+            
+            if (xyz != "") {
+              alert('Must Delete Bot Check Text!');
+              return false;
+            };            
+            
             if (x == "") {
               alert('Name Not Entered');
               return false;

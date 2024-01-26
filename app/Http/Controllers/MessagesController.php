@@ -23,7 +23,9 @@ use App\Http\Requests\MessagesRequest;
 use Mail;
 use Carbon\Carbon;
 use App\Mail\ContactMail;
+use App\Mail\OffAdminNotifyMail;
 use App\Jobs\ContactEmailJob;
+use App\Jobs\OffAdminEmailJob;
 use App\Traits\Baseinfo;
 
 use Illuminate\Support\Facades\Log;
@@ -63,13 +65,16 @@ class MessagesController extends Controller
   public function store(Request $request)
   {
     $input = $request->all();   
-    $msg =json_encode($input);
+
+    $clientIP = $request()->ip();  
+    
     //$msgs = new Messages();
     //$msgs->name = $input['name'];
     //$msgs->email = $input['email'];
     //$msgs->message = $input['message'];  
     //$result = $msgs->save();
-    //dd($result);         
+    //dd($result); 
+    
     $contactMailData = [
       'name' => $input['name'],
       'email' => $input['email'],
@@ -80,31 +85,33 @@ class MessagesController extends Controller
                   back to you soon with all the details requested.'
     ];
          
-    //$mailAdd = ['email' => 'mvksastry@gmail.com'];
     $emailJob = (new ContactEmailJob($contactMailData))->delay(Carbon::now()->addMinutes(1));
+    
     dispatch($emailJob);
-          
-    //Mail::to('mvksastry@gmail.com')
-          //->cc($moreUsers)
-          //->bcc($evenMoreUsers)
-          //->queue(new ContactMail($contactMailData));
-        
-    //Mail::to($input['email'])->send(new ContactMail());
-
-    if (Mail::flushMacros()) {
-      $data = [
-        'success' => true,
-        'message'=> 'Your Request not processed correctly, try again',
-      ];
-      Log::channel('contactmail')->info('Ack Mail to [ '.$input['email'].' ] Failed');
-    }else{
-      $data = [
-        'success' => true,
-        'message'=> 'Your Request processed',
-      ];   
-      Log::channel('contactmail')->info('Ack Mail to [ '.$input['email'].' ] Successful');
-    }
-    return response()->json($data);  
+    
+    $dataAjax = [
+      'success' => true,
+      'message'=> 'Your Request processed',
+    ];
+    
+    //now here implement mail to system admin people
+    
+    $sysAdminMailData = [
+      'name' => "Krishna Teja",
+      'email' => "tejak007@gmail.com",
+      'product' => 'H A R T',
+      'title' => 'Mail from '.$input['name'].' for HART',
+      'body'  => 'Email received from '.$input['email'].' regarding HART office. 
+                  The message is [ '.$input['message'].' ]'
+    ];    
+    
+    $notifyEmailJob = (new OffADminEmailJob($sysAdminMailData))->delay(Carbon::now()->addMinutes(1));
+    
+    dispatch($notifyEmailJob);
+    
+    //now return the ajax response to web page to 
+    //intimate the user that mail sent successfully
+    return response()->json($dataAjax);  
   }
 
   /**

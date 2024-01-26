@@ -35,7 +35,7 @@
                   </div>
                   <div class="post-header font-alt">
                     <h1 class="post-title">Subscription License: Reality or Cheating?</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 
+                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 6 Minute Read
                     </div>
                   </div>
                   <div class="post-entry">
