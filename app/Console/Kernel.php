@@ -15,7 +15,25 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping();
+        
+        // send even reminder mails every day at 6am
+        //$schedule->command('remind:events')->everyFiveMinutes();
+        
+        //$schedule->command('command:backupdb')->evenInMaintenanceMode()->dailyAt('04:35');
+        
+        //$schedule->command('manage:sqlbackups')->evenInMaintenanceMode()->dailyAt('04:40');
+        
+        // $schedule->command('remind:events')->evenInMaintenanceMode()->dailyAt('06:00');
+        
+        //$schedule->command('command:backupdb')->evenInMaintenanceMode()->dailyAt('07:15');
+
+        //$schedule->command('backup:singletables')->dailyAt('19:15');
+        
+        //$schedule->command('queue:work --tries=3')
+        //             ->cron('* * * * * *')
+        //             ->withoutOverlapping();
+        Log::channel('cronjob')->info('Schedule Jobs started');
     }
 
     /**

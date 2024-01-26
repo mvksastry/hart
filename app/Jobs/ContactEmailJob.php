@@ -18,7 +18,7 @@ class ContactEmailJob implements ShouldQueue
     
     protected $contactMailData;
     public $tries = 2;
-    public $timeout = 20;
+    public $timeout = 600;
     /**
      * Create a new job instance.
      *

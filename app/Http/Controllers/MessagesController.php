@@ -26,6 +26,8 @@ use App\Mail\ContactMail;
 use App\Jobs\ContactEmailJob;
 use App\Traits\Baseinfo;
 
+use Illuminate\Support\Facades\Log;
+
 class MessagesController extends Controller
 {
   /**
@@ -94,11 +96,13 @@ class MessagesController extends Controller
         'success' => true,
         'message'=> 'Your Request not processed correctly, try again',
       ];
+      Log::channel('contactmail')->info('Ack Mail to [ '.$input['email'].' ] Failed');
     }else{
       $data = [
         'success' => true,
         'message'=> 'Your Request processed',
       ];   
+      Log::channel('contactmail')->info('Ack Mail to [ '.$input['email'].' ] Successful');
     }
     return response()->json($data);  
   }

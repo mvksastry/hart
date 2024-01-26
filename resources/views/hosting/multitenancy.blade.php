@@ -83,7 +83,7 @@
                   <!-- <img src="assets/images/post-4.jpg" alt="Blog Featured Image"/> -->
                   </div>
                   <div class="post-header font-alt">
-                    <h1 class="post-title">Our trip to the Alps</h1>
+                    <h1 class="post-title">Multi-Tenant Web Applications</h1>
                     <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 
                     </div>
                   </div>
