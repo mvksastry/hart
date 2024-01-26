@@ -448,7 +448,6 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
             }
         });
             
-
         $("#contactForm").submit(function (e) {
             e.preventDefault();
  
@@ -507,7 +506,6 @@ console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55')
                 });
             return false;
         });
-
 
         /*===============================================================
          Working Request A Call Form
