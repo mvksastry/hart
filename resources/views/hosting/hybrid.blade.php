@@ -5,24 +5,26 @@
             <div class="row">
               <div class="col-sm-4 col-md-3 sidebar">
                 <div class="widget">
+                  <!--
                   <form role="form">
                     <div class="search-box">
                       <input class="form-control" type="text" placeholder="Search..."/>
                       <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                     </div>
                   </form>
+                  -->
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">Hybrid</h5>
+                  <h5 class="widget-title font-alt">Contents</h5>
                   <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
+                    <li><a href="#">Concept</a></li>
+                    <li><a href="#">Good and Bad</a></li>
+                    <li><a href="#">Approach</a></li>
+                    <li><a href="#">Decision</a></li>
                   </ul>
                 </div>
                 <div class="widget">
+                  <!--
                   <h5 class="widget-title font-alt">Popular Posts</h5>
                   <ul class="widget-posts">
                     <li class="clearfix">
@@ -54,7 +56,9 @@
                       </div>
                     </li>
                   </ul>
+                  -->
                 </div>
+                <!--
                 <div class="widget">
                   <h5 class="widget-title font-alt">Tag</h5>
                   <div class="tags font-serif"><a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
@@ -73,13 +77,16 @@
                     <li>Mark on <a href="#">Our trip to the Alps</a></li>
                   </ul>
                 </div>
+                -->
               </div>
               <div class="col-sm-8 col-sm-offset-1">
                 <div class="post">
-                  <div class="post-thumbnail"><img src="assets/images/post-4.jpg" alt="Blog Featured Image"/></div>
+                  <div class="post-thumbnail">
+                  <!-- <img src="assets/images/post-4.jpg" alt="Blog Featured Image"/> -->
+                  </div>
                   <div class="post-header font-alt">
-                    <h1 class="post-title">Our trip to the Alps</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
+                    <h1 class="post-title">Hybrid Hosting</h1>
+                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November |
                     </div>
                   </div>
                   <div class="post-entry">
@@ -97,6 +104,7 @@
                     <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>
                   </div>
                 </div>
+                <!--
                 <div class="comments">
                   <h4 class="comment-title font-alt">There are 3 comments</h4>
                   <div class="comment clearfix">
@@ -150,6 +158,7 @@
                     <button class="btn btn-round btn-d" type="submit">Post comment</button>
                   </form>
                 </div>
+                -->
               </div>
             </div>
           </div>

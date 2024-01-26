@@ -58,7 +58,7 @@ is the best way to begin otherwise "haste makes waste".
                       <div class="alt-features-icon"><span class="icon-tools"></span></div>
                       <h3 class="alt-features-title font-alt">Design</h3>
                       Simulate the thought process of discussion to ensure exceptions 
-                      are kept at a minimum. More the exceptions, the worse the implementation.
+                      are kept at a minimum. More the exceptions, worse the implementation.
                       
                     </div>
                   </div>

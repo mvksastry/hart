@@ -5,23 +5,25 @@
             <div class="row">
               <div class="col-sm-4 col-md-3 sidebar">
                 <div class="widget">
+                  <!--
                   <form role="form">
                     <div class="search-box">
                       <input class="form-control" type="text" placeholder="Search..."/>
                       <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                     </div>
                   </form>
+                  -->
                 </div>
                 <div class="widget">
-                  <h5 class="widget-title font-alt">On Site</h5>
+                  <h5 class="widget-title font-alt">Contents</h5>
                   <ul class="icon-list">
-                    <li><a href="#">Photography - 7</a></li>
-                    <li><a href="#">Web Design - 3</a></li>
-                    <li><a href="#">Illustration - 12</a></li>
-                    <li><a href="#">Marketing - 1</a></li>
-                    <li><a href="#">Wordpress - 16</a></li>
+                    <li><a href="#">Concept</a></li>
+                    <li><a href="#">Infrastructure</a></li>
+                    <li><a href="#">Costs</a></li>
+                    <li><a href="#">Decision</a></li>
                   </ul>
                 </div>
+                <!--
                 <div class="widget">
                   <h5 class="widget-title font-alt">Popular Posts</h5>
                   <ul class="widget-posts">
@@ -73,13 +75,16 @@
                     <li>Mark on <a href="#">Our trip to the Alps</a></li>
                   </ul>
                 </div>
+                -->
               </div>
               <div class="col-sm-8 col-sm-offset-1">
                 <div class="post">
-                  <div class="post-thumbnail"><img src="assets/images/post-4.jpg" alt="Blog Featured Image"/></div>
+                  <div class="post-thumbnail">
+                  <!-- <img src="assets/images/post-4.jpg" alt="Blog Featured Image"/> -->
+                  </div>
                   <div class="post-header font-alt">
-                    <h1 class="post-title">Our trip to the Alps</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
+                    <h1 class="post-title">On site hosting - self hosting</h1>
+                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>| 23 November | 
                     </div>
                   </div>
                   <div class="post-entry">
@@ -98,6 +103,7 @@
                   </div>
                 </div>
                 <div class="comments">
+                  <!--
                   <h4 class="comment-title font-alt">There are 3 comments</h4>
                   <div class="comment clearfix">
                     <div class="comment-avatar"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/ryanbattles/128.jpg" alt="avatar"/></div>
@@ -132,7 +138,9 @@
                       </div>
                     </div>
                   </div>
+                  -->
                 </div>
+                <!--
                 <div class="comment-form">
                   <h4 class="comment-form-title font-alt">Add your comment</h4>
                   <form method="post">
@@ -150,6 +158,7 @@
                     <button class="btn btn-round btn-d" type="submit">Post comment</button>
                   </form>
                 </div>
+                -->
               </div>
             </div>
           </div>
