@@ -66,7 +66,7 @@ class MessagesController extends Controller
   {
     $input = $request->all();   
 
-    $clientIP = $request()->ip();  
+    //$clientIP = $request()->ip();  
     
     //$msgs = new Messages();
     //$msgs->name = $input['name'];
