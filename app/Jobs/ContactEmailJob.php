@@ -12,6 +12,8 @@ use Illuminate\Queue\SerializesModels;
 use App\Mail\ContactMail;
 use Mail;
 
+use Illuminate\Support\Facades\Log;
+
 class ContactEmailJob implements ShouldQueue
 {
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

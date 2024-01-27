@@ -12,6 +12,8 @@ use Illuminate\Queue\SerializesModels;
 use App\Mail\OffAdminNotifyMail;
 use Mail;
 
+use Illuminate\Support\Facades\Log;
+
 class OffAdminEmailJob implements ShouldQueue
 {
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
