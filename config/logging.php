@@ -63,6 +63,30 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'contactmail' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/contactmails.log'),
+            'level' => 'info',
+        ],
+
+        'dbbackup' => [
+            'driver' => 'daily',
+            'path' => storage_path('backups/dbbckupjob.log'),
+            'level' => 'info',
+        ],
+
+        'activity' => [
+            'driver' => 'daily',
+            'path' => storage_path('logactivity/activity.log'),
+            'level' => 'info',
+        ],
+
+        'tenantjobs' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/tenantjobs.log'),
+            'level' => 'info',
+        ],
+        
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
