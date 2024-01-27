@@ -69,6 +69,12 @@ return [
             'level' => 'info',
         ],
 
+        'cronjob' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/crojjob.log'),
+            'level' => 'info',
+        ],
+        
         'dbbackup' => [
             'driver' => 'daily',
             'path' => storage_path('backups/dbbckupjob.log'),
