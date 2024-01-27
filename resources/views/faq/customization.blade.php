@@ -48,8 +48,8 @@
                     <div class="alt-features-item">
                       <div class="alt-features-icon"><span class="icon-tools"></span></div>
                       <h3 class="alt-features-title font-alt">Discuss</h3>
-                      A simple across the table discussion, tabulating the pro and cons of changes
-is the best way to begin otherwise "haste makes waste".
+                      A simple, across the table discussion, tabulating the pro and cons of 
+                      changes is the best way to begin otherwise "haste makes waste".
                     </div>
                   </div>
                   
@@ -78,7 +78,7 @@ is the best way to begin otherwise "haste makes waste".
                       <div class="alt-features-icon"><span class="icon-tools-2"></span></div>
                       <h3 class="alt-features-title font-alt">Deploy</h3>
                       When the first three 'D's are in place, this is the easiest of all where
-                     users can be on boarded to remove any exceptions that were not caught. 
+                     users can be on-boarded to remove any exceptions that were not caught. 
                     </div>
                   </div>
                   
