@@ -15,6 +15,48 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
+              
+                <div class="post">
+                  <div class="post-thumbnail">
+                  <!-- <img src="assets/images/post-4.jpg" alt="Blog Featured Image"/> -->
+                  </div>
+                  <div class="post-header font-alt">
+                    <h1 class="post-title">Data Security</h1>
+                    <div class="post-meta">By&nbsp;<a href="#">Krishna Teja</a>| 23 November | 
+                    </div>
+                  </div>
+                  <div class="post-entry">
+                    <p>Every data that has to go to the DB is forced to go through stringent validations 
+                    that are for type and nature. For ex, the number "1" is an integer and it can be 
+                    alphabet if written as "one". The nature of storage is validated i.e, the data to be stored 
+                    as an integer it will be stored as integer and vice-versa.</p>
+                    <p>HART employs world's most trusted database MySQL. The MySql is the most trusted 
+                    database for all types industrial practices for security. 
+                    HART coding involves protection against SQL injections (query for some but get data 
+                    that is not asked for) and all requested information is checked against whether or 
+                    not required permissions for seeing the data are present. If it is not present, it will 
+                    not be shown at all. Going beyond this page is not possible. </p>
+
+                    <p>Anyway, any security is as good as the people who use it. Securing passwords 
+                    not sharing with others is the most important aspect of all needs. Once again all 
+                    login-logout activity is recorded automatically. HART tracks malicious and supecious activities.</p>
+                    <!--
+                    <blockquote>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    </blockquote>
+                    -->
+                    <!--
+                    <p>If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental.</p>
+                    <ul>
+                      <li>The European languages are members of the same family.</li>
+                      <li>Their separate existence is a myth.</li>
+                      <li>For science, music, sport, etc, Europe uses the same vocabulary.</li>
+                    </ul>
+                    -->
+                    <!--<p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>-->
+                  </div>
+                </div>
+              <!--
                 <h4 class="font-alt mb-0">Features Item</h4>
                 <hr class="divider-w mt-10 mb-20">
                 <div class="row multi-columns-row">
@@ -63,6 +105,7 @@
                     </div>
                   </div>
                 </div>
+                -->
               </div>
             </div>
           </div>

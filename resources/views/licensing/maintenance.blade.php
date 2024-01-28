@@ -14,11 +14,13 @@
         <section class="module">
           <div class="container">
             <div class="row">
-              <div class="col-sm-6">
-                <h5 class="font-alt">We’re a digital creative agency</h5><br/>
-                <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>
-                <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.</p>
+              <div class="col-sm-12">
+                <h5 class="font-alt">Data Maintenance</h5><br/>
+                <p>An automated back-up of the data is performed by two entities</p>
+                <p>1. The server itself. The server is programmed to keep the settings (all inclusive), the code and the database.</p>
+                <p>2. The software itself keep another independent back-up of the database. Currently the database has around 60 tables of data, needed to store different aspects of the data. All 60 db tables is done every day once. We wish to choose the time depending upon the users activity, mostly in the early hours of a day. If however, additional back-up are warranted (high volume of data being entered), more back-ups can be programmed.</p>
               </div>
+              <!--
               <div class="col-sm-6">
                 <h6 class="font-alt"><span class="icon-tools-2"></span> Development
                 </h6>
@@ -41,6 +43,7 @@
                   <div class="progress-bar pb-dark" aria-valuenow="90" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
                 </div>
               </div>
+              -->
             </div>
           </div>
         </section>
