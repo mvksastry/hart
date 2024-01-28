@@ -49,9 +49,9 @@ class OffAdminEmailJob implements ShouldQueue
     
     if (Mail::flushMacros()) 
     {
-      Log::channel('contactmail')->info('Ack Mail to [ '.$this->sysAdminMailData['email'].' ] Failed');
+      Log::channel('contactmail')->info('Ack Mail to admin [ '.$this->sysAdminMailData['email'].' ] Failed');
     } else {
-      Log::channel('contactmail')->info('Ack Mail to [ '.$this->sysAdminMailData['email'].' ] Successful');
+      Log::channel('contactmail')->info('Ack Mail to admin [ '.$this->sysAdminMailData['email'].' ] Successful');
     }
   }
 }
