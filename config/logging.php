@@ -71,7 +71,7 @@ return [
 
         'cronjob' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/crojjob.log'),
+            'path' => storage_path('logs/cronjob.log'),
             'level' => 'info',
         ],
         
@@ -145,7 +145,7 @@ return [
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/emergency.log'),
         ],
     ],
 
