@@ -63,6 +63,11 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'deprecations' => [
+          'driver' => 'single',
+          'path' => storage_path('logs/php-deprecation-warnings.log'),
+        ],
+  
         'contactmail' => [
             'driver' => 'daily',
             'path' => storage_path('logs/contactmails.log'),
