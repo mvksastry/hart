@@ -18,6 +18,8 @@ use App\Http\Controllers\HostingChoiceController;
 use App\Http\Controllers\IOCommsController;
 
 use App\Http\Controllers\KanbanController;
+use App\Http\Controllers\KanbanBoardsController;
+use App\Http\Controllers\KanbanCardsController;
 
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LeaverecordController;
@@ -150,6 +152,15 @@ Route::middleware(['auth'] )->group(function () {
 		Route::resource('holidays', HolidayController::class);	
 		Route::post('holidays_mass_destroy', ['uses' => 'HolidayController@massDestroy', 'as' => 'holidays.mass_destroy']);
 
+		//Kanban Boards routes
+		Route::resource('kanban-boards', KanbanBoardsController::class);	
+		Route::post('kanbanboards_mass_destroy', ['uses' => 'KanbanBoardsController@massDestroy', 'as' => 'kanban-boards.mass_destroy']);
+
+		//Kanban Cards routes
+		Route::resource('kanban-cards', KanbanCardsController::class);	
+		Route::post('kanbancards_mass_destroy', ['uses' => 'KanbanCardsController@massDestroy', 'as' => 'kanban-cards.mass_destroy']);
+
+
 		//Path routes
 		Route::resource('paths', PathController::class);	
 		Route::post('paths_mass_destroy', ['uses' => 'PathController@massDestroy', 'as' => 'paths.mass_destroy']);
@@ -159,23 +170,23 @@ Route::middleware(['auth'] )->group(function () {
 		Route::post('iocomms_mass_destroy', ['uses' => 'CommunicationController@massDestroy', 'as' => 'communications.mass_destroy']);
 		Route::post('iocomms_mass_approval', ['uses' => 'CommunicationController@massDestroy', 'as' => 'communications.mass_approval']);
 
-		//Path routes
+		//Users routes
 		Route::resource('users', UserController::class);	
 		Route::post('users_mass_destroy', ['uses' => 'UserController@massDestroy', 'as' => 'users.mass_destroy']);
 
-		//Path routes
+		//roles routes
 		Route::resource('roles', RoleController::class);	
 		Route::post('roles_mass_destroy', ['uses' => 'RoleController@massDestroy', 'as' => 'roles.mass_destroy']);
 
-		//Path routes
+		//permissions routes
 		Route::resource('permissions', PermissionController::class);	
 		Route::post('permissions_mass_destroy', ['uses' => 'PermissionController@massDestroy', 'as' => 'permissions.mass_destroy']);
 
-		//Path routes
+		//Eventypes routes
 		Route::resource('eventypes', EventypeController::class);	
 		Route::post('permissions_mass_destroy', ['uses' => 'PermissionController@massDestroy', 'as' => 'permissions.mass_destroy']);
 
-		//Path routes
+		//events routes
 		Route::resource('events', EventController::class);	
 		Route::post('events_mass_destroy', ['uses' => 'EventController@massDestroy', 'as' => 'events.mass_destroy']);
 

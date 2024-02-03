@@ -10,15 +10,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 //models
-use App\Models\Communication;
-use App\Models\Event;
-use App\Models\Group;
-use App\Models\Itax;
-use App\Models\Leave;
-use App\Models\Leaverecord;
-use App\Models\Project;
-use App\Models\Notice;
-use App\Models\Tour;
+use App\Models\Kanbanboards;
+use App\Models\Kanbancards;
 use App\Models\User;
 
 //Traits
@@ -70,7 +63,13 @@ class KanbanController extends Controller
 
 		if( Auth::user()->hasExactRoles(['admin', 'employee']) )
 		{
-      return view('layouts.kanban.kanbanBoard');
+      $kboards = Kanbanboards::where('posted_by', Auth::user()->name)->get();
+      $kcards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+      $kb = json_encode($kboards);
+      $kc = json_encode($kcards);
+      
+      //dd($kb, $kc);
+      return view('layouts.kanban.kanbanBoard', compact('kb', 'kc'));
 		}
 
 		if( Auth::user()->hasExactRoles(['director','employee']) )
