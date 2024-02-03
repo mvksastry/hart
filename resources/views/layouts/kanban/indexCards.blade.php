@@ -65,7 +65,7 @@
 										</thead>
 										<tbody>
 											@foreach ($kanban_cards as $kcard)
-												<tr data-entry-id="{{ $kcard->uuid }}">
+												<tr data-entry-id="{{ $kcard->kbocard_id }}">
 													<td></td>
 													<td>{{ ucwords($kcard->posted_by) }}</td>
 													<td>{{ ucfirst($kcard->item_name) }}</td>
@@ -74,7 +74,7 @@
 													<td>{{ $status_code[$kcard->item_status] }}</td>
 													<td>{{ date('d-m-Y', strtotime($kcard->status_date)) }}</td>
 													<td>                           
-														<a href="{{ route('kanban-cards.edit',$kcard->kboboard_id) }}" class="btn btn-xs btn-info">Edit</a>
+														<a href="{{ route('kanban-cards.edit',$kcard->kbocard_id) }}" class="btn btn-xs btn-info">Edit</a>
 													</td>
 												</tr>
 											@endforeach

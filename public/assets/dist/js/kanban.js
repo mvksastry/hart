@@ -22,13 +22,13 @@ let colorClass = [
     {class:"danger",  color:"red"}
 ];
 
-
 let dataCards = {
     config:{
         maxid:0
     },
     cards:[]
 };
+
 let theme="light";
 //get current cards
 let kanBoards = JSON.parse(dataKboards);
@@ -37,9 +37,11 @@ let kanCards =  JSON.parse(dataKcards);
 $(document).ready(()=>{
     $("#loadingScreen").addClass("d-none");
     theme = localStorage.getItem('@kanban:theme');
+    
     if(theme){
         $("body").addClass(`${theme==="light"?"":"darkmode"}`);
     }
+    
     localStorage.clear();
     initializeBoards();
     
@@ -47,6 +49,7 @@ $(document).ready(()=>{
         dataCards = JSON.parse(localStorage.getItem('@kanban:data'));
         initializeComponents(dataCards);
     }
+    
     setCurrentCards();
     initializeCards();
     
@@ -71,10 +74,12 @@ $(document).ready(()=>{
             initializeCards();
         }
     });
+    
     $("#deleteAll").click(()=>{
         dataCards.cards = [];
         save();
     });
+    
     $("#theme-btn").click((e)=>{
         e.preventDefault();
         $("body").toggleClass("darkmode");
@@ -114,19 +119,19 @@ function initializeBoards(){
 }
 
 function setCurrentCards(){
-  //alert(dataKcards);
   //now put info in the cards
   for (var item of kanCards) 
   {
     let id = item.kbocard_id;
     let title = item.item_name;
     let description = item.item_desc;
+    let position = item.color;
     
     const currentCard = {
                   id,
                   title,
                   description,
-                  position:"yellow",
+                  position,
                   priority: false
                 }
               

@@ -87,7 +87,9 @@ class KanbanCardsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $kcard = Kanbancards::where('kbocard_id', $id)->first();
+      //dd($kcard);
+      return view('layouts.kanban.editCard', compact('kcard'));
     }
 
     /**
@@ -99,7 +101,20 @@ class KanbanCardsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        
+        $kcard = Kanbancards::where('kbocard_id', $id)->first();
+        
+        $kcard->item_name = $input['item_name'];
+        $kcard->item_desc = $input['item_desc'];
+        $kcard->color = $input['color'];
+        $kcard->edited_by = Auth::user()->name;
+        //dd($kcard);
+        $kcard->save();
+        
+        return redirect()->route('kanban-cards.index')
+          ->with('flash_message',
+              'New Board Registered successfully.');        //
     }
 
     /**
