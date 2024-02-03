@@ -39,7 +39,7 @@ class KanbanCardsController extends Controller
     {
         //
       $todo = Kanbanboards::where('name', 'todo')->pluck('uuid');
-      
+      //dd($todo);
       return view('layouts.kanban.createCard', compact('todo'));
     }
 
@@ -51,10 +51,11 @@ class KanbanCardsController extends Controller
      */
     public function store(Request $request)
     {
-      $input = $request->all();   
-      //dd($input);
+      $input = $request->all(); 
+      $todo = str_replace(['["', '"]'], '', $input['todo_id']);
+      
       $kcard = new Kanbancards();
-      $kcard->kboboard_id = $input['todo_id'];
+      $kcard->kboboard_id = $todo;
       $kcard->item_name = $input['card_name'];
       $kcard->item_desc = $input['description'];
       $kcard->item_status = 1;

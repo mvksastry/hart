@@ -140,17 +140,12 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group(funct
 
 
 Route::middleware(['auth'] )->group(function () {
+
+		Route::resource('calendar', CalendarController::class);
+		Route::post('calendar_mass_destroy', ['uses' => 'CalendarController@massDestroy', 'as' => 'calendar.mass_destroy']);
 		
     //Dashboard controller
     Route::resource('kanban', KanbanController::class);
-    
-		//Leave types routes
-		Route::resource('leavetypes', LeavetypeController::class);	
-		Route::post('leavetypes_mass_destroy', ['uses' => 'LeavetypeController@massDestroy', 'as' => 'leavetypes.mass_destroy']);
-
-		//Holiday routes
-		Route::resource('holidays', HolidayController::class);	
-		Route::post('holidays_mass_destroy', ['uses' => 'HolidayController@massDestroy', 'as' => 'holidays.mass_destroy']);
 
 		//Kanban Boards routes
 		Route::resource('kanban-boards', KanbanBoardsController::class);	
@@ -159,7 +154,14 @@ Route::middleware(['auth'] )->group(function () {
 		//Kanban Cards routes
 		Route::resource('kanban-cards', KanbanCardsController::class);	
 		Route::post('kanbancards_mass_destroy', ['uses' => 'KanbanCardsController@massDestroy', 'as' => 'kanban-cards.mass_destroy']);
+    
+		//Leave types routes
+		Route::resource('leavetypes', LeavetypeController::class);	
+		Route::post('leavetypes_mass_destroy', ['uses' => 'LeavetypeController@massDestroy', 'as' => 'leavetypes.mass_destroy']);
 
+		//Holiday routes
+		Route::resource('holidays', HolidayController::class);	
+		Route::post('holidays_mass_destroy', ['uses' => 'HolidayController@massDestroy', 'as' => 'holidays.mass_destroy']);
 
 		//Path routes
 		Route::resource('paths', PathController::class);	
@@ -217,8 +219,6 @@ Route::middleware(['auth'] )->group(function () {
     //Projects routes
     Route::resource('/projects', ProjectsController::class);
 
-		Route::resource('calendar', CalendarController::class);
-		Route::post('calendar_mass_destroy', ['uses' => 'CalendarController@massDestroy', 'as' => 'calendar.mass_destroy']);
 
 		//tourdetails routes
 		Route::get('/tours/decision/{id}', ['uses' => 'ToursController@decision', 'as' => 'tours.decision']);
