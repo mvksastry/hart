@@ -15,6 +15,7 @@ use App\Models\Communication;
 use App\Models\Event;
 use App\Models\Group;
 use App\Models\Itax;
+use App\Models\Kanbancards;
 use App\Models\Leave;
 use App\Models\Leaverecord;
 use App\Models\Project;
@@ -167,9 +168,11 @@ class DashboardController extends Controller
 														
 			$itEmp = Itax::with('user')
 						->where('employee_id', Auth::id() )->get();
+            
+      $kbCards = Kanbancards::where('posted_by', Auth::user()->name)->get();
 
 			return view('layouts.home.admin.dashboard', compact('employee_count','project_count', 'communications','notices',	'reports',
-														'itEmp','leaves','tours','events','role_name'));
+														'itEmp','leaves','tours','events','role_name', 'kbCards'));
 		}
 
 		if( Auth::user()->hasExactRoles(['director','employee']) )
