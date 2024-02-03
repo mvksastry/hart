@@ -5,16 +5,7 @@
 		$condChoice = array("1" => "Open", "2" => "Invitees Only", "3"=>"Group Only", "4"=>"Meeting");
 		$condChoiceSel = 1;
 		
-		$timespan = array( 
-			"1"  => "06:00",  "2" => "06:30",  "3" => "07:00",  "4" => "07:30", "5"  => "08:00",
-			"6"  => "08:30",  "7" => "06:00",  "8" => "06:30",  "9" => "07:00", "10" => "07:30",
-			"11" => "08:00", "12" => "08:30",	"13" => "09:00", "14" => "09:30", "15" => "10:00", 
-			"16" => "10:30", "17" => "11:00",	"18" => "11:30", "19" => "12:00", "20" => "12:30", 
-			"21" => "13:00", "22" => "13:30",	"23" => "14:00", "24" => "14:30",	"25" => "15:00", 
-      "26" => "15:30", "27" => "16:00", "28" => "16:30", "29" => "17:00", "30" => "15:30",
-			"31" => "17:00", "32" => "18:30", "33" => "19:00", "34" => "19:30", "35" => "20:00",
-      "36" => "20:30"
-			);
+
 	?>
 	
 	<!-- Content Wrapper. Contains page content -->
@@ -93,15 +84,12 @@
                               <div class="form-group col">
                                 {!! Form::label('color', 'Board Color*', ['class' => 'control-label']) !!}
                                 <select class="custom-select form-control rounded-1" 
-                                name="color" id="color">
+                                  name="color" id="color">
+                                  @foreach($colors as $color)
+                                  <option value="{{ $color }}"> >{{ ucfirst($color) }}</option>
+                                  @endforeach
                                 
-                                  <option value="blue">Blue</option>
-                                  <option value="green">Green</option>
-                                  <option value="purple">Purple</option>
-                                  <option value="red">Red</option>
-                                  <option value="gray">Gray</option>
-                                
-                              </select>
+                                </select>
                                 <p class="help-block"></p>
                                 @if($errors->has('color'))
                                   <p class="help-block">

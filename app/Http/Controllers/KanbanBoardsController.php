@@ -88,6 +88,10 @@ class KanbanBoardsController extends Controller
     public function edit($id)
     {
         //
+      $kboard = Kanbanboards::where('uuid', $id)->first();
+      //dd($kboard);
+      return view('layouts.kanban.edit', compact('kboard'));
+      
     }
 
     /**
@@ -100,6 +104,19 @@ class KanbanBoardsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        
+        $kboard = Kanbanboards::where('uuid', $id)->first();
+        
+        $kboard->name = $input['name'];
+        $kboard->description = $input['description'];
+        $kboard->color = $input['color'];
+        $kboard->edited_by = Auth::user()->name;
+        //dd($kboard);
+        $kboard->save();
+        return redirect()->route('kanban-boards.index')
+          ->with('flash_message',
+              'New Board Registered successfully.');
     }
 
     /**

@@ -1,7 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
-
 <script>
     var dataKboards = '<?=$kb?>';
     var dataKcards  = '<?=$kc?>';
@@ -24,7 +22,7 @@
           </div>
         </div>
         <!-- / end header -->
-      				@include('layouts.kanban.flexMenuKanban')
+      	@include('layouts.kanban.flexMenuKanban')
       </div>
     </section>
 
@@ -44,24 +42,6 @@
             </div>
           </div><!-- /.card-header -->
  
-          <!-- begin kanban input fields -->
-          <div class="row">
-            <div class="col-sm-12">        
-              <div class="controls p-3">
-                <form class="form-inline">
-                  <label class="ml-4" for="titleInput">New Card Title:</label>
-                  <input class="form-control form-control-sm ml-2" type="text" name="title" id="titleInput" autocomplete="off">
-                  <label class="ml-2" for="descriptionInput">Description:</label>
-                  <input class="form-control form-control-sm ml-2" type="text" name="description" id="descriptionInput" autocomplete="off">
-                  <button class="btn btn-dark ml-2" id="add">Add</button>
-                  <button class="btn btn-danger mx-2" id="deleteAll">Delete All</button>
-                </form>
-              </div>
-            </div>
-          </div> 
-          <!-- / begin kanban input fields -->   
-      
-
           <div class="row">
           
             <div class="col-sm-3">
@@ -121,9 +101,7 @@
                 </div>
               </div> 
             </div>
-            
-            
-            
+
           </div>
           
         </div>              

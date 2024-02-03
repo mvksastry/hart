@@ -50,7 +50,6 @@
 								<!-- Morris chart - Sales -->
 								<div class="chart tab-pane active" id="revenue-chart" style="position: relative;">
 
-
 									@if (count($kanban_cards) > 0)
 									<table id="example2" class="table table-bordered table-hover {{ count($kanban_cards) > 0 ? 'datatable' : '' }} dt-select">
 										<thead>
@@ -59,7 +58,6 @@
 												<th>Posted By</th>
 												<th>Name</th>
 												<th>Description</th>
-												
 												<th>Status</th>
 												<th>Status Date</th>
 												<th>Actions</th>
@@ -75,10 +73,8 @@
 													
 													<td>{{ $status_code[$kcard->item_status] }}</td>
 													<td>{{ date('d-m-Y', strtotime($kcard->status_date)) }}</td>
-													<td>
-                            <a href="{{ route('kanban-cards.show',$kcard->kboboard_id) }}" class="btn btn-xs btn-info">View All</a>
+													<td>                           
 														<a href="{{ route('kanban-cards.edit',$kcard->kboboard_id) }}" class="btn btn-xs btn-info">Edit</a>
-														<a href="{{ route('kanban-cards.destroy',$kcard->kboboard_id) }}" class="btn btn-xs btn-danger">Delete</a>
 													</td>
 												</tr>
 											@endforeach
@@ -87,8 +83,6 @@
 									@else
 										No Information to display
 									@endif
-
-
 
 								</div>
 							</div>
