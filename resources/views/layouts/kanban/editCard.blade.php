@@ -2,7 +2,7 @@
 @section('content')
 	<?php 
 		$colors = array( 
-			"1"  => "blue",  "2" => "green",  "3" => "purple",  "4" => "red", "5"  => "yellow"
+			"blue"  => "In-Progress",  "green" => "To Do",  "red" => "Done", "yellow"  => "Backlog"
 			);
 	?>
   
@@ -76,12 +76,12 @@
                                 {!! Form::label('color', 'color*', ['class' => 'control-label']) !!}
                                 <select class="custom-select form-control rounded-1" 
                                       name="color" id="color">
-                                  @foreach($colors as $color)
-                                  <option value="{{ $color }}"
-                                    @if($kcard->color == $color)
+                                  @foreach($colors as $key => $value)
+                                  <option value="{{ $key }}"
+                                    @if($kcard->color == $value)
                                       selected="selected"
                                     @endif
-                                    >{{ ucfirst($color) }}</option>
+                                    >{{ ucfirst($value) }}</option>
                                   @endforeach
                                 </select>
                               <p class="help-block"></p>

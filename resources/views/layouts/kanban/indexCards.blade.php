@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 	<?php 
-		$status_code = array("0" => "Inactive", "1" => "Active", "2"=>"Abandoned");
+		$bg_code = array("yellow" => "bg-warning", "blue" => "bg-primary", "green"=>"bg-success", "red"=> "bg-danger");
+    $status_code = array("1"=> "Active", "0" => "Inactive");
 	?>
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
@@ -65,7 +66,8 @@
 										</thead>
 										<tbody>
 											@foreach ($kanban_cards as $kcard)
-												<tr data-entry-id="{{ $kcard->kbocard_id }}">
+                      <?php $bgcode = $bg_code[$kcard->color]; ?>
+												<tr class="{{ $bgcode }}" data-entry-id="{{ $kcard->kbocard_id }}">
 													<td></td>
 													<td>{{ ucwords($kcard->posted_by) }}</td>
 													<td>{{ ucfirst($kcard->item_name) }}</td>
