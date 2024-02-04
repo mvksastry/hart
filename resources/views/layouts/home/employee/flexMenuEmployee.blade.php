@@ -38,7 +38,7 @@
 		  <div class="inner">
 			<h3>{{ count($communications) }}</h3>
 
-			<p>Communications</p>
+			<p>Not Coded</p>
 		  </div>
 		  <div class="icon">
 			<i class="ion ion-person-add"></i>
@@ -51,9 +51,9 @@
 		<!-- small box -->
 		<div class="small-box bg-danger">
 		  <div class="inner">
-			<h3>DD</h3>
+			<h3>Upcoming</h3>
 
-			<p>Documents</p>
+			<p>Not Coded</p>
 		  </div>
 		  <div class="icon">
 			<i class="ion ion-pie-graph"></i>

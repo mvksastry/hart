@@ -4,7 +4,7 @@
 	<!-- small box -->
 	<div class="small-box bg-info">
 	  <div class="inner">
-		<h3> XX </h3>
+		<h4> Events </h4>
 		<p>Create New</p>
 	  </div>
 	  <div class="icon">
@@ -18,9 +18,9 @@
 	<!-- small box -->
 	<div class="small-box bg-success">
 	  <div class="inner">
-		<h3> YY <sup style="font-size: 20px"></sup></h3>
+		<h4> Upcoming <sup style="font-size: 20px"></sup></h4>
 
-		<p>Edit Type</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-stats-bars"></i>
@@ -33,9 +33,9 @@
 	<!-- small box -->
 	<div class="small-box bg-warning">
 	  <div class="inner">
-		<h3> ZZ </h3>
+		<h4> Upcoming </h4>
 
-		<p>Delete Type</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-person-add"></i>
@@ -48,9 +48,9 @@
 	<!-- small box -->
 	<div class="small-box bg-danger">
 	  <div class="inner">
-		<h3> AA </h3>
+		<h4> Upcoming </h4>
 
-		<p>Documents</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-pie-graph"></i>

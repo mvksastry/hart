@@ -5,7 +5,7 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{ $employee_count }}</h3>
+          <h4>{{ $employee_count }}</h4>
           <p>Employees</p>
         </div>
         <div class="icon">

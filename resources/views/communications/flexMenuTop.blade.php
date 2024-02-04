@@ -20,9 +20,9 @@
 	<!-- small box -->
 	<div class="small-box bg-success">
 	  <div class="inner">
-		<h3> YY <sup style="font-size: 20px"></sup></h3>
+		<h3> Upcoming <sup style="font-size: 20px"></sup></h3>
 
-		<p>Edit</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-stats-bars"></i>
@@ -36,9 +36,9 @@
 	<!-- small box -->
 	<div class="small-box bg-warning">
 	  <div class="inner">
-		<h3> ZZ </h3>
+		<h3> Upcoming </h3>
 
-		<p>For Decision</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-person-add"></i>
@@ -52,9 +52,9 @@
 	<!-- small box -->
 	<div class="small-box bg-danger">
 	  <div class="inner">
-		<h3> AA </h3>
+		<h3> Upcoming </h3>
 
-		<p>Documents</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-pie-graph"></i>
