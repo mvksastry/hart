@@ -165,23 +165,15 @@ function appendComponents(card){
       var clas  = item.color;
       var clas2 = item.class;
       if(card.position === item.color){
-        var cardStr = 'card-'+item.class;
+        var cardStr = 'alert-'+item.class;
       }
     }
     //alert(cardStr);
     
     let htmlString = 
         `
-          <div class="mt-2">
-            <div id=${card.id.toString()} class="kanbanCard ${card.position} card ${cardStr} card-outline" draggable="true">
-              <div class="card-header">
-                <h6 class="card-title">${card.title}</h6>
-              </div>
-              <div class="card-body">
-                <p>
-                  ${card.description}
-                </p>
-            </div>
+          <div id=${card.id.toString()} class="kanbanCard ${card.position} alert ${cardStr}" draggable="true">
+            ${card.description}
           </div>
         `
     $(`#${card.position}`).append(htmlString);
@@ -212,11 +204,11 @@ function deleteCard(id){
 }
 
 function removeCardClasses(cardClassBeingDragged, cardStr){
-    cardClassBeingDragged.classList.remove('card-danger');
-    cardClassBeingDragged.classList.remove('card-info');
-    cardClassBeingDragged.classList.remove('card-primary');
-    cardClassBeingDragged.classList.remove('card-success');
-    cardClassBeingDragged.classList.remove('card-warning');    
+    cardClassBeingDragged.classList.remove('alert-danger');
+    cardClassBeingDragged.classList.remove('alert-info');
+    cardClassBeingDragged.classList.remove('alert-primary');
+    cardClassBeingDragged.classList.remove('alert-success');
+    cardClassBeingDragged.classList.remove('alert-warning');    
     cardClassBeingDragged.classList.add(cardStr);
 }
 
@@ -284,19 +276,19 @@ function dragover({target}){
     cardClassBeingDragged = document.querySelector('.is-dragging');
     
     if(this.id ==="yellow"){
-        removeCardClasses(cardClassBeingDragged, "card-warning"); 
+        removeCardClasses(cardClassBeingDragged, "alert-warning"); 
     }
     else if(this.id ==="green"){
-        removeCardClasses(cardClassBeingDragged, "card-success");
+        removeCardClasses(cardClassBeingDragged, "alert-success");
     }
     else if(this.id ==="blue"){
-        removeCardClasses(cardClassBeingDragged, "card-info");
+        removeCardClasses(cardClassBeingDragged, "alert-info");
     }
     else if(this.id ==="purple"){
-        removeCardClasses(cardClassBeingDragged, "card-primary");
+        removeCardClasses(cardClassBeingDragged, "alert-primary");
     }
     else if(this.id ==="red"){
-        removeCardClasses(cardClassBeingDragged, "card-danger");
+        removeCardClasses(cardClassBeingDragged, "alert-danger");
     }   
     this.appendChild(cardClassBeingDragged);
    
