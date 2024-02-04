@@ -35,14 +35,19 @@ class EventController extends Controller
     $events = [];
     if( Auth::user()->hasExactRoles(['employee','supervisor']) )
     {
-      $events = Event::where('employee_id', Auth::user()->id)->get(); 
+      $events = Event::where('employee_id', Auth::user()->id)->get();
     }
     
-    if( Auth::user()->hasExactRoles(['admin','director']) )
+    if( Auth::user()->hasExactRoles(['admin','employee']) )
     {
       $events = Event::with('user')->with('eventype')->get();
     }
-
+    
+    if( Auth::user()->hasExactRoles(['employee','director']) )
+    {
+      $events = Event::with('user')->with('eventype')->get();
+    }
+   
     return view('events.index', compact('events'));
   }
 
