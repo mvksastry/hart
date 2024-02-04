@@ -51,6 +51,10 @@
                     <h3 class="card-title">Backlog</h3>
                   </div>
                   <div class="dropzone" id="yellow">
+                    <div class="kanbanCard yellow" draggable="true">
+                      <div class="mt-3">
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -62,10 +66,7 @@
                   </div>
                   <div class="dropzone" id="green">
                     <div class="kanbanCard green" draggable="true">
-                      <div class="card-body">
-                        <div class="card card-outline" >
-                        </div>
-                      </div>
+                      <div class="mt-3"></div>
                     </div>  
                   </div>
                 </div>
@@ -78,26 +79,20 @@
                   </div>
                     <div class="dropzone" id="blue">
                       <div class="kanbanCard blue" draggable="true">
-                        <div class="card-body">
-                          <div class="card card-outline" >
-                          </div>
-                        </div>
+                        <div class="mt-3"></div>
                       </div>  
                     </div>
                 </div>
               </div>
 
               <div class="col-sm-3">              
-                <div class="card card-row card-red mr-3">
+                <div class="card card-row card-danger mr-3">
                   <div class="card-header">
                     <h3 class="card-title">Done</h3>
                   </div>
                   <div class="dropzone" id="red">
                     <div class="kanbanCard red" draggable="true">
-                      <div class="card-body">
-                        <div class="card card-outline">
-                        </div>
-                      </div>
+                      <div class="mt-3"></div>
                     </div>
                   </div>
                 </div> 

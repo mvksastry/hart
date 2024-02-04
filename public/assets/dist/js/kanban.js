@@ -172,13 +172,10 @@ function appendComponents(card){
     
     let htmlString = 
         `
-          <div class="card-body">
+          <div class="mt-2">
             <div id=${card.id.toString()} class="kanbanCard ${card.position} card ${cardStr} card-outline" draggable="true">
               <div class="card-header">
-                <h5 class="card-title">${card.title}</h5>
-                <div class="card-tools">
-                  
-                </div>
+                <h6 class="card-title">${card.title}</h6>
               </div>
               <div class="card-body">
                 <p>
