@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Event;
 
+use App\Http\Requests\EventRequest;
 //Traits
 use App\Traits\Eventhandler;
+
+use Webpatser\Uuid\Uuid;
 
 class CalendarController extends Controller
 {
@@ -52,7 +55,20 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['event_type'] = 1;
+        $input['conditions'] = "none";
+        $input['comment'] = "None";
+        
+        $result = $this->setEvent($input);
+      
+        if(!$result ){
+          echo "Event Recording Error";
+        }
+        else {
+          echo "Event Recorded successfully";
+        }
+        
     }
 
     /**

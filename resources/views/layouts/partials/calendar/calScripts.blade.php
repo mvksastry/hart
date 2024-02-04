@@ -172,14 +172,61 @@
       })
     });
     
-    $('#add-new-event').click(function (e) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
+    $('#calEventForm').on('submit', function(e){
       e.preventDefault()
       // Get value and make sure it is not null
-      var val = $('#new-event').val()
-      if (val.length == 0) {
-        return
+      var form = '#calEventForm';
+      var url = $(this).attr('data-action');
+      //alert(url);
+      // Get value and make sure it is not null
+      var val1 = $('#new_event').val();
+      var val2 = $('#start_date').val();
+      var val3 = $('#start_time').val();
+      var val4 = $('#end_date').val();
+      var val5 = $('#end_time').val();
+      var val6 = $('#event_venue').val();
+
+      let data = new FormData(this);
+      data.append('new_event', val1);
+      data.append('start_date', val2);
+      data.append('start_time', val3);
+      data.append('end_date', val4);
+      data.append('end_time', val5);
+      data.append('event_venue', val6);
+      
+      if (val1.length == 0) {
+        alert('Must Enter Event Title xx!');
+        return 
       }
 
+      $.ajax({
+          url: url,
+          method: 'POST',
+          data:data,
+          dataType: 'JSON',
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (data) {
+              alert(data);
+              
+              //$cfResponse.html(data.message);
+              //$cfsubmit.text(cfsubmitText);
+             // $('#contactForm input[name=name]').val('');
+             // $('#contactForm input[name=email]').val('');
+             // $('#contactForm textarea[name=message]').val('');
+          },
+          error: function (data) {
+            alert("Error occured! Please try again");
+          }
+      });
+      
       // Create events
       var event = $('<div />')
       event.css({
@@ -187,7 +234,7 @@
         'border-color'    : currColor,
         'color'           : '#fff'
       }).addClass('external-event')
-      event.text(val)
+      event.text(val1)
       $('#external-events').prepend(event)
 
       // Add draggable funtionality

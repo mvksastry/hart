@@ -1,5 +1,5 @@
  $(function () {
-    /* initialize the external events
+    /* initialize the external events ddd
      -----------------------------------------------------------------*/
     function ini_events(ele) {
       ele.each(function () {
@@ -93,13 +93,15 @@
       })
     })
     $('#add-new-event').click(function (e) {
-      e.preventDefault()
+      e.preventDefault()     
+      
       // Get value and make sure it is not null
-      var val = $('#new-event').val()
+      var val = $('#new-event').val();     
       if (val.length == 0) {
-        return
+        alert('Must Enter Event Titlex!');
+        return 
       }
-
+                
       // Create events
       var event = $('<div />')
       event.css({
@@ -116,4 +118,5 @@
       // Remove event from text input
       $('#new-event').val('')
     })
+       
   })

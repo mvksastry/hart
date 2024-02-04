@@ -27,7 +27,7 @@
             <div class="sticky-top mb-3">
               <div class="card card-primary card-outline">
                 <div class="card-header">
-                  <h4 class="card-title">Draggable Events</h4>
+                  <h4 class="card-title">Events</h4>
                 </div>
                 <div class="card-body">
                   <!-- the events -->
@@ -64,16 +64,21 @@
                   </div>
                   <!-- /btn-group -->
                   <div class="form-group">
-                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
-                    <input id="event_start" type="text" class="form-control" placeholder="Start">
-                    <input id="start_time" type="text" class="form-control" placeholder="Time">
-                    <input id="event_end" type="text" class="form-control" placeholder="End">
-                    <input id="end_time" type="text" class="form-control" placeholder="End Time">
-                    <input id="venue" type="text" class="form-control" placeholder="venue">
-                    <div class="form-group">
-                      <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                    </div>
-                    <!-- /btn-group -->
+                    <form id="calEventForm" role="form" method="POST" data-action="{{ route('calendar.store') }}">
+                      @csrf
+                      
+                      <input id="new_event" type="text"  class="form-control" placeholder="Event Title">
+                      <input id="start_date" type="date"  class="form-control" placeholder="Start">
+                      <input id="start_time" type="text" class="form-control" placeholder="Time">
+                      <input id="end_date" type="date" class="form-control" placeholder="End">
+                      <input id="end_time" type="text" class="form-control" placeholder="End Time">
+                      <input id="event_venue" type="text" class="form-control" placeholder="venue">
+                      
+                      <div class="form-group">
+                        <button id="add-new-event" type="submit" class="btn btn-primary">Add</button>
+                      </div>
+                      <!-- /btn-group -->
+                    </form>
                   </div>
                   <!-- /input-group -->
                 </div>
