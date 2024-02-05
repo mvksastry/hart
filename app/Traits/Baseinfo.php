@@ -223,32 +223,53 @@ trait Baseinfo
 	}		
 		
 	public function checkFolder($name)
-    {
-		//the $name can consist of subfolder and actual folder.
-		$base = "/tenancy/tenants/";
-		$folderPath = $base.$this->getTenantFolder().$name;
+  {
+    //the $name can consist of subfolder and actual folder.
+    $base = "/tenancy/tenants/";
+    $folderPath = $base.$this->getTenantFolder().$name;
 
-		if($this->makeFolder($folderPath))
-		{
-			return $folderPath;
-		}
-		else {
-			//this false should ideally throw an exception 
-			//which should be caught. it should never return false
-			return false;
-		}
+    if($this->makeFolder($folderPath))
+    {
+      return $folderPath;
     }
+    else {
+      //this false should ideally throw an exception 
+      //which should be caught. it should never return false
+      return false;
+    }
+  }
 		
 	public function makeFolder($folderPath)
-    {
-        if(File::isDirectory($folderPath))
-        {
-            return true;
-        }
-        else {
-            File::makeDirectory($folderPath, 0777, true, true);
-            return true;
-        }
-    }
+  {
+      if(File::isDirectory($folderPath))
+      {
+          return true;
+      }
+      else {
+          File::makeDirectory($folderPath, 0777, true, true);
+          return true;
+      }
+  }
+    
+  public function conditions()
+  {
+    $condChoices = array("1" => "Open", "2" => "Invitees Only", "3"=>"Group Only", "4"=>"Meeting");
+    return $condChoices;
+  }
+  
+  public function timeSpanArray()
+  {
+		$timespans = array( 
+			"1"  => "06:00",  "2" => "06:30",  "3" => "07:00",  "4" => "07:30", "5"  => "08:00",
+			"6"  => "08:30",  "7" => "06:00",  "8" => "06:30",  "9" => "07:00", "10" => "07:30",
+			"11" => "08:00", "12" => "08:30",	"13" => "09:00", "14" => "09:30", "15" => "10:00", 
+			"16" => "10:30", "17" => "11:00",	"18" => "11:30", "19" => "12:00", "20" => "12:30", 
+			"21" => "13:00", "22" => "13:30",	"23" => "14:00", "24" => "14:30",	"25" => "15:00", 
+      "26" => "15:30", "27" => "16:00", "28" => "16:30", "29" => "17:00", "30" => "15:30",
+			"31" => "17:00", "32" => "18:30", "33" => "19:00", "34" => "19:30", "35" => "20:00",
+      "36" => "20:30"
+			);
+    return $timespans;
+  }
 	
 }

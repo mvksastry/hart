@@ -13,7 +13,6 @@ use App\Models\Eventype;
 
 class EventypeController extends Controller
 {
-		
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +20,9 @@ class EventypeController extends Controller
      */
     public function index()
     {
-		//Get all users and pass it to the view
-		$data['eventypes'] = Eventype::all(); 
-		return view('eventypes.index', $data);
+      //Get all users and pass it to the view
+      $data['eventypes'] = Eventype::all(); 
+      return view('eventypes.index', $data);
     }
 
     /**
@@ -33,9 +32,9 @@ class EventypeController extends Controller
      */
     public function create()
     {
-		//
-		$data['eventypes'] = Eventype::all();
-		return view('eventypes.create',$data);
+      //
+      $data['eventypes'] = Eventype::all();
+      return view('eventypes.create',$data);
     }
 
     /**
@@ -46,19 +45,19 @@ class EventypeController extends Controller
      */
     public function store(EventypeRequest $request)
     {
-		//
-		$eventype = new Eventype();
+      //
+      $eventype = new Eventype();
 
-		$input = $request->validated();
+      $input = $request->validated();
 
-		$input['posted_by'] = Auth::user()->name;
-		$input['edited_by'] = "not done";
+      $input['posted_by'] = Auth::user()->name;
+      $input['edited_by'] = "not done";
 
-		$result = $eventype->fill($input)->save();
+      $result = $eventype->fill($input)->save();
 
-		return redirect()->route('eventypes.index')
-						->with('flash_message',
-						'Event Type successfully added.');
+      return redirect()->route('eventypes.index')
+              ->with('flash_message',
+              'Event Type successfully added.');
     }
 
     /**
@@ -80,10 +79,10 @@ class EventypeController extends Controller
      */
     public function edit($id)
     {
-		//
-		$eventypes = Eventype::findOrFail($id); 
-		//Get user with specified id			
-		return view('eventypes.edit', compact('eventypes'));
+      //
+      $eventypes = Eventype::findOrFail($id); 
+      //Get user with specified id			
+      return view('eventypes.edit', compact('eventypes'));
     }
 
     /**
@@ -95,17 +94,17 @@ class EventypeController extends Controller
      */
     public function update(EventypeRequest $request, $id)
     {
-		$eventype = Eventype::findOrFail($id);
-		
-		$input = $request->validated();
-			
-		$input['posted_by'] = $eventype->posted_by;
-		$input['edited_by'] = Auth::user()->name;
+      $eventype = Eventype::findOrFail($id);
+      
+      $input = $request->validated();
+        
+      $input['posted_by'] = $eventype->posted_by;
+      $input['edited_by'] = Auth::user()->name;
 
-		$result = $eventype->fill($input)->save();
-	
-		return redirect()->route('eventypes.index')
-											->with('flash_message',
+      $result = $eventype->fill($input)->save();
+    
+      return redirect()->route('eventypes.index')
+                        ->with('flash_message',
 								'Event Type successfully edited.');
     }
 

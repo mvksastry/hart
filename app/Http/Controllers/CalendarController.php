@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//models
 use App\Models\Event;
+use App\Models\Eventype;
 
 use App\Http\Requests\EventRequest;
 //Traits
+use App\Traits\Baseinfo;
 use App\Traits\Eventhandler;
 
 use Webpatser\Uuid\Uuid;
 
 class CalendarController extends Controller
 {
-  use Eventhandler;
+  use Baseinfo, Eventhandler;
   
   /**
    * Display a listing of the resource.
@@ -24,7 +27,9 @@ class CalendarController extends Controller
   public function index()
   {
     $events = $this->calendarEvents(); 	
-
+    $eventypes = Eventype::all(); 
+    $timespans = $this->timeSpanArray();
+    
     if(request()->ajax()) 
     {
       $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
@@ -34,7 +39,7 @@ class CalendarController extends Controller
     }
       //return view('fullcalendar');
       $swalMsg = "page success";
-      return view('calendar.myCalendar', compact('events'));
+      return view('calendar.myCalendar', compact('events','eventypes','timespans'));
   }
 
   /**
@@ -56,7 +61,6 @@ class CalendarController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['event_type'] = 1;
         $input['conditions'] = "none";
         $input['comment'] = "None";
         

@@ -32,17 +32,7 @@
                 <div class="card-body">
                   <!-- the events -->
                   <div id="external-events">
-                    <div class="external-event bg-success">Tasks</div>
-                    <div class="external-event bg-warning">Leave</div>
-                    <div class="external-event bg-info">Tours</div>
-                    <div class="external-event bg-primary">Projects</div>
-                    <div class="external-event bg-danger">Emergency</div>
-                    <div class="checkbox">
-                      <label for="drop-remove">
-                        <input type="checkbox" id="drop-remove">
-                        Remove after drop
-                      </label>
-                    </div>
+                    
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -58,15 +48,36 @@
                   <div class="form-group">
                     <form id="calEventForm" role="form" method="POST" data-action="{{ route('calendar.store') }}">
                       @csrf
+                      <select class="custom-select rounded-0" id="event_type">
+                        <option value="0">Select Event Type</option>
+                          @foreach($eventypes as $type)
+                          <option value="{{ $type->eventype_id }}">{{ $type->eventname }}</option>
+                          @endforeach
+                      </select>
+                
+                      <input id="new_event" type="text"  class="form-control mt-1" placeholder="Event Title">
+                      <input id="start_date" type="date"  class="form-control mt-1" placeholder="Start">
                       
-                      <input id="new_event" type="text"  class="form-control" placeholder="Event Title">
-                      <input id="start_date" type="date"  class="form-control" placeholder="Start">
-                      <input id="start_time" type="text" class="form-control" placeholder="Time">
-                      <input id="end_date" type="date" class="form-control" placeholder="End">
-                      <input id="end_time" type="text" class="form-control" placeholder="End Time">
-                      <input id="event_venue" type="text" class="form-control" placeholder="venue">
+                      <select class="custom-select rounded-0 mt-1" id="start_time">
+                        <option value="0">Start Time</option>
+                          @foreach($timespans as $span)
+                          <option value="{{ $span }}">{{ $span }}</option>
+                          @endforeach
+                      </select>                     
                       
-                      <div class="form-group">
+                      <input id="end_date" type="date" class="form-control mt-1" placeholder="End">
+                      <input id="end_time" type="text" class="form-control mt-1" placeholder="End Time">
+
+                      <select class="custom-select rounded-0 mt-1" id="end_time">
+                        <option value="0">Start Time</option>
+                          @foreach($timespans as $span)
+                          <option value="{{ $span }}">{{ $span }}</option>
+                          @endforeach
+                      </select>                      
+                      
+                      <input id="event_venue" type="text" class="form-control mt-1" placeholder="venue">
+                      
+                      <div class="form-group mt-3">
                         <button id="add-new-event" type="submit" class="btn btn-primary">Add</button>
                       </div>
                       <!-- /btn-group -->
