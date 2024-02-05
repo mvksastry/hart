@@ -4,7 +4,7 @@
 		<!-- small box -->
 		<div class="small-box bg-info">
 			<div class="inner">
-				<h3> XX </h3>
+				<h4> Casual </h4>
 				<p>Casual Leaves</p>
 			</div>
 			<div class="icon">
@@ -19,7 +19,7 @@
 		<!-- small box -->
 		<div class="small-box bg-success">
 			<div class="inner">
-				<h3> YY <sup style="font-size: 20px"></sup></h3>
+				<h4> Paid <sup style="font-size: 20px"></sup></h4>
 				<p>Paid Leaves</p>
 			</div>
 			<div class="icon">

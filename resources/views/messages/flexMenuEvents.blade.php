@@ -4,13 +4,13 @@
 	<!-- small box -->
 	<div class="small-box bg-info">
 	  <div class="inner">
-		<h3> XX </h3>
-		<p>Create New</p>
+      <h4> Events </h4>
+      <p>Create New</p>
 	  </div>
 	  <div class="icon">
-		<i class="ion ion-bag"></i>
-	  </div>
-	  <a href="{{ route('events.create') }}" class="small-box-footer">Create New<i class="fas fa-arrow-circle-right"></i></a>
+      <i class="ion ion-bag"></i>
+      </div>
+      <a href="{{ route('events.create') }}" class="small-box-footer">Create New<i class="fas fa-arrow-circle-right"></i></a>
 	</div>
   </div>
 

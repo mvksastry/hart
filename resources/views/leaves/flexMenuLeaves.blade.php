@@ -4,7 +4,7 @@
 		<!-- small box -->
 		<div class="small-box bg-info">
 			<div class="inner">
-				<h3> XX </h3>
+				<h4> Casual </h4>
 				<p>Casual</p>
 			</div>
 			<div class="icon">
