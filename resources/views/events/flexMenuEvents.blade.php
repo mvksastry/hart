@@ -20,7 +20,7 @@
     <!-- small box -->
     <div class="small-box bg-secondary">
       <div class="inner">
-        <h4> Upcoming </h4>
+        <h4>Upcoming</h4>
         <p>Not Coded</p>
       </div>
       <div class="icon">

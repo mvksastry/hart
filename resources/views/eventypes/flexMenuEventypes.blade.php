@@ -4,7 +4,7 @@
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
-        <h4> Event Type </h4>
+        <h4>Event Type </h4>
         <p>Create New</p>
       </div>
       <div class="icon">
