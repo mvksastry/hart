@@ -5,7 +5,7 @@
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
-        <h3> XX </h3>
+        <h4> I O C </h4>
         <p>Create New IOComm</p>
       </div>
       <div class="icon">
