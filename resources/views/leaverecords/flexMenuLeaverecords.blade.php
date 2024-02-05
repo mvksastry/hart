@@ -10,7 +10,7 @@
 			<div class="icon">
 				<i class="ion ion-bag"></i>
 			</div>
-			<a href="{{ route('leaverecords.creditCLs') }}" class="small-box-footer">Add<i class="fas fa-arrow-circle-right m-2"></i></a>
+			<a href="{{ route('leaverecords.creditCLs') }}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right m-2"></i></a>
 		</div>
 	</div>
   
@@ -25,7 +25,7 @@
 			<div class="icon">
 				<i class="ion ion-stats-bars"></i>
 			</div>
-			<a href="{{ route('leaverecords.creditPaidLeaves') }}" class="small-box-footer">Add<i class="fas fa-arrow-circle-right m-2"></i></a>
+			<a href="{{ route('leaverecords.creditPaidLeaves') }}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right m-2"></i></a>
 		</div>
 	</div>
 

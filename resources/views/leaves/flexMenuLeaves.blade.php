@@ -10,7 +10,7 @@
 			<div class="icon">
 				<i class="ion ion-bag"></i>
 			</div>
-			<a href="{{ route('leaves.casual') }}" class="small-box-footer">Apply<i class="fas fa-arrow-circle-right m-2"></i></a>
+			<a href="{{ route('leaves.casual') }}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right m-2"></i></a>
 		</div>
 	</div>
 
