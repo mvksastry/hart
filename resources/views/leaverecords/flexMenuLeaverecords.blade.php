@@ -19,7 +19,7 @@
 		<!-- small box -->
 		<div class="small-box bg-success">
 			<div class="inner">
-				<h4> Paid <sup style="font-size: 20px"></sup></h4>
+				<h4> Paid</h4>
 				<p>Paid Leaves</p>
 			</div>
 			<div class="icon">
