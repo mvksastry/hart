@@ -1,11 +1,12 @@
   <!-- Small boxes (Stat box) -->
   <div class="row">
     
+    <!-- .col -->
     <div class="col-lg-2 col-6">
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{ $employee_count }}</h3>
+          <h4>{{ $employee_count }}</h4>
           <p>Employees</p>
         </div>
         <div class="icon">
@@ -16,12 +17,13 @@
     </div>
     <!-- ./col -->
    
+    <!-- .col -->
     <div class="col-lg-2 col-6">
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
           <!-- h3><sup style="font-size: 20px">{{ $project_count }}</sup></h3 -->
-          <h3>{{ $project_count }}</h3>
+          <h4>{{ $project_count }}</h4>
           <p>Active Projects</p>
         </div>
         <div class="icon">
@@ -31,11 +33,13 @@
       </div>
     </div>
     <!-- ./col -->
+    
+    <!-- .col -->
     <div class="col-lg-2 col-6">
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>KB</h3>
+          <h4>KB</h4>
           <p>Kanban Board</p>
         </div>
         <div class="icon">
@@ -45,12 +49,13 @@
       </div>
     </div>
     <!-- ./col -->
+    
     <!-- ./col -->
     <div class="col-lg-2 col-6">
       <!-- small box -->
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>{{ count($communications) }}</h3>
+          <h4>{{ count($communications) }}</h4>
           <p>Communications</p>
         </div>
         <div class="icon">
@@ -59,35 +64,37 @@
         <a href="{{ route('iocomms.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-2 col-6">
-      <!-- small box -->
-      <div class="small-box bg-danger">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Urgent</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
+
+  <!-- .col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h4> Upcoming </h4>
+        <p>Not Coded</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-2 col-6">
-      <!-- small box -->
-      <div class="small-box bg-danger">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Conf Docs</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
+  </div>
+  <!-- ./col -->
+
+  <!-- .col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h4> Upcoming </h4>
+        <p>Not Coded</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
     </div>
-    
-    <!-- ./col -->
+  </div>
+  <!-- ./col -->
   </div> <!-- /.Small boxes end -->
   <!-- /.row -->

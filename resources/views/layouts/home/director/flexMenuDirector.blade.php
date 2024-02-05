@@ -11,53 +11,58 @@
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ route('employees.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
    
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-success">
-        <div class="inner">
-          <h3><sup style="font-size: 20px">{{ $project_count }}</sup></h3>
-          <p>Active Projects</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-stats-bars"></i>
+  <!-- .col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h4> Upcoming </h4>
+        <p>Not Coded</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-warning">
-        <div class="inner">
-          <h3>{{ count($communications) }}</h3>
-          <p>Communications</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-person-add"></i>
+  </div>
+  <!-- ./col -->
+
+  <!-- .col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h4> Upcoming </h4>
+        <p>Not Coded</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-danger">
-        <div class="inner">
-          <h3>0</h3>
-          <p>Documents</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
+  </div>
+  <!-- ./col -->
+
+  <!-- .col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h4> Upcoming </h4>
+        <p>Not Coded</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
     </div>
-    
-    <!-- ./col -->
+  </div>
+  <!-- ./col -->
+  
   </div> <!-- /.Small boxes end -->
   <!-- /.row -->

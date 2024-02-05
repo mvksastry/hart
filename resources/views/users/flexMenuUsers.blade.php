@@ -4,7 +4,7 @@
 	<!-- small box -->
 	<div class="small-box bg-info">
 	  <div class="inner">
-		<h3> {{ count($users) }} </h3>
+		<h4> {{ count($users) }} </h4>
 		<p>Create New</p>
 	  </div>
 	  <div class="icon">
@@ -18,7 +18,7 @@
 	<!-- small box -->
 	<div class="small-box bg-success">
 	  <div class="inner">
-		<h3> YY <sup style="font-size: 20px"></sup></h3>
+		<h4> 0 <sup style="font-size: 20px"></sup></h4>
 
 		<p>Permissions</p>
 	  </div>
@@ -31,11 +31,11 @@
   <!-- ./col -->
   <div class="col-lg-3 col-6">
 	<!-- small box -->
-	<div class="small-box bg-warning">
+	<div class="small-box bg-secondary">
 	  <div class="inner">
-		<h3> ZZ </h3>
+		<h4> Upcoming</h4>
 
-		<p>Delete Type</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-person-add"></i>
@@ -46,11 +46,11 @@
   <!-- ./col -->
   <div class="col-lg-3 col-6">
 	<!-- small box -->
-	<div class="small-box bg-danger">
+	<div class="small-box bg-secondary">
 	  <div class="inner">
-		<h3> AA </h3>
+		<h4> Upcoming </h4>
 
-		<p>Documents</p>
+		<p>Not Coded</p>
 	  </div>
 	  <div class="icon">
 		<i class="ion ion-pie-graph"></i>
