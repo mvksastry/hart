@@ -19,7 +19,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      @if(isset($kbCars) )
+      @if(isset($kbCards) )
       <ul class="todo-list" data-widget="todo-list">
         @foreach($kbCards as $card)
           <li>
