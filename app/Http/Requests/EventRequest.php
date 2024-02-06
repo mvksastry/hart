@@ -24,15 +24,15 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-			'event_type'  => 'required|numeric|max:20',
-			'start_date'  => 'required|date_format:Y-m-d',
-			'start_time'  => 'required|date_format:H:i',
-			'end_date'    => 'required|date_format:Y-m-d',
-			'end_time'    => 'required|date_format:H:i',
-			'event_venue' => 'required|regex:/^[\pL\s\-., ]+$/u|max:100',
-			'conditions'   => 'required|alpha|max:20',
-			//'council'     => 'sometimes|nullable|regex:/^[\pL\s\-.,;: 0-9_]+$/u|max:50',
-			'comment'     => 'sometimes|nullable|regex:/^[\pL\s\-., _0-9]+$/u|max:250'
+          'event_type'  => 'required|numeric|max:20',
+          //'eventdatetime1'  => 'date_format:m/d/Y H:i A',
+          //'eventdatetime2'  => 'date_format:m/d/Y H:i A',
+          //'end_date'    => 'required|date_format:Y-m-d',
+          //'end_time'    => 'required|date_format:H:i',
+          'event_venue' => 'required|regex:/^[\pL\s\-., ]+$/u|max:100',
+          'conditions'   => 'required|alpha|max:90',
+          //'council'     => 'sometimes|nullable|regex:/^[\pL\s\-.,;: 0-9_]+$/u|max:50',
+          'comment'     => 'sometimes|nullable|regex:/^[\pL\s\-., _0-9]+$/u|max:250'
         ];
     }
 }

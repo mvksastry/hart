@@ -114,52 +114,44 @@
 
 
                         <div class="container">
-                          <div class="row align-items-start">	
-                          
-                            <div class="form-group col">
-                              {!! Form::label('journey_class', 'Start Date*', ['class' => 'control-label']) !!}
-                              {!! Form::date('start_date', old('start_date'), ['class' => 'form-control', 'placeholder' => 'Class of Journey', 'required' => '']) !!}
-                              <p class="help-block"></p>
-                              @if($errors->has('start_date'))
-                                <p class="help-block">
-                                  {{ $errors->first('start_date') }}
+                          <div class="row">	
+                            <div class="col col-lg-6">
+                              <!-- Date and time -->
+                              <div class="form-group">
+                                <label>Start Date and time:</label>
+                                  <div class="input-group date" id="eventdatetime1" data-target-input="nearest">
+                                    <input type="text" name="eventdatetime1" id="eventdatetime1" class="form-control datetimepicker-input" data-target="#eventdatetime1"/>
+                                    <div class="input-group-append" data-target="#eventdatetime1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                  </div>
+                              </div>
+                              @if($errors->has('eventdatetime1'))
+                                <p class="help-block text-danger">
+                                  {{ $errors->first('eventdatetime1') }}
                                 </p>
                               @endif
-                            </div>         
-                            
-                            <div class="form-group col">
-                              {!! Form::label('journey_mode', 'Start Time*', ['class' => 'control-label']) !!}
-                              {!! Form::select('start_time', $timespan, $timespan, ['class' => 'form-control']) !!}
-                              <p class="help-block"></p>
-                              @if($errors->has('start_time'))
-                                <p class="help-block">
-                                  {{ $errors->first('start_time') }}
-                                </p>
-                              @endif
-                            </div>
-
-                            <div class="form-group col">
-                              {!! Form::label('budget_head', 'End Date*', ['class' => 'control-label']) !!}
-                              {!! Form::date('end_date', old('end_date'), ['class' => 'form-control']) !!}
-                              <p class="help-block"></p>
-                              @if($errors->has('end_date'))
-                                <p class="help-block">
-                                  {{ $errors->first('end_date') }}
-                                </p>
-                              @endif
+                              <!-- /.form group -->
                             </div>
                             
-                            <div class="form-group col">
-                              {!! Form::label('tada_advance', 'End Time', ['class' => 'control-label']) !!}
-                              {!! Form::select('end_time', $timespan, $timespan, ['class' => 'form-control']) !!}
-                              <p class="help-block"></p>
-                              @if($errors->has('end_time'))
-                                <p class="help-block">
-                                  {{ $errors->first('end_time') }}
+                            <div class="col col-lg-6">
+                              <!-- Date and time -->
+                              <div class="form-group">
+                                <label>End Date and time:</label>
+                                  <div class="input-group date" id="#eventdatetime2" data-target-input="nearest">
+                                    <input type="text" name="eventdatetime2" id="eventdatetime2" class="form-control datetimepicker-input" data-target="#eventdatetime2"/>
+                                    <div class="input-group-append" data-target="#eventdatetime2" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                  </div>
+                              </div>
+                              @if($errors->has('eventdatetime2'))
+                                <p class="help-block text-danger">
+                                  {{ $errors->first('eventdatetime2') }}
                                 </p>
                               @endif
+                              <!-- /.form group -->
                             </div>
-
                            </div>
                         </div>  
 

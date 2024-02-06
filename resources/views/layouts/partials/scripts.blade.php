@@ -77,6 +77,13 @@
 
 <script>
   $(function() {
+    
+    //Date and time picker
+    $('#eventdatetime1').datetimepicker({ icons: { time: 'far fa-clock' } });
+    
+    //Date and time picker
+    $('#eventdatetime2').datetimepicker({ icons: { time: 'far fa-clock' } });
+    
     var Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -92,14 +99,12 @@
     })
     @endif
     
-    
     $('.swalDefaultInfo').click(function() {
       Toast.fire({
         icon: 'info',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
-    
     $('.swalDefaultError').click(function() {
       Toast.fire({
         icon: 'error',

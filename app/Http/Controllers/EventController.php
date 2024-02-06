@@ -83,13 +83,14 @@ class EventController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(EventRequest $request)
+  public function store(Request $request)
   {
-    if(Auth::user()->hasExactRoles(['admin','director']))
+    if(Auth::user()->hasExactRoles(['admin','employee']))
     {
-      $input = $request->validated();
-
-      $result = $this->setEvent($input);
+      
+      $input = $request->all();
+        
+      $result = $this->setEvent2($input);
                   
       if(!$result )
       {
