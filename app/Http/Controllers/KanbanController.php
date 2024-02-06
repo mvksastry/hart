@@ -42,7 +42,6 @@ class KanbanController extends Controller
 		$role_name = Auth::user()->roles->pluck('name')[0];
     
     //$role_name = Auth::user()->roles->pluck('name');
-    
     //dd($role_name);
 		
 		if($role_name == "" || $role_name == null)
@@ -52,8 +51,14 @@ class KanbanController extends Controller
 		
 		if( Auth::user()->hasExactRoles(['employee']) )
 		{	
+      $kboards = Kanbanboards::where('posted_by', Auth::user()->name)->get();
+      $kcards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+      $kb = json_encode($kboards);
+      $kc = json_encode($kcards);
+      //dd($kb, $kc);
       session()->flash("success", "Kanban Board Loaded!");
-			return view('layouts.home.employee.kanbanEmployee');
+			//return view('layouts.home.employee.kanbanEmployee');
+      return view('layouts.kanban.kanbanBoard', compact('kb', 'kc'));
 		}
 
 		if( Auth::user()->hasExactRoles(['supervisor', 'employee']) )

@@ -5,6 +5,8 @@
 		"5"=>"Assessment - 4th year", "6"=>"Colloquium", "7"=>"Work Presentation", 
 		"8"=>"Synopsis Seminar", "9"=>"Ph.D. Viva");
 		$eventchoiceSel = 1;
+    
+    $status = array("0" => "Inactive", "1"=> "Active");
 	?>
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
@@ -62,7 +64,7 @@
 												<th>Name</th>
 												<th>Description</th>
 												<th>Color</th>
-												<th>Status</th>
+												<th>Seq.Id</th>
 												<th>Status Date</th>
 												<th>Actions</th>
 											</tr>
@@ -75,12 +77,14 @@
 													<td>{{ ucfirst($kboard->name) }}</td>
 													<td>{{ $kboard->description }}</td>
 													<td>{{ ucfirst($kboard->color) }}</td>
-													<td>{{ $kboard->status }}</td>
+													<td>{{ $kboard->sequence_id }}</td>
 													<td>{{ date('d-m-Y', strtotime($kboard->status_date)) }}</td>
 													<td>
-                            <a href="{{ route('kanban-boards.show',$kboard->uuid) }}" class="btn btn-xs btn-info">View All</a>
-														<a href="{{ route('kanban-boards.edit',$kboard->uuid) }}" class="btn btn-xs btn-info">Edit</a>														
-													</td>
+                            @hasexactroles('admin|director')
+                              <a href="{{ route('kanban-boards.show',$kboard->uuid) }}" class="btn btn-xs btn-info">View All</a>
+                              <a href="{{ route('kanban-boards.edit',$kboard->uuid) }}" class="btn btn-xs btn-info">Edit</a>														
+                            @endhasexactroles
+                          </td>
 												</tr>
 											@endforeach
 										</tbody>

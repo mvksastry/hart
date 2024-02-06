@@ -25,9 +25,44 @@ class KanbanCardsController extends Controller
      */
     public function index()
     {
-        //
+      
+      if( Auth::user()->hasExactRoles(['employee']) )
+      {	
+        $kanban_cards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+        //return view('layouts.kanban.indexCards', compact('kanban_cards'));
+      }
+      
+      if( Auth::user()->hasExactRoles(['supervisor', 'employee']) )
+      {
+        $kanban_cards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+        //return view('layouts.kanban.indexCards', compact('kanban_cards'));
+      }
+      
+      if( Auth::user()->hasExactRoles(['admin', 'employee']) )
+      {
         $kanban_cards = Kanbancards::all();
+        //return view('layouts.kanban.indexCards', compact('kanban_cards'));
+      }
+      
+      if( Auth::user()->hasExactRoles(['director','employee']) )
+      {
+        $kanban_cards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+        //return view('layouts.kanban.indexCards', compact('kanban_cards'));
+      }
+
+      if( Auth::user()->hasExactRoles(['sysadmin']) )
+      {
+        //return view('layouts.home.employee.kanbanEmployee');
+      }
+          
+      if( Auth::user()->hasRole('norole') )
+      {
+        return view('noRoleHome');
+      }
         return view('layouts.kanban.indexCards', compact('kanban_cards'));
+       
+    
+    
     }
 
     /**
