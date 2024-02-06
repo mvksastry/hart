@@ -77,10 +77,12 @@ class DashboardController extends Controller
 																				
 			$messages = array();			
 		
+      $kbCards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+      
 			return view('layouts.home.employee.dashboard', compact(
 										'leaverecord','communications','leaves',
 										'tours','events','messages',
-										'notices','repdue', 'role_name'));
+										'notices','repdue', 'role_name','kbCards'));
 		}
 
 		if( Auth::user()->hasExactRoles(['supervisor', 'employee']) )
