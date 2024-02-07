@@ -178,30 +178,36 @@
         }
     });
     
+
     $('#calEventForm').on('submit', function(e){
       e.preventDefault()
       // Get value and make sure it is not null
       var form = '#calEventForm';
       var url = $(this).attr('data-action');
+      var $ajaxResponse = $('#ajaxResponse');
       //alert(url);
       // Get value and make sure it is not null
-      var val1 = $('#new_event').val();
-      var val2 = $('#start_date').val();
-      var val3 = $('#start_time').val();
-      var val4 = $('#end_date').val();
-      var val5 = $('#end_time').val();
-      var val6 = $('#event_venue').val();
+      var val0 = $('#form').val();
+      var val1 = $('#event_type').val();
+      var val2 = $('#new_event').val();
+      var val3 = $('#start_date').val();
+      var val4 = $('#start_time').val();
+      var val5 = $('#end_date').val();
+      var val6 = $('#end_time').val();
+      var val7 = $('#event_venue').val();
 
       let data = new FormData(this);
-      data.append('new_event', val1);
-      data.append('start_date', val2);
-      data.append('start_time', val3);
-      data.append('end_date', val4);
-      data.append('end_time', val5);
-      data.append('event_venue', val6);
+      data.append('form', val0);
+      data.append('event_type', val1);
+      data.append('new_event', val2);
+      data.append('start_date', val3);
+      data.append('start_time', val4);
+      data.append('end_date', val5);
+      data.append('end_time', val6);
+      data.append('event_venue', val7);
       
-      if (val1.length == 0) {
-        alert('Must Enter Event Title xx!');
+      if (val2.length == 0) {
+        alert('Must Enter Title');
         return 
       }
 
@@ -209,18 +215,19 @@
           url: url,
           method: 'POST',
           data:data,
-          dataType: 'JSON',
           contentType: false,
           cache: false,
           processData: false,
           success: function (data) {
-              alert(data);
-              
-              //$cfResponse.html(data.message);
-              //$cfsubmit.text(cfsubmitText);
-             // $('#contactForm input[name=name]').val('');
-             // $('#contactForm input[name=email]').val('');
-             // $('#contactForm textarea[name=message]').val('');
+              $ajaxResponse.html(data);  
+              $('#form').val()        = null;
+              $('#event_type').val()  = null;
+              $('#new_event').val()   = null;
+              $('#start_date').val()  = null;
+              $('#start_time').val()  = null;
+              $('#end_date').val()    = null;
+              $('#end_time').val()    = null;
+              $('#event_venue').val() = null;              
           },
           error: function (data) {
             alert("Error occured! Please try again");
@@ -234,7 +241,7 @@
         'border-color'    : currColor,
         'color'           : '#fff'
       }).addClass('external-event')
-      event.text(val1)
+      event.text(val2)
       $('#external-events').prepend(event)
 
       // Add draggable funtionality

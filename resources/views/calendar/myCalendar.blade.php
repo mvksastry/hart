@@ -41,13 +41,19 @@
               <div class="card card-primary card-outline">
                 <div class="card-header">
                   <h3 class="card-title">Create Event</h3>
+                  </br>
+                  <div class="ajax-response font-alt" id="ajaxResponse"></div>
                 </div>
+                
                 <div class="card-body">
 
                   <!-- /btn-group -->
                   <div class="form-group">
                     <form id="calEventForm" role="form" method="POST" data-action="{{ route('calendar.store') }}">
                       @csrf
+ 
+                      <input id="form" class="form-control mt-1" type="text" value="calForm" placeholder="No Typing" readonly>
+ 
                       <select class="custom-select rounded-0" id="event_type">
                         <option value="0">Select Event Type</option>
                           @foreach($eventypes as $type)
@@ -55,9 +61,10 @@
                           @endforeach
                       </select>
                 
-                      <input id="new_event" type="text"  class="form-control mt-1" placeholder="Event Title">
+                      <input id="new_event" type="text" class="form-control mt-1" placeholder="Event Title">
+
                       <input id="start_date" type="date"  class="form-control mt-1" placeholder="Start">
-                      
+                     
                       <select class="custom-select rounded-0 mt-1" id="start_time">
                         <option value="0">Start Time</option>
                           @foreach($timespans as $span)
@@ -66,10 +73,9 @@
                       </select>                     
                       
                       <input id="end_date" type="date" class="form-control mt-1" placeholder="End">
-                      <input id="end_time" type="text" class="form-control mt-1" placeholder="End Time">
 
                       <select class="custom-select rounded-0 mt-1" id="end_time">
-                        <option value="0">Start Time</option>
+                        <option value="0">End Time</option>
                           @foreach($timespans as $span)
                           <option value="{{ $span }}">{{ $span }}</option>
                           @endforeach

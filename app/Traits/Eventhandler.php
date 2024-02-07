@@ -38,7 +38,7 @@ trait Eventhandler
   public function calendarEvents()
   {
     $stDate = date('Y-m-d', strtotime("-4 days"));;
-    $enDate = date('Y-m-d', strtotime("+26 days"));;
+    $enDate = date('Y-m-d', strtotime("+36 days"));;
   
     $dres = Event::with('eventype')->whereDate('event_start', '>=', $stDate)
                   ->whereDate('event_end',  '<=', $enDate)
@@ -64,69 +64,59 @@ trait Eventhandler
     
   }
   
-	public function setEvent($input)
+	public function setCalanderEvent($input)
 	{
 		// everything ok generate the uuid, 
-		$uuid = Uuid::generate()->string;
-		
-		$event = new Event();
-		$event->employee_id = Auth::id();	
-		$event->event_type = $input['event_type'];
-		$event->event_start = $this->mergeDateAndTime($input['start_date'], $input['start_time']);
-		$event->event_end = $this->mergeDateAndTime($input['end_date'], $input['end_time']);
-		$event->event_venue = $input['event_venue'];
-		$event->condition = $input['conditions'];
-		$event->council = null;
-		$event->comment = $this->addTimeStamp($input['comment']);			
-		$event->status = 1;				
-		$event->uuid = $uuid;		
-		
-		//check here for already if an event present at same time at same venue
-		$res = Event::where('event_venue', $input['event_venue'] )
-					->where('event_start', '<', $this->mergeDateAndTime($input['end_date'], $input['end_time']))
-					->where('event_end', '>', $this->mergeDateAndTime($input['start_date'], $input['start_time']))
-					->get();
-					
-		if( count($res) > 0 )
-		{
-			return false;
+		$res = $this->verifyMatchingEvents($input);
+    
+		if($res)
+		{    
+      $event = new Event();
+      $event->employee_id = Auth::id();	
+      $event->event_type = $input['event_type'];
+      
+      if(array_key_exists("form", $input))
+      {
+        $event->event_start = $this->mergeDateAndTime($input['start_date'], $input['start_time']);
+        $event->event_end = $this->mergeDateAndTime($input['end_date'], $input['end_time']);
+      }
+      else {
+        $event->event_start = date('Y-m-d H:i:s', strtotime($input['eventdatetime1']));
+        $event->event_end = date('Y-m-d H:i:s', strtotime($input['eventdatetime2']));
+      }
+      
+      $event->event_venue = $input['event_venue'];
+      $event->condition = $input['conditions'];
+      $event->council = null;
+      $event->comment = $this->addTimeStamp($input['comment']);			
+      $event->status = 1;				
+      $event->uuid = Uuid::generate()->string;	
+      $result = $event->save();
+      return true;
 		}
 		else {
-			$result = $event->save();
-			return true;
+			return false;
 		}
+    
 	}	
-  
-	public function setEvent2($input)
-	{
-				
-		$event = new Event();
-		$event->employee_id = Auth::id();	
-		$event->event_type = $input['event_type'];
-		$event->event_start = date('Y-m-d H:i:s', strtotime($input['eventdatetime1']));
-		$event->event_end = date('Y-m-d H:i:s', strtotime($input['eventdatetime2']));
-		$event->event_venue = $input['event_venue'];
-		$event->condition = $input['conditions'];
-		$event->council = null;
-		$event->comment = $this->addTimeStamp($input['comment']);			
-		$event->status = 1;				
-		$event->uuid = Uuid::generate()->string;
-		
-		//check here for already if an event present at same time at same venue
+
+  public function verifyMatchingEvents($input)
+  {
+    //check here for already if an event present at same time at same venue
 		$res = Event::where('event_venue', $input['event_venue'] )
 					->where('event_start', '<', $this->mergeDateAndTime($input['end_date'], $input['end_time']))
 					->where('event_end', '>', $this->mergeDateAndTime($input['start_date'], $input['start_time']))
 					->get();
-					
-		if( count($res) > 0 )
+          
+    if(count($res) > 0 )
 		{
 			return false;
 		}
 		else {
-			$result = $event->save();
 			return true;
 		}
-	}	  
+    
+  }
   
 ////////////////////////////////////////////////////////
 }

@@ -29,7 +29,7 @@ class CalendarController extends Controller
     $events = $this->calendarEvents(); 	
     $eventypes = Eventype::all(); 
     $timespans = $this->timeSpanArray();
-    
+
     if(request()->ajax()) 
     {
       $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
@@ -60,18 +60,18 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $input['conditions'] = "none";
-        $input['comment'] = "None";
-        
-        $result = $this->setEvent($input);
+      $input = $request->all();
+      $input['conditions'] = "None";
+      $input['comment'] = "None";
       
-        if(!$result ){
-          echo "Event Recording Error";
-        }
-        else {
-          echo "Event Recorded successfully";
-        }
+      $result = $this->setCalanderEvent($input);
+      
+      if($result) {
+        echo "Event Recorded successfully";
+      }
+      else {
+        echo "Event Recording Error";
+      }
         
     }
 
