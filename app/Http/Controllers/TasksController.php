@@ -64,7 +64,7 @@ class TasksController extends Controller
       $pTask->save();
       
       $message =  "Task Assigned and Saved";
-			return redirect()->back()->withErrors(['success'=>$message]);
+      return redirect()->route(‘projects.show’,  $input['uuid']);
     }
 
     /**
