@@ -16,15 +16,15 @@ class Projtask extends Model
 	protected $primaryKey = 'projtask_id';
 	
 	protected $fillable = [
-    'projtask_id',
     'project_id',
     'projectgoal_id',
     'taskowner_id',
     'uuid',
     'activity',
     'task_desc',
-    'img_files',
-    'doc_files',
+    'task_starts',
+    'task_ends',
+    'budget',
     'date_posted',
     'updated_by',
     'percent_progress',

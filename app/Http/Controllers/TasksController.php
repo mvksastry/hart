@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Models
+use Auth;
+use App\Models\Projectgoals;
+use App\Models\Projtask;
+use App\Models\User;
+
 class TasksController extends Controller
 {
     /**
@@ -24,6 +30,7 @@ class TasksController extends Controller
     public function create()
     {
         //
+      return view('projects.createProjectTasks',compact('goalId'));
     }
 
     /**
@@ -35,6 +42,29 @@ class TasksController extends Controller
     public function store(Request $request)
     {
         //
+      $input = $request->all();
+      
+      $pTask = new Projtask();
+      
+      
+      $pTask->project_id  =  $input['project_id'];
+      $pTask->projectgoal_id  = $input['goal_id'];
+      $pTask->taskowner_id  =  $input['taskowner_id'];
+      $pTask->uuid  =  $input['uuid'];
+      $pTask->activity  =  $input['activity'];
+      $pTask->task_desc  =  $input['task_desc'];
+      $pTask->task_starts  =  $input['task_starts'];
+      $pTask->task_ends  =  $input['task_ends'];
+      $pTask->budget  =  $input['budget'];
+      $pTask->date_posted  =  date('Y-m-d');
+      $pTask->updated_by  =  Auth::user()->id;
+      $pTask->percent_progress  =  $input['percent_progress'];
+      $pTask->comment  =  $input['comment'];
+      //dd($input, $pTask);
+      $pTask->save();
+      
+      $message =  "Task Assigned and Saved";
+			return redirect()->back()->withErrors(['success'=>$message]);
     }
 
     /**
@@ -45,7 +75,15 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        //
+      $goalId = Projectgoals::with('project')->where('projectgoal_id', $id)->first();
+      $users = User::whereHas(
+                              'roles', function($q){
+                                  $q->where('name', 'employee');
+                              }
+                      )->get();
+      //dd($users);
+      
+      return view('projects.createProjectTasks',compact('goalId', 'users'));
     }
 
     /**

@@ -37,6 +37,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\ToursController;
+use App\Http\Controllers\TasksController;
 
 use App\Http\Controllers\UserController;
 
@@ -91,7 +92,6 @@ Route::controller(HostingChoiceController::class)->group(function () {
 Route::controller(HostingChoiceController::class)->group(function () {
 	Route::get('/hosting-multitenancy', 'MultiTenancy');
 });
-
 
 Route::controller(LicensingChoiceController::class)->group(function () {
 	Route::get('/licensing-perpetual', 'perpetual');
@@ -219,7 +219,9 @@ Route::middleware(['auth'] )->group(function () {
     //Projects routes
     Route::resource('/projects', ProjectsController::class);
 
-
+    //Tasks routes
+    Route::resource('/projtasks', TasksController::class);
+    
 		//tourdetails routes
 		Route::get('/tours/decision/{id}', ['uses' => 'ToursController@decision', 'as' => 'tours.decision']);
 		Route::post('/tours/decisionupdate/{id}', ['uses' => 'ToursController@postDecision', 'as' => 'tours.decisionupdate']);

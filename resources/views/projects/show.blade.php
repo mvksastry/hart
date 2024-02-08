@@ -199,7 +199,7 @@
                       Actions... <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu">
-                      <!--
+                        <!--
                         <a class="dropdown-item" tabindex="-1" href="#">Action</a>
                         <a class="dropdown-item" tabindex="-1" href="#">Another action</a>
                         <a class="dropdown-item" tabindex="-1" href="#">Something else here</a>
@@ -238,12 +238,23 @@
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_3">
                     @foreach($projGoalsAssigned as $row)
-                      <p class="text-sm">Goal
-                        <b class="d-block">{{ ucfirst($row->goal) }}</b>
-                      </p>
-                      <p class="text-sm">Description
-                        <b class="d-block">{{ ucfirst($row->desc) }}</b>
-                      </p>
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="text-sm">Goal
+                            <b class="d-block">{{ ucfirst($row->goal) }}</b>
+                          </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="text-sm">Description
+                            <b class="d-block">{{ ucfirst($row->desc) }}</b>
+                          </p>
+                        </div>
+                        <div class="col-2">
+                          <a class="btn btn-primary btn-sm mt-1" href="{{ route('projtasks.show', $row->projectgoal_id) }}">
+                            <button type="button" class="btn btn-primary btn-block"><i class="fa fa-book"></i>Update</button>
+                          </a>
+                        </div>
+                      </div>
                     @endforeach
                   </div>
                   <!-- /.tab-pane -->
