@@ -93,7 +93,7 @@
 													
 													<td>{{ $task->comment }}</td>
 													<td>
-														<a href="{{ route('projtasks.update',$task->projtask_id) }}" class="btn btn-xs btn-info">Update</a>
+														<a href="{{ route('projtasks.edit',$task->projtask_id) }}" class="btn btn-xs btn-info">Update</a>
 														
 													</td>
 												</tr>

@@ -101,7 +101,18 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        //
+      $taskId = Projtask::with('project')
+                        ->with('taskowner')
+                        ->with('goal')
+                        ->with('updatedby')
+                        ->where('projtask_id', $id)->first();
+      //dd($taskId);
+      $users = User::whereHas(
+                              'roles', function($q){
+                                  $q->where('name', 'employee');
+                              }
+                      )->get();
+      return view('projects.updateProjectTasks',compact('taskId', 'users'));
     }
 
     /**
