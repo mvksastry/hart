@@ -19,7 +19,14 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+      $tasks = Projtask::with('project')
+                        ->with('taskowner')
+                        ->with('goal')
+                        ->with('updatedby')
+                        ->get();
+     
+      return view('projects.indexProjectTasks',compact('tasks'));
+     
     }
 
     /**

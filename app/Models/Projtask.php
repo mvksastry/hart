@@ -46,6 +46,11 @@ class Projtask extends Model
 		return $this->hasOne(Project::class, 'project_id', 'project_id');
 	}
 	
+  public function updatedby()
+	{
+		return $this->hasOne(User::class, 'id', 'updated_by');
+	}
+  
 	public function goal()
 	{
 		return $this->hasOne(Projectgoals::class, 'uuid', 'uuid');
