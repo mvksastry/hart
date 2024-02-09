@@ -51,26 +51,34 @@
 									<div class="card card-primary">
                     
 										<div class="card-header">
-											<h3 class="card-title">All Inputs Mandatory</h3>
+											<h3 class="card-title">All Inputs Mandatory. 
+                        Lasted updated: {{ date('d-m-Y H:i:s', strtotime($taskId->updated_at)) }}
+                      </h3>
 										</div>
                   
 										<!-- /.card-header -->
 
 										<div class="card-body">
-											<form method="POST" action="{{ route('projtasks.store') }}">
+											<form method="POST" action="{{ route('projtasks.update', $taskId->projtask_id) }}">
 												@csrf
-
+                        @method('PUT')
                           <div class="row align-items-start">
                             <div class="form-group col">
                               <input type="text" class="form-control form-control-border" 
-                              name="goal_id" hidden id="goal_id" value="{{ $taskId->goal }}" placeholder="Goal ID">
+                              name="goal_id" hidden id="goal_id" value="{{ $taskId->goal->projectgoal_id }}" placeholder="Goal ID">
 
                               <input type="text" class="form-control form-control-border" 
-                              name="uuid" hidden id="uuid" value="{{ $taskId->desc }}" placeholder="ID">
+                              name="uuid" hidden id="uuid" value="{{ $taskId->goal->uuid }}" placeholder="ID">                            
                             </div>
                           </div>
                      
                           <div class="row align-items-start"> 
+                            <div class="form-group col">                          
+                              <label for="exampleInputBorderWidth2">Project ID</label>
+                              <input type="text" class="form-control form-control-border" 
+                              name="project_id" readonly id="project_id" value="{{ $taskId->project_id }}" placeholder="Project ID">
+                            </div>
+                            
                             <div class="form-group col">                          
                               <label for="exampleInputBorderWidth2">Goal:</label>
                               <input type="text" class="form-control form-control-border" 
@@ -82,26 +90,18 @@
                                 <input type="text" class="form-control form-control-border" 
                                 name="goal_desc" readonly id="goal_desc" value="{{ $taskId->goal->desc }}"  placeholder="Description">
                             </div>
-                            <div class="form-group col">                          
-                              <label for="exampleInputBorderWidth2">Project ID</label>
-                              <input type="text" class="form-control form-control-border" 
-                              name="project_id" readonly id="project_id" value="{{ $taskId->project_id }}" placeholder="Project ID">
-                            </div>                            
                           </div>
 
                           <div class="row align-items-start">	
                             <div class="form-group col">
-                              {!! Form::label('budget_head', 'Activity*', ['class' => 'control-label']) !!}
+                              {!! Form::label('activity', 'Activity*', ['class' => 'control-label']) !!}
                               <p class="help-block">  {{ $taskId->activity }} </p>
                             </div>
 
                             <div class="form-group col">
                               {!! Form::label('task_desc', 'Description*', ['class' => 'control-label']) !!}
                               <p class="help-block">  {{ $taskId->task_desc }} </p>
-                            </div>                                              
-                          </div>
-                          
-                          <div class="row align-items-start"> 
+                            </div> 
                             @hasexactroles('admin|employee')
                               <div class="form-group col">
                                 <label for="taskOwner">Task Owner*</label>
@@ -130,12 +130,22 @@
                                 {{ $taskId->taskowner->name }}
                               </div>
                             @endhasexactroles
+                            
+                          </div>
+                          
+                          <div class="row align-items-start"> 
+
                           
                           
                             <div class="form-group col">
+                              {!! Form::label('budget', 'Budget Estimate*', ['class' => 'control-label']) !!}
+                              <p class="help-block">{{ $taskId->budget }}</p>
+                            </div>
+
+                            <div class="form-group col">
                               {!! Form::label('budget', 'Budget Spent*', ['class' => 'control-label']) !!}
                               <input type="text" class="form-control form-control-border" 
-                              name="budget" id="budget" value="{{ $taskId->budget }} " placeholder="Budget">
+                              name="budget_spent" id="budget_spent" value="{{ $taskId->budget_spent }} " placeholder="Budget">
                               <p class="help-block"></p>
                               @if($errors->has('budget'))
                                 <p class="help-block">
@@ -143,18 +153,7 @@
                                 </p>
                               @endif
                             </div>
-
-                            <div class="form-group col">
-                              <label for="exampleInputBorderWidth2">Per cent progress</label>
-                              <input type="text" class="form-control form-control-border" 
-                              name="percent_progress" id="percent_progress" value="{{ $taskId->percent_progress }} " placeholder="Progress">
-                              <p class="help-block"></p>
-                              @if($errors->has('percent_progress'))
-                                <p class="help-block">
-                                  {{ $errors->first('percent_progress') }}
-                                </p>
-                              @endif
-                            </div>                             
+                             
                           </div>
 
 
@@ -186,7 +185,19 @@
                                   {{ $errors->first('task_ends') }}
                                 </p>
                               @endif
-                            </div>                    
+                            </div>  
+                            
+                            <div class="form-group col">
+                              <label for="exampleInputBorderWidth2">Per cent progress</label>
+                              <input type="text" class="form-control form-control-border" 
+                              name="percent_progress" id="percent_progress" value="{{ $taskId->percent_progress }} " placeholder="Progress">
+                              <p class="help-block"></p>
+                              @if($errors->has('percent_progress'))
+                                <p class="help-block">
+                                  {{ $errors->first('percent_progress') }}
+                                </p>
+                              @endif
+                            </div>                            
                           </div>
 
                           <div class="row align-items-start">	

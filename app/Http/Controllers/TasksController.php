@@ -107,11 +107,9 @@ class TasksController extends Controller
                         ->with('updatedby')
                         ->where('projtask_id', $id)->first();
       //dd($taskId);
-      $users = User::whereHas(
-                              'roles', function($q){
+      $users = User::whereHas('roles', function($q){
                                   $q->where('name', 'employee');
-                              }
-                      )->get();
+                              })->get();
       return view('projects.updateProjectTasks',compact('taskId', 'users'));
     }
 
@@ -125,6 +123,9 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
         //
+      $input = $request->all();
+      
+      dd($id, $input);
     }
 
     /**
