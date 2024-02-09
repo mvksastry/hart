@@ -63,10 +63,10 @@
                           <div class="row align-items-start">
                             <div class="form-group col">
                               <input type="text" class="form-control form-control-border" 
-                              name="goal_id" hidden id="goal_id" value="{{ $goalId->goal }}" placeholder="Goal ID">
+                              name="goal_id" hidden id="goal_id" value="{{ $goalId->projectgoal_id }}" placeholder="Goal ID">
 
                               <input type="text" class="form-control form-control-border" 
-                              name="uuid" hidden id="uuid" value="{{ $goalId->desc }}" placeholder="ID">
+                              name="uuid" hidden id="uuid" value="{{ $goalId->uuid }}" placeholder="ID">
                             </div>
                           </div>
                      
