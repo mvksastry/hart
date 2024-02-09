@@ -189,12 +189,18 @@
                             </div>                    
                           </div>
 
-
-                       
                           <div class="row align-items-start">	
                             <div class="form-group col">
                               {!! Form::label('comment', 'Comment*', ['class' => 'control-label']) !!}
-                              {!! Form::text('comment', old('comment'), ['class' => 'form-control','value'=> 'Project being finalized']) !!}
+                              <p class="help-block">{{ $taskId->comment }}</p>
+                            </div>                                              
+                          </div>
+                       
+                          <div class="row align-items-start">	
+                            <div class="form-group col">
+                              {!! Form::label('comment', 'Append Comment*', ['class' => 'control-label']) !!}
+                              <input type="text" class="form-control form-control-border" 
+                              name="comment" id="comment" placeholder="Comment">
                               <p class="help-block"></p>
                               @if($errors->has('comment'))
                                 <p class="help-block">
