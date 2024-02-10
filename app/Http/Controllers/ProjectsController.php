@@ -14,8 +14,9 @@ use App\Models\Communication;
 use App\Models\Event;
 use App\Models\Group;
 use App\Models\Project;
-use App\Models\Projfiles;
 use App\Models\Projectgoals;
+use App\Models\Projtask;
+use App\Models\Projfiles;
 use App\Models\User;
 
 //Traits
@@ -167,12 +168,15 @@ class ProjectsController extends Controller
       $project = Project::with('proj_owner')
                         ->with('proj_lead')
                         ->with('smart_goals')
+                        ->with('tasks')
                         ->where('uuid', $id)
                         ->first();
-                        
+      //dd($project);                  
       $projGoalsAssigned = Projectgoals::where('goalowner_id', Auth::id())->get();
-      
-      return view('projects.show', compact('project', 'projGoalsAssigned'));  
+      $latestActivity = Projtask::with('updatedby')->latest()->take(5)->get();
+
+      //dd($latestActivity );
+      return view('projects.show', compact('project', 'projGoalsAssigned','latestActivity'));  
     }
 
     /**

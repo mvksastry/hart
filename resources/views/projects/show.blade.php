@@ -76,64 +76,29 @@
               <div class="row">
                 <div class="col-12">
                   <h4>Recent Activity</h4>
+                  
+                  @foreach($latestActivity as $activity)
                     <div class="post">
                       <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="{{asset('assets/dist/img/user1-128x128.jpg')}}" alt="user image">
                         <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
+                          <a href="#">{{ ucwords($activity->updatedby->name) }} </a>
                         </span>
-                        <span class="description">Shared publicly - 7:45 PM today</span>
+                        <span class="description">Updated At : {{ date('d-m-Y H:i', strtotime($activity->updated_at)) }}</span>
                       </div>
                       <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore.
+                      <p><b>
+                        {{ ucwords($activity->activity) }}
+                        </b>
                       </p>
-
+                      <p>
+                        {{ ucwords($activity->task_desc) }}
+                      </p>
                       <p>
                         <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v2</a>
                       </p>
                     </div>
-
-                  <div class="post clearfix">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="{{asset('assets/dist/img/user7-128x128.jpg')}}" alt="User Image">
-                      <span class="username">
-                        <a href="#">Sarah Ross</a>
-                      </span>
-                      <span class="description">Sent you a message - 3 days ago</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                      Lorem ipsum represents a long-held tradition for designers,
-                      typographers and the like. Some people hate it and argue for
-                      its demise, but others ignore.
-                    </p>
-                    <p>
-                      <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 2</a>
-                    </p>
-                  </div>
-
-                  <div class="post">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="{{asset('assets/dist/img/user1-128x128.jpg')}}" alt="user image">
-                      <span class="username">
-                        <a href="#">Jonathan Burke Jr.</a>
-                      </span>
-                      <span class="description">Shared publicly - 5 days ago</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                      Lorem ipsum represents a long-held tradition for designers,
-                      typographers and the like. Some people hate it and argue for
-                      its demise, but others ignore.
-                    </p>
-
-                    <p>
-                      <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v1</a>
-                    </p>
-                  </div>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -251,21 +216,40 @@
                         </div>
                         <div class="col-2">
                           <a class="btn btn-primary btn-sm mt-1" href="{{ route('projtasks.show', $row->projectgoal_id) }}">
-                            <button type="button" class="btn btn-primary btn-block"><i class="fa fa-book"></i>Update</button>
+                            <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-book"></i>Update</button>
                           </a>
                         </div>
                       </div>
                     @endforeach
                   </div>
                   <!-- /.tab-pane -->
+                  <?php 
+                  foreach($project as $val)
+                  {
+                    $goals = $project->smart_goals;
+                    $tasks = $project->tasks;
+                  }
+                  ?>
                   <div class="tab-pane" id="tab_4">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                    @foreach($tasks as $xx)                     
+                      <div class="row">
+                        <div class="col-4">
+                          <p class="text-sm">Task
+                            <b class="d-block">{{ ucfirst($xx->activity) }}</b>
+                          </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="text-sm">Description
+                            <b class="d-block">{{ ucfirst($xx->task_desc) }}</b>
+                          </p>
+                        </div>
+                        <div class="col-2">
+                          <a class="btn btn-primary btn-sm mt-1" href="{{ route('projtasks.show', $row->projectgoal_id) }}">
+                            <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-book"></i>Update</button>
+                          </a>
+                        </div>
+                      </div>                    
+                    @endforeach
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_5">
@@ -275,75 +259,29 @@
                         <!-- Timelime example  -->
                         <div class="row">
                           <div class="col-md-12">
+                          
+                          
                             <!-- The time line -->
                             <div class="timeline">
-                              <!-- timeline time label -->
-                              <div class="time-label">
-                                <span class="bg-red">10 Jan. 2024</span>
-                              </div>
-                              <!-- /.timeline-label -->
-                              <!-- timeline item -->
-                              <div>
-                                <i class="fas fa-envelope bg-blue"></i>
-                                <div class="timeline-item">
-                                  <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                                  <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                            @foreach($latestActivity as $activity)  
+                              <?php
+                                $t_date = strtotime($activity->updated_at);
+                                $datediff = strtotime(date('Y-m-d')) - $t_date;
+                                $dago = round($datediff / (60 * 60 * 24));
+                              ?>
 
-                                  <div class="timeline-body">
-                                    Message regarding permissions received and work in-progress
-                                  </div>
-                                  <!--
-                                  <div class="timeline-footer">
-                                    <a class="btn btn-primary btn-sm">Read more</a>
-                                    <a class="btn btn-danger btn-sm">Delete</a>
-                                  </div>
-                                  -->
-                                </div>
-                              </div>
-                              <!-- END timeline item -->
-                              <!-- timeline item -->
-                              <div>
-                                <i class="fas fa-user bg-green"></i>
-                                <div class="timeline-item">
-                                  <span class="time"><i class="fas fa-clock"></i> 5 mins ago</span>
-                                  <h3 class="timeline-header no-border"><a href="#">User05 User05</a> accepted your friend request</h3>
-                                </div>
-                              </div>
-                              <!-- END timeline item -->
-                              <!-- timeline item -->
-                              <div>
-                                <i class="fas fa-comments bg-yellow"></i>
-                                <div class="timeline-item">
-                                  <span class="time"><i class="fas fa-clock"></i> 27 mins ago</span>
-                                  <h3 class="timeline-header"><a href="#">User03 User03</a> commented on your post</h3>
-                                  <div class="timeline-body">
-                                    Message: received xyz abcd
-                                  </div>
-                                  <!--
-                                  <div class="timeline-footer">
-                                    <a class="btn btn-warning btn-sm">View comment</a>
-                                  </div>
-                                  -->
-                                </div>
-                              </div>
-                              <!-- END timeline item -->
                               <!-- timeline time label -->
                               <div class="time-label">
-                                <span class="bg-green">21 Dec. 2023</span>
+                                <span class="bg-green">{{ date('d-m-Y', $t_date) }}</span>
                               </div>
                               <!-- /.timeline-label -->
                               <!-- timeline item -->
                               <div>
                                 <i class="fa fa-camera bg-purple"></i>
                                 <div class="timeline-item">
-                                  <span class="time"><i class="fas fa-clock"></i> 2 days ago</span>
-                                  <h3 class="timeline-header"><a href="#">Admin Smoffice</a> uploaded new photos</h3>
-                                  <div class="timeline-body">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                    <img src="https://placehold.it/150x100" alt="...">
-                                  </div>
+                                  <span class="time"><i class="fas fa-clock"></i> {{ $dago }} days ago</span>
+                                  <h3 class="timeline-header"><a href="#">{{ $activity->updatedby->name }}</a> uploaded new photos</h3>
+
                                 </div>
                               </div>
                               <!-- END timeline item -->
@@ -356,21 +294,39 @@
 
                                   <h3 class="timeline-header"><a href="#">Pune Pune</a> shared a video</h3>
 
-                                  <div class="timeline-body">
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" allowfullscreen></iframe>
-                                    </div>
-                                  </div>
-                                  <div class="timeline-footer">
-                                    <a href="#" class="btn btn-sm bg-maroon">See comments</a>
-                                  </div>
                                 </div>
                               </div>
-                              <!-- END timeline item -->
-                              <div>
-                                <i class="fas fa-clock bg-gray"></i>
-                              </div>
-                            </div>
+                              <!-- END timeline item -->                            
+                          @endforeach
+                          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+
+                            
+                            
+                            
+                            
+                            
                           </div>
                           <!-- /.col -->
                         </div>

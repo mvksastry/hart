@@ -106,7 +106,7 @@ class TasksController extends Controller
                         ->with('goal')
                         ->with('updatedby')
                         ->where('projtask_id', $id)->first();
-      //dd($taskId);
+      
       $users = User::whereHas('roles', function($q){
                                   $q->where('name', 'employee');
                               })->get();
