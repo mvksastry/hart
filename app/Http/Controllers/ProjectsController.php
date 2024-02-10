@@ -59,7 +59,13 @@ class ProjectsController extends Controller
       
       if( Auth::user()->hasExactRoles(['admin', 'employee']) )
       {      
-        $projects = Project::all();
+        //$projects = Project::all();
+        $projects = Project::with('proj_owner')
+                        ->with('proj_lead')
+                        ->with('goals')
+                        ->with('tasks')
+                        ->get();
+        //dd($projects);
         return view('projects.index', compact('projects'));
       }
       

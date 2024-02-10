@@ -60,6 +60,11 @@ class Project extends Model
     return $this->hasMany(Projectgoals::class, 'uuid', 'uuid');
   }
 
+  public function goals()
+  {
+    return $this->hasMany(Projectgoals::class, 'uuid', 'uuid');
+  }
+  
   public function goalsntasks()
   {
     return $this->hasMany(Projtask::class, 'uuid', 'uuid');

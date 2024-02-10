@@ -20,7 +20,13 @@
 			</div><!-- /.container-fluid -->
 		</div>
 		<!-- /.content-header -->
-
+    <?php
+      foreach($projects as $val)
+      {
+        $goals = $val->goals;
+        $tasks = $val->tasks;
+      }
+    ?>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -315,9 +321,21 @@
                           <form class="form-horizontal">
                           @csrf
                             <div class="form-group row">
-                              <label for="inputName" class="col-sm-2 col-form-label">Project</label>
+                              <label for="inputName" class="col-sm-2 col-form-label">Goal</label>
                               <div class="col-sm-10">
-                                <input type="email" class="form-control" name="title" id="title" placeholder="Name">
+                                
+                                <select class="custom-select form-control rounded-1" 
+                                  name="projectgoal_id" id="projectgoal_id">
+                                  <option value="0">Select</option>
+                                  @foreach($goals as $row)
+                                    <option value="{{ $row->projectgoal_id }}">{{ $row->goal }}</option>
+                                  @endforeach
+                                </select>
+                                  @if($errors->has('projectgoal_id'))
+                                    <p class="help-block text-danger">
+                                      {{ $errors->first('projectgoal_id') }}
+                                    </p>
+                                  @endif
                               </div>
                             </div>
                             <div class="form-group row">
