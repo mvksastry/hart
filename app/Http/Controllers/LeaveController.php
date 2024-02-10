@@ -210,7 +210,7 @@ class LeaveController extends Controller
     $leavetypes = Leavetype::where('leavetype_id', $id)
               ->select('leavetype_name','leavetype_id','leave_conditions')->get();
               
-    dd($leavetypes);
+    //dd($leavetypes);
     
     return view('leaves.create')
           ->with(['leavetypes'=> $leavetypes]);

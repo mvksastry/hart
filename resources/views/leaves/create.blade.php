@@ -62,7 +62,7 @@
 									<!-- Morris chart - Sales -->
 									<div class="chart tab-pane active" id="revenue-chart" style="position: relative;">
 										@if($leavetypeName == "Casual Leave")
-											@include('leaves.formCasualLeave')
+											@include('leaves.formLeaveCasual')
 										@endif	
 									</div>
 								</div>
