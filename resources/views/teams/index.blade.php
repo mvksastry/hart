@@ -51,7 +51,7 @@
 
 
 
-                  @if(count($teams) > 0)
+                  @if($count > 0)
 									
 										<table id="example2" class="table table-bordered table-hover">
 											<thead>

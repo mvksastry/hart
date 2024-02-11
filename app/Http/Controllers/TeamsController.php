@@ -27,8 +27,9 @@ class TeamsController extends Controller
     {
       //
       $teams = Teams::with('user')->with('team_role')->get();
-      //dd($teams);
-      return view('teams.index', compact('teams'));
+      $count = count($teams);
+      //dd($teams, $c);
+      return view('teams.index', compact('count','teams'));
     }
 
     /**
