@@ -31,5 +31,9 @@ class Teamusers extends Model
 		return $this->hasOne(User::class, 'id', 'user_id');
 	}      
       
- 
+	public function tname()
+	{
+		return $this->hasOne(Teams::class, 'id', 'team_id');
+	}
+  
 }

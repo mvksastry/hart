@@ -67,12 +67,12 @@
 													<tr data-entry-id="{{ $team->id }}">
 														<td></td>
                             <td>{{ ucwords($team->user->name) }}</td>
-														<td>{{ ucfirst($team->name) }}</td>
+														<td>{{ ucfirst($team->tname->name) }}</td>
 														
 														<td>{{ $team->created_at->format('F d, Y') }}</td>
 														<td>														
                               <span class="label label-info label-many">
-                                {{ ucfirst($team->team_role->role) }};
+                                {{ ucfirst($team->role) }};
                               </span>
 														</td>
 														<td>

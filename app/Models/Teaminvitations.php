@@ -24,9 +24,5 @@ class Teaminvitations extends Model
       'email',
       'role'   
   ];      
-      
-      
-      
-      
- 
+     
 }

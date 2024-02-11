@@ -58,11 +58,58 @@
                     
                       <form method="POST" action="{{ route('teams.store') }}">
                         @csrf
+
+
+                        
+                        <div class="row">
+                          <!-- Left col -->
+                          <div class="col-lg-5">
+                              @if(count($teamNames) > 0)
+                                <label for="existing_name" class="col-form-label">Current Team Name</label>
+                                <select class="custom-select form-control rounded-1" value="{{ old('existing_name') }}"
+                                name="existing_name" id="existing_name">
+                                  <option value="">Select</option>
+                                  @foreach($teamNames as $row)
+                                    <option value="{{ $row->name }}">{{ ucfirst($row->name) }}</option>
+                                  @endforeach
+                                </select>
+                                @if($errors->has('existing_name'))
+                                  <p class="help-block text-danger">
+                                    {{ $errors->first('existing_name') }}
+                                  </p>
+                                @endif
+                              @else
+                                <label for="existing_name" class="col-form-label">No Current Teams</label>
+                                <input type="text" class="form-control form-control-border" 
+                                  name="existing_name" id="existing_name" hidden placeholder="Team ID">  
+                              @endif
+                          </div>
+                              
+                          <div class="col-lg-2">
+                            <p class="text-center text-uppercase text-danger"> 
+                              <label for="role" class="col-form-label"> or </label> 
+                            </p>                           
+                          </div>
+                          
+                          <div class="col-lg-5">                                     
+                            <label class="col-form-label" for="new_team_name">Create New Team</label>
+                            <input type="text" class="form-control form-control-border" 
+                            name="new_team_name" id="new_team_name" value="{{ old('new_team_name') }}" placeholder="Team Name">           
+                            @if($errors->has('new_team_name'))
+                              <p class="help-block text-danger">
+                                {{ $errors->first('new_team_name') }}
+                              </p>
+                            @endif
+                          </div>
+                        </div>              
+
+
                         <div class="row"> 
                           <div class="col-lg-5">                  
-                            <div class="form-group">
-                              <label for="exampleInputBorderWidth2">Name</label>
-                              <select class="custom-select form-control rounded-1" name="user_id" id="user_id">
+                            <div class="form-group mt-2">
+                              <label for="exampleInputBorderWidth2">New Leader</label>
+                              <select class="select2leader"  name="leader_id" id="leader_id" data-placeholder="Select Team Leader" style="width: 100%;">
+                              
                               <option value="">Select</option>
                                 @foreach($users as $key => $val)
                                 <option value="{{ $key }}">{{ ucfirst($val) }}</option>
@@ -76,59 +123,34 @@
                             @endif
                           </div>
 
-                          <div class="col-lg-2"> 
+                          <div class="col-lg-2">
+                                                        
                           </div>
-
-                          <div class="col-lg-5"> 
-                            <label for="role" class="col-form-label">Role</label>
-                            <select class="custom-select form-control rounded-1" name="role" id="role">
+                          
+                          <div class="col-lg-5">
+                            <div class="form-group mt-2">
+                              <label for="exampleInputBorderWidth2">New Member</label>
+                              <select class="select2member" multiple="multiple" name="member_id[]" id="member_id[]" data-placeholder="Select Team Member" style="width: 100%;">
+                              
                               <option value="">Select</option>
-                              <option value="member">Member</option>
-                              <option value="team_leader">Team Leader</option>
-                            </select>
-                            @if($errors->has('role'))
+                                @foreach($users as $key => $val)
+                                <option value="{{ $key }}">{{ ucfirst($val) }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                            @if($errors->has('user_id'))
                               <p class="help-block text-danger">
-                                {{ $errors->first('role') }}
+                                {{ $errors->first('user_id') }}
                               </p>
-                            @endif
+                            @endif                          
                           </div>
                         </div>
-                        
-                        <div class="row">
-                          <!-- Left col -->
-                          <div class="col-lg-5">
-                              @if( count($teamNames) > 0)
-                                <label for="existing_name" class="col-form-label">Current Team Name</label>
-                                <select class="custom-select form-control rounded-1" value="{{ old('existing_name') }}"name="existing_name" id="existing_name">
-                                  <option value="">Select</option>
-                                  @foreach($teamNames as $row)
-                                  <option value="{{ $row->name }}">{{ ucfirst($row->name) }}</option>
-                                  @endforeach
-                                </select>
-                                @if($errors->has('existing_name'))
-                                  <p class="help-block text-danger">
-                                    {{ $errors->first('existing_name') }}
-                                  </p>
-                                @endif
-                              @endif
-                          </div>
-                              
-                          <div class="col-lg-2">
-                            <label for="role" class="col-form-label">
-                            <p class="help-block text-uppercase text-danger"> or </p>
-                            </label>
-                          </div>
-                          <div class="col-lg-5">                                     
-                            <label class="col-form-label" for="new_team_name">Create New Team</label>
-                            <input type="text" class="form-control form-control-border" 
-                            name="new_team_name" id="new_team_name" value="{{ old('new_team_name') }}" placeholder="Team Name">           
-                            @if($errors->has('new_team_name'))
-                              <p class="help-block text-danger">
-                                {{ $errors->first('new_team_name') }}
-                              </p>
-                            @endif
-                          </div>
-                        </div>              
+
+
+
+
+
+
 
                         <div class="card-footer">
                           <button type="submit" class="btn btn-primary">Submit</button>

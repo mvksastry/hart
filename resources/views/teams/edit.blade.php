@@ -64,7 +64,10 @@
                           <div class="col-lg-6">                       
                             <label for="exampleInputBorderWidth2">Team Name</label>
                               <input type="text" class="form-control form-control-border" 
-                            name="team_name" id="team_name" hidden value="{{ $team_name }}" placeholder="Team Name">           
+                              name="team_id" id="team_id" hidden value="{{ $team_id }}" placeholder="Team ID">           
+
+                              <input type="text" class="form-control form-control-border" 
+                              name="team_name" id="team_name" hidden value="{{ $team_name }}" placeholder="Team Name">           
 
                               <p class="help-block text-danger">
                                 <b>{{ ucwords($team_name) }}</b>

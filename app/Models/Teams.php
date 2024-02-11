@@ -20,19 +20,8 @@ class Teams extends Model
    */
 	 
   protected $fillable = [
-      'user_id', 
       'name',
       'personal_team',       
   ];      
-
-	public function user()
-	{
-		return $this->hasOne(User::class, 'id', 'user_id');
-	}
-  
-  public function team_role()
-	{
-		return $this->hasOne(Teamusers::class, 'team_id', 'id');
-	}  
     
 }

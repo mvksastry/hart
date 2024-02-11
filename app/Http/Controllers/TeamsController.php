@@ -30,7 +30,9 @@ class TeamsController extends Controller
     public function index()
     {
       //
-      $teams = Teams::with('user')->with('team_role')->get();
+      $teams = Teamusers::with('user')->with('tname')->get();
+      
+      //dd($teams);
       return view('teams.index', compact('teams'));
     }
 
@@ -43,10 +45,11 @@ class TeamsController extends Controller
     {
       if( Auth::user()->hasAnyRole(['admin','director']) )
       {
-        $users = User::pluck('name','id');
+        $users = User::pluck('name', 'id');
+        //dd($users);
         $teamusers = Teamusers::all();
         $teamNames = Teams::distinct()->get('name');
-        return view('teams.create', compact('users','teamusers', 'teamNames'));
+        return view('teams.create', compact('users','teamusers','teamNames'));
       }
     }
 
@@ -56,7 +59,7 @@ class TeamsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeamsRequest $request)
+    public function store(Request $request)
     {
         //
       $input = $request->all();
@@ -79,23 +82,35 @@ class TeamsController extends Controller
         unset($input['new_team_name']);
       } 
       
-      //dd($team_name, $input);
-      //first check whether in the same data present or not
-      $user = User::where('id', $input['user_id'])->first();
-      
+      //dd($team_name, $input);  
+
+      //first create team
       $result1 = Teams::firstOrCreate(array('name' => $team_name, 
-                                          'user_id' => $input['user_id'], 
                                           'personal_team' => 1));
-                                          
+      
+      //next create leader
       $result2 = Teamusers::firstOrCreate(array('team_id' => $result1->id, 
-                                          'user_id' => $input['user_id'], 
-                                          'role' => $input['role']));
+                                          'user_id' => $input['leader_id'], 
+                                          'role' => "team_leader"));
                                           
-      $result3 = Teaminvitations::firstOrCreate(array('team_id' => $result1->id, 
-                                          'email' => $user->email, 
-                                          'role' => $input['role']));                                    
+      //create members through loop
+      foreach($input['member_id'] as $row)
+      {
+        $member_id = $row;
+        $role = "member";
+        $resx = Teamusers::firstOrCreate(array(
+                                          'team_id' => $result1->id, 
+                                          'user_id' => $member_id, 
+                                          'role' => $role));
                                           
-      if($result1)
+        $email = User::where('id',$member_id)->first();
+
+        $result3 = Teaminvitations::firstOrCreate(array('team_id' => $result1->id, 
+                                          'email' => $email->email, 
+                                          'role' => $role));     
+      }                 
+                              
+      if($result1 && $result2)
       {
         $swalMsg = "New Team Created !";
         return redirect()->route('teams.index')->with(['success'=>$swalMsg]);
@@ -131,6 +146,7 @@ class TeamsController extends Controller
       $req = Teams::where('id', $id)->first();
       $team_name = $req->name;
       $teamNameForEdit = $req->name;
+      
       $teamMembersById = Teams::where('name',$req->name)->pluck('user_id')->toArray();
       
       $teamusers = Teamusers::with('user')->whereIn('user_id', $teamMembersById)->get();
@@ -151,6 +167,9 @@ class TeamsController extends Controller
     {
         //
       $input = $request->all();
+      //everything captured. not we need to put in db.
+      // same way as stored above.
+      
       dd($input);
     }
 
