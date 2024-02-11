@@ -3,7 +3,6 @@
 
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
-	
 
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
@@ -63,50 +62,61 @@
                         <div class="form-group">
                           <label for="exampleInputBorderWidth2">Name</label>
                           <select class="custom-select form-control rounded-1" name="user_id" id="user_id">
-                          <option value="0">Select</option>
+                          <option value="">Select</option>
                             @foreach($users as $key => $val)
                             <option value="{{ $key }}">{{ ucfirst($val) }}</option>
                             @endforeach
                           </select>
                         </div>
-                        @if($errors->has('name'))
+                        @if($errors->has('user_id'))
                           <p class="help-block text-danger">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('user_id') }}
                           </p>
                         @endif
-                        
+                  
+                        @if( count($teamNames) > 0)
+                          <label for="role" class="col-form-label">Current Team Name</label>
+                          <select class="custom-select form-control rounded-1" value="{{ old('existing_name') }}"name="existing_name" id="existing_name">
+                            <option value="">Select</option>
+                            @foreach($teamNames as $row)
+                            <option value="{{ $row->id }}">{{ ucfirst($row->name) }}</option>
+                            @endforeach
+                          </select>
+                          @if($errors->has('existing_name'))
+                            <p class="help-block text-danger">
+                              {{ $errors->first('existing_name') }}
+                            </p>
+                          @endif
+                        @endif
+                      
                         <div class="form-group">
-                          <label for="exampleInputBorderWidth2">Team Name</label>
+                          <label for="exampleInputBorderWidth2">Create New Team</label>
                           <input type="text" class="form-control form-control-border" 
-                          name="team_name" id="team_name" placeholder="Team Name">
+                          name="new_team_name" id="new_team_name" value="{{ old('new_team_name') }}" placeholder="Team Name">
                         </div>
-                        @if($errors->has('team_name'))
+                        @if($errors->has('new_team_name'))
                           <p class="help-block text-danger">
-                            {{ $errors->first('team_name') }}
+                            {{ $errors->first('new_team_name') }}
                           </p>
                         @endif
                         
                         <label for="role" class="col-form-label">Role</label>
                         <select class="custom-select form-control rounded-1" name="role" id="role">
-                          <option value="0">Select</option>
+                          <option value="">Select</option>
                           <option value="member">Member</option>
                           <option value="team_leader">Team Leader</option>
                         </select>
-                        @if($errors->has('roles'))
-                          <p class="help-block">
-                            {{ $errors->first('roles') }}
+                        @if($errors->has('role'))
+                          <p class="help-block text-danger">
+                            {{ $errors->first('role') }}
                           </p>
                         @endif
 
-
-                        
                         <div class="card-footer">
                           <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                       </form>
                     </div>
-									
-									
 
 									  <!-- /.card-body -->
 									</div>

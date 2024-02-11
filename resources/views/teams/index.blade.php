@@ -49,9 +49,7 @@
 								<!-- Morris chart - Sales -->
 								<div class="chart tab-pane active" id="revenue-chart" style="position: relative;">
 
-
-
-                  @if($count > 0)
+                  @if(count($teams) > 0)
 									
 										<table id="example2" class="table table-bordered table-hover">
 											<thead>
@@ -72,12 +70,10 @@
 														<td>{{ ucfirst($team->name) }}</td>
 														
 														<td>{{ $team->created_at->format('F d, Y') }}</td>
-														<td>
-															
-																<span class="label label-info label-many">
-																	{{ ucfirst($team->team_role->role) }};
-																</span>
-															
+														<td>														
+                              <span class="label label-info label-many">
+                                {{ ucfirst($team->team_role->role) }};
+                              </span>
 														</td>
 														<td>
 															<a href="{{ route('teams.edit',[$team->id]) }}" class="btn btn-xs btn-info">Edit</a>
@@ -95,9 +91,6 @@
 										No Information to display
 									@endif
 
-
-
-
 								</div>
 							</div>
 						  </div><!-- /.card-body -->
@@ -110,7 +103,5 @@
 				</div><!-- /.row (main row) -->
 			</div><!-- /.container-fluid -->
 		</section>
-		
-		
 	</div>	
 @endsection('content')
