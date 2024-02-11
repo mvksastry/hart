@@ -34,6 +34,5 @@ class Teams extends Model
 	{
 		return $this->hasOne(Teamusers::class, 'team_id', 'id');
 	}  
-  
-  
+    
 }

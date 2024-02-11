@@ -26,8 +26,10 @@ class Teamusers extends Model
       'role',  
   ];      
       
-      
-      
+	public function user()
+	{
+		return $this->hasOne(User::class, 'id', 'user_id');
+	}      
       
  
 }

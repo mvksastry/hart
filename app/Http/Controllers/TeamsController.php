@@ -45,10 +45,7 @@ class TeamsController extends Controller
       {
         $users = User::pluck('name','id');
         $teamusers = Teamusers::all();
-        $teamNames = Teams::distinct('name')->get();
-        //dd($teamNames->count());
-        //$roles = Role::pluck('name','id');
-        //dd($roles);
+        $teamNames = Teams::distinct()->get('name');
         return view('teams.create', compact('users','teamusers', 'teamNames'));
       }
     }
@@ -64,22 +61,25 @@ class TeamsController extends Controller
         //
       $input = $request->all();
            
-      if(array_key_exists("existing_name", $input))
-      {
-        $curr_name = $input['existing_name'];
-      }
-      
-      if(array_key_exists("new_team_name", $input))
-      {
-        $new_name = $input['new_team_name'];
-      }   
-      
-      if( $curr_name != null && $new_name != null)
+      if( $input['existing_name'] != null && $input['new_team_name'] != null)
       {  
         $swalMsg = "Either select Name or Enter New Name";
         return redirect()->back()->with(['error'=>$swalMsg]);
       }
-         
+
+      if($input['existing_name'] == null )
+      {
+        $team_name = $input['new_team_name'];
+        unset($input['existing_name']);
+      }
+      
+      if($input['new_team_name'] == null)
+      {
+        $team_name = $input['existing_name'];
+        unset($input['new_team_name']);
+      } 
+      
+      //dd($team_name, $input);
       //first check whether in the same data present or not
       $user = User::where('id', $input['user_id'])->first();
       
@@ -125,7 +125,19 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $team_id = $id;
+      $users = User::pluck('name','id');
+      //get the team name first from id
+      $req = Teams::where('id', $id)->first();
+      $team_name = $req->name;
+      $teamNameForEdit = $req->name;
+      $teamMembersById = Teams::where('name',$req->name)->pluck('user_id')->toArray();
+      
+      $teamusers = Teamusers::with('user')->whereIn('user_id', $teamMembersById)->get();
+      $teamNames = Teams::distinct()->get('name');
+      //dd($teamusers, $teamNames);
+      return view('teams.edit', compact('team_name','team_id','users','teamusers', 'teamNames'));
+      
     }
 
     /**
@@ -138,6 +150,8 @@ class TeamsController extends Controller
     public function update(Request $request, $id)
     {
         //
+      $input = $request->all();
+      dd($input);
     }
 
     /**

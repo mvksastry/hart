@@ -78,6 +78,12 @@
 <script>
   $(function() {
     
+    //Initialize Select2 Elements
+    $('.select2leader').select2()
+
+    //Initialize Select2 Elements
+    $('.select2member').select2()
+    
     //Date and time picker
     $('#eventdatetime1').datetimepicker({ icons: { time: 'far fa-clock' } });
     

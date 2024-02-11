@@ -58,7 +58,7 @@
 													<th>Member Name</th>
 													<th>Team Name</th>
 													<th>Date Added</th>
-													<th>Role</th>
+													<th>Team Role</th>
 													<th>Operations</th>					
 												</tr>
 											</thead>
@@ -76,7 +76,7 @@
                               </span>
 														</td>
 														<td>
-															<a href="{{ route('teams.edit',[$team->id]) }}" class="btn btn-xs btn-info">Edit</a>
+															<a href="{{ route('teams.edit',[$team->id]) }}" class="btn btn-xs btn-info">Edit Team</a>
 															<form method="POST" action="{{ route('teams.destroy', $team->id) }}">
 																@csrf
                                 @method('DELETE')
