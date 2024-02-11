@@ -36,6 +36,7 @@ use App\Http\Controllers\ProjectsController;
 
 use App\Http\Controllers\RoleController;
 
+use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\ToursController;
 use App\Http\Controllers\TasksController;
 
@@ -221,6 +222,9 @@ Route::middleware(['auth'] )->group(function () {
 
     //Tasks routes
     Route::resource('/projtasks', TasksController::class);
+
+    //Tasks routes
+    Route::resource('/teams', TeamsController::class);
     
 		//tourdetails routes
 		Route::get('/tours/decision/{id}', ['uses' => 'ToursController@decision', 'as' => 'tours.decision']);

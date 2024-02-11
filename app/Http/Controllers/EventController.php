@@ -33,6 +33,7 @@ class EventController extends Controller
   public function index()
   {
     $events = [];
+    
     if( Auth::user()->hasExactRoles(['employee','supervisor']) )
     {
       $events = Event::where('employee_id', Auth::user()->id)->get();

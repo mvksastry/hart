@@ -98,6 +98,14 @@
         text: '{{ Session::get("success") }}'
     })
     @endif
+
+    @if(Session::has('error'))
+        Toast.fire({
+        icon: 'error',
+        title: 'Failed!',
+        text: '{{ Session::get("error") }}'
+    })
+    @endif
     
     $('.swalDefaultInfo').click(function() {
       Toast.fire({

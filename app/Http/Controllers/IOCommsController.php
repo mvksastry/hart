@@ -67,7 +67,7 @@ class IOCommsController extends Controller
   public function index()
   {
 		//			
-		if( Auth::user()->hasAnyRole(['researcher', 'employee']) )
+		if( Auth::user()->hasExactRoles(['employee']) )
 		{	
 			$comSelf = Communication::with('user')
 									->where('employee_id', Auth::id() )->get();
@@ -76,7 +76,7 @@ class IOCommsController extends Controller
 				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
 		}
 		
-		if( Auth::user()->hasRole(['finance','dean']) )
+		if( Auth::user()->hasExactRoles(['finance','employee']) )
 		{	
 			$comSelf = Communication::with('user')
 									->where('employee_id', Auth::id() )->get();
@@ -90,7 +90,7 @@ class IOCommsController extends Controller
 				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
 		}
 		
-		if( Auth::user()->hasRole('admin') )
+		if( Auth::user()->hasExactRoles(['admin','employee']) )
 		{	
 			$comSelf = Communication::with('user')
 									->where('employee_id', Auth::id() )->get();
@@ -100,12 +100,12 @@ class IOCommsController extends Controller
 							->where('hops.next_id', Auth::id())	
 							->where('communications.status', '>=', 2)
 							->get();
-			
+			//dd($comSelf, $comGroup);
 			return view('communications.index')
 				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
 		}
 		
-		if( Auth::user()->hasRole('director') )
+		if( Auth::user()->hasExactRoles(['director','employee']) )
 		{	
 			$comSelf = Communication::with('user')
 									->where('employee_id', Auth::id() )->get();

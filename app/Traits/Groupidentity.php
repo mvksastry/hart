@@ -19,7 +19,7 @@ use App\Traits\Userpermissions;
 trait Groupidentity
 {
 	// all these are not id numbers from users table
-	//these are role id in roles table. authority is by role
+	// these are role id in roles table. authority is by role
 	public function groupLeaderId($id)
 	{
 		return Group::where('member_id', $id)
@@ -44,7 +44,7 @@ trait Groupidentity
 			foreach($input['members'] as $val)
 			{
 					$ia['member_id'] = $val;
-					Groupx::Create($ia);					
+					Group::Create($ia);					
 			}			
 	} 
 
