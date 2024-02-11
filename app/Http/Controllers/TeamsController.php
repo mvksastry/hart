@@ -145,14 +145,11 @@ class TeamsController extends Controller
       //get the team name first from id
       $req = Teams::where('id', $id)->first();
       $team_name = $req->name;
-      $teamNameForEdit = $req->name;
       
-      $teamMembersById = Teams::where('name',$req->name)->pluck('user_id')->toArray();
+      $teamusers = Teamusers::where('team_id',$team_id)->get();
       
-      $teamusers = Teamusers::with('user')->whereIn('user_id', $teamMembersById)->get();
-      $teamNames = Teams::distinct()->get('name');
       //dd($teamusers, $teamNames);
-      return view('teams.edit', compact('team_name','team_id','users','teamusers', 'teamNames'));
+      return view('teams.edit', compact('team_name','team_id','users','teamusers'));
       
     }
 

@@ -64,7 +64,7 @@
 											</thead>
 											<tbody>
 												@foreach ($teams as $team)
-													<tr data-entry-id="{{ $team->id }}">
+													<tr data-entry-id="{{ $team->team_id }}">
 														<td></td>
                             <td>{{ ucwords($team->user->name) }}</td>
 														<td>{{ ucfirst($team->tname->name) }}</td>
@@ -76,7 +76,7 @@
                               </span>
 														</td>
 														<td>
-															<a href="{{ route('teams.edit',[$team->id]) }}" class="btn btn-xs btn-info">Edit Team</a>
+															<a href="{{ route('teams.edit',[$team->team_id]) }}" class="btn btn-xs btn-info">Edit Team</a>
 															<form method="POST" action="{{ route('teams.destroy', $team->id) }}">
 																@csrf
                                 @method('DELETE')
