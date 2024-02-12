@@ -162,12 +162,59 @@ class TeamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-      $input = $request->all();
-      //everything captured. not we need to put in db.
-      // same way as stored above.
+      $msg = "";
       
-      dd($input);
+      $input = $request->all();
+      // everything captured. now we need to put in db.
+      // same way as stored above.
+      //dd($input);
+      
+      //first update the team leader
+      if($input['leader_id'] != null)
+      {  
+        $resx = Teamusers::updateOrCreate(
+                              ['team_id'=> $id, 'role'=>'team_leader'],
+                              ['user_id' => $input['leader_id']]); 
+        $msg = "Team Leader Updated";
+      }
+      else {
+        $msg = "Team Leader Not Changed/Selected";
+        $resx = false;
+      }
+      // create or change members through loop
+      if(array_key_exists('member_id', $input) && (count($input['member_id']) > 0))
+      {
+        foreach($input['member_id'] as $row)
+        {
+          $member_id = $row;
+          $role = "member";
+          $resy = Teamusers::updateOrCreate(array(
+                                            'team_id' => $id, 
+                                            'user_id' => $member_id, 
+                                            'role' => $role));
+                                            
+          $email = User::where('id',$member_id)->first();
+
+          $resz = Teaminvitations::updateOrCreate(array('team_id' => $id, 
+                                            'email' => $email->email, 
+                                            'role' => $role));     
+        }
+        $msg = $msg."; Team members updated";
+      }
+      else {
+        $msg = $msg. " ; Team Members Not Changed/Selected";
+        $resy = false;
+      }
+      
+      if($resx && $resy)
+      {
+        $swalMsg = $msg;
+        return redirect()->route('teams.index')->with(['success'=>$swalMsg]);
+      }
+      else {
+        $swalMsg = $msg;
+        return redirect()->back()->with(['error'=>$swalMsg]);
+      }
     }
 
     /**
@@ -178,6 +225,16 @@ class TeamsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $id = intval($id);
+      $res = Teamusers::destroy($id);
+      if($res)
+      {
+        $swalMsg = "Removed Successfully !";
+        return redirect()->route('teams.index')->with(['success'=>$swalMsg]);
+      }
+      else {
+        $swalMsg = "Removal Failed";
+        return redirect()->back()->with(['error'=>$swalMsg]);
+      }
     }
 }
