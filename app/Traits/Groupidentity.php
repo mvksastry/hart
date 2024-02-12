@@ -10,8 +10,10 @@ use Webpatser\Uuid\Uuid;
 
 use App\Models\Committee;
 use App\Models\Group;
+use App\Models\Teams;
 use App\Models\Panel;
 use App\Models\User;
+use App\Models\Teamusers;
 
 use App\Traits\Queries;
 use App\Traits\Userpermissions;
@@ -22,9 +24,19 @@ trait Groupidentity
 	// these are role id in roles table. authority is by role
 	public function groupLeaderId($id)
 	{
+    $team_id = Teamusers::where('user_id', $id)
+                  ->pluck('team_id')
+                  ->first();
+    
+    return Teamusers::where('team_id', $team_id)->Where('role', 'team_leader')
+                  ->pluck('user_id')
+                  ->first();
+                  
+    /*
 		return Group::where('member_id', $id)
 						->pluck('groupleader_id')
 						->first();
+    */
 	}
 	
 	public function makeGroup($input)

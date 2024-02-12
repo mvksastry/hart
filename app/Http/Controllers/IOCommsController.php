@@ -45,14 +45,15 @@ use Webpatser\Uuid\Uuid;
 
 class IOCommsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-	
+
 	use Baseinfo, Comments, Fileupload, Queries, Nexthop, Groupidentity, Trail;
-		
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+    
 	private $controller;
 		
 	private $folder;

@@ -18,10 +18,17 @@ use App\Models\Teamusers;
 use App\Models\Teaminvitations;
 use App\Models\User;
 
+//traits
+use App\Traits\Groupidentity;
+
+//Requests
 use App\Http\Requests\TeamsRequest;
+
 
 class TeamsController extends Controller
 {
+  use Groupidentity;
+  
     /**
      * Display a listing of the resource.
      *
