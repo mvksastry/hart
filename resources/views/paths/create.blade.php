@@ -8,7 +8,7 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0">Create Leave Type</h1>
+						<h1 class="m-0">Create Path</h1>
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
@@ -34,7 +34,7 @@
 							<div class="card-header">
 								<h3 class="card-title">
 								  <i class="fas fa-chart-pie mr-1"></i>
-								  New Leave Type
+								  New Path
 								</h3>
 								<div class="card-tools">
 								  <ul class="nav nav-pills ml-auto">
@@ -92,9 +92,9 @@
 														<div class="col-sm-4">														  
 															<label for="{{ $selectLabel }}" class="col-form-label">{{ $selectLabel }}</label>
 															<select class="custom-select form-control rounded-1" name="{{ $entity }}" id="{{ $entity }}">
-																<option>Value 1</option>
-																<option>Value 2</option>
-																<option>Value 3</option>
+																@foreach($groupc as $kx => $val)
+                                <option value="{{ $kx }}">{{$val}}</option>
+                                @endforeach
 															</select>
 														</div>
 														<div class="col-sm-4">														  
@@ -122,6 +122,8 @@
 									</div>
 								</div>
 							</div><!-- /.card-body -->
+              
+              
 						</div>
 						<!-- /.card -->
 						<!-- /.card -->

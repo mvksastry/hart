@@ -126,7 +126,7 @@ class DashboardController extends Controller
 			$itEmp = Itax::with('user')
 						->where('employee_id', Auth::id() )->get();
 
-			return view('layouts.home.admin.dashboard', compact('employee_count','project_count', 'communications','notices',	'reports',
+			return view('layouts.home.employee.dashboard', compact('employee_count','project_count', 'communications','notices',	'reports',
 														'itEmp','leaves','tours','events','role_name'));
 		}
 
@@ -273,7 +273,7 @@ class DashboardController extends Controller
 		}
 			
 			
-		return view('noRoleHome');
+		return view('layouts.home.norole.noRoleHome');
 	}
   
 }

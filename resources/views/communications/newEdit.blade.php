@@ -86,25 +86,8 @@
                                 </td>
                               </tr>			
                             
-                              <tr>
-                                <td colspan="2">
-                                  {!! Form::submit("Save IOC File", ['class' => 'btn btn-success']) !!}
-                                  {!! Form::close() !!}
-                                </td>
-                              </tr>
-                              
-                        
                               {!! Form::model($communication, ['method' => 'PUT', 'route' => ['iocomms.update', $communication->uuid ]]) !!}
                               {!! Form::hidden('uuid', $uuid, ["readonly"=>"readonly"]) !!}
-
-                              <tr>
-                                <td>
-                                  Item
-                                </td>
-                                <td>
-                                  Details
-                                </td>
-                              </tr>
 
                               <tr>
                                 <td>From </td>
@@ -133,9 +116,9 @@
                                 <!-- /.box -->
                                 <div class="box">
                                   <div class="box-header">
-                                    <h3 class="box-title"><font color="red">IOC:</font>
+                                    <h5 class="box-title"><font color="red">IOC:</font>
                                       <small>Enter below</small>
-                                    </h3>
+                                    </h5>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
                                       <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -148,7 +131,7 @@
                                   <!-- /.box-header -->
                                   <div class="box-body pad">
                                     <textarea name="description" id="notes" class="textarea" placeholder="Type Notes here"
-                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                    style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                     {!! $communication->description !!}
                                     </textarea>
                                   </div>

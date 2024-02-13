@@ -107,11 +107,12 @@
 														<div class="col-sm-4">														  
 															<label for="{{ $selectLabel }}" class="col-form-label">{{ $selectLabel }}</label>
 															<select class="custom-select form-control rounded-1" name="{{ $entity }}" id="{{ $entity }}">
-																<option>Value 1</option>
-																<option>Value 2</option>
-																<option>Value 3</option>
+																@foreach($groupc as $kx => $val)
+                                  <option value="{{ $kx }}">{{$val}}</option>
+                                @endforeach
 															</select>
 														</div>
+                            
 														<div class="col-sm-4">														  
 															<label for="exampleSelectRounded0" class="col-form-label">Notes*</label>
 															<select class="custom-select form-control rounded-1" name="{{ $entity }}" id="{{ $entity }}">

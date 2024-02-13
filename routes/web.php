@@ -143,69 +143,72 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group(funct
 Route::middleware(['auth'] )->group(function () {
 
 		Route::resource('calendar', CalendarController::class);
-		Route::post('calendar_mass_destroy', ['uses' => 'CalendarController@massDestroy', 'as' => 'calendar.mass_destroy']);
+		Route::post('calendar_mass_destroy', ['uses' => 'App\Http\Controllers\CalendarController@massDestroy', 'as' => 'calendar.mass_destroy']);
 		
     //Dashboard controller
     Route::resource('kanban', KanbanController::class);
 
 		//Kanban Boards routes
 		Route::resource('kanban-boards', KanbanBoardsController::class);	
-		Route::post('kanbanboards_mass_destroy', ['uses' => 'KanbanBoardsController@massDestroy', 'as' => 'kanban-boards.mass_destroy']);
+		Route::post('kanbanboards_mass_destroy', ['uses' => 'App\Http\Controllers\KanbanBoardsController@massDestroy', 'as' => 'kanban-boards.mass_destroy']);
 
 		//Kanban Cards routes
 		Route::resource('kanban-cards', KanbanCardsController::class);	
-		Route::post('kanbancards_mass_destroy', ['uses' => 'KanbanCardsController@massDestroy', 'as' => 'kanban-cards.mass_destroy']);
+		Route::post('kanbancards_mass_destroy', ['uses' => 'App\Http\Controllers\KanbanCardsController@massDestroy', 'as' => 'kanban-cards.mass_destroy']);
     
 		//Leave types routes
 		Route::resource('leavetypes', LeavetypeController::class);	
-		Route::post('leavetypes_mass_destroy', ['uses' => 'LeavetypeController@massDestroy', 'as' => 'leavetypes.mass_destroy']);
+		Route::post('leavetypes_mass_destroy', ['uses' => 'App\Http\Controllers\LeavetypeController@massDestroy', 'as' => 'leavetypes.mass_destroy']);
 
 		//Holiday routes
 		Route::resource('holidays', HolidayController::class);	
-		Route::post('holidays_mass_destroy', ['uses' => 'HolidayController@massDestroy', 'as' => 'holidays.mass_destroy']);
+		Route::post('holidays_mass_destroy', ['uses' => 'App\Http\Controllers\HolidayController@massDestroy', 'as' => 'holidays.mass_destroy']);
 
 		//Path routes
 		Route::resource('paths', PathController::class);	
-		Route::post('paths_mass_destroy', ['uses' => 'PathController@massDestroy', 'as' => 'paths.mass_destroy']);
+		Route::post('paths_mass_destroy', ['uses' => 'App\Http\Controllers\PathController@massDestroy', 'as' => 'paths.mass_destroy']);
 		
 		//communication routes
+    Route::post('/iocomms/comment/{id}',        ['uses' => 'App\Http\Controllers\IOCommsController@commentIOC',   'as' => 'iocomms.comment']);	
+		Route::get('/iocomms/decision/{id}',        ['uses' => 'App\Http\Controllers\IOCommsController@decision',     'as' => 'iocomms.decision']);
+		Route::post('/iocomms/decisionupdate/{id}', ['uses' => 'App\Http\Controllers\IOCommsController@postDecision', 'as' => 'iocomms.decisionupdate']);
 		Route::resource('iocomms', IOCommsController::class);
-		Route::post('iocomms_mass_destroy', ['uses' => 'CommunicationController@massDestroy', 'as' => 'communications.mass_destroy']);
-		Route::post('iocomms_mass_approval', ['uses' => 'CommunicationController@massDestroy', 'as' => 'communications.mass_approval']);
+		Route::post('iocomms_mass_destroy',  ['uses' => 'App\Http\Controllers\IOCommsController@massDestroy', 'as' => 'IOCommsController.mass_destroy']);
+		Route::post('iocomms_mass_approval', ['uses' => 'App\Http\Controllers\IOCommsController@massApprove', 'as' => 'IOCommsController.mass_approval']);
 
 		//Users routes
 		Route::resource('users', UserController::class);	
-		Route::post('users_mass_destroy', ['uses' => 'UserController@massDestroy', 'as' => 'users.mass_destroy']);
+		Route::post('users_mass_destroy', ['uses' => 'App\Http\Controllers\UserController@massDestroy', 'as' => 'users.mass_destroy']);
 
 		//roles routes
 		Route::resource('roles', RoleController::class);	
-		Route::post('roles_mass_destroy', ['uses' => 'RoleController@massDestroy', 'as' => 'roles.mass_destroy']);
+		Route::post('roles_mass_destroy', ['uses' => 'App\Http\Controllers\RoleController@massDestroy', 'as' => 'roles.mass_destroy']);
 
 		//permissions routes
 		Route::resource('permissions', PermissionController::class);	
-		Route::post('permissions_mass_destroy', ['uses' => 'PermissionController@massDestroy', 'as' => 'permissions.mass_destroy']);
+		Route::post('permissions_mass_destroy', ['uses' => 'App\Http\Controllers\PermissionController@massDestroy', 'as' => 'permissions.mass_destroy']);
 
 		//Eventypes routes
 		Route::resource('eventypes', EventypeController::class);	
-		Route::post('permissions_mass_destroy', ['uses' => 'PermissionController@massDestroy', 'as' => 'permissions.mass_destroy']);
+		Route::post('permissions_mass_destroy', ['uses' => 'App\Http\Controllers\PermissionController@massDestroy', 'as' => 'permissions.mass_destroy']);
 
 		//events routes
 		Route::resource('events', EventController::class);	
-		Route::post('events_mass_destroy', ['uses' => 'EventController@massDestroy', 'as' => 'events.mass_destroy']);
+		Route::post('events_mass_destroy', ['uses' => 'App\Http\Controllers\EventController@massDestroy', 'as' => 'events.mass_destroy']);
 
 		//Leaves routes
     
-		Route::get('/leaves/decision/{id}', ['uses' => 'LeaveController@decision', 'as' => 'leave.decision']);
+		Route::get('/leaves/decision/{id}', ['uses' => 'App\Http\Controllers\LeaveController@decision', 'as' => 'leave.decision']);
 		Route::get('/leaves/casual',   [LeaveController::class, 'casual'])->name('leaves.casual');
 		Route::get('/leaves/paid',     [LeaveController::class, 'paid'])->name('leaves.paid');
 		Route::get('/leaves/vacation', [LeaveController::class, 'vacation'])->name('leaves.vacation');
     
     Route::get('/leaves/form/{id}', [LeaveController::class, 'form'])->name('leaves.form');
     
-		Route::post('/leaves/decisionupdate/{id}', ['uses' => 'LeaveController@postDecision', 'as' => 'leave.decisionupdate']);
-		Route::post('/leaves_mass_approve', ['uses' => 'LeaveController@massApprove', 'as' => 'leaves.mass_approval']);
+		Route::post('/leaves/decisionupdate/{id}', ['uses' => 'App\Http\Controllers\LeaveController@postDecision', 'as' => 'leave.decisionupdate']);
+		Route::post('/leaves_mass_approve', ['uses' => 'App\Http\Controllers\LeaveController@massApprove', 'as' => 'leaves.mass_approval']);
 		Route::resource('leaves', LeaveController::class);
-		Route::post('leaves_mass_destroy', ['uses' => 'LeaveController@massDestroy', 'as' => 'leaves.mass_destroy']);
+		Route::post('leaves_mass_destroy', ['uses' => 'App\Http\Controllers\LeaveController@massDestroy', 'as' => 'leaves.mass_destroy']);
 
 		//Leaverecord routes
 		Route::get('/leaverecords/creditCLs', [LeaverecordController::class, 'creditCLs'])->name('leaverecords.creditCLs');
@@ -227,13 +230,13 @@ Route::middleware(['auth'] )->group(function () {
     Route::resource('/teams', TeamsController::class);
     
 		//tourdetails routes
-		Route::get('/tours/decision/{id}', ['uses' => 'ToursController@decision', 'as' => 'tours.decision']);
-		Route::post('/tours/decisionupdate/{id}', ['uses' => 'ToursController@postDecision', 'as' => 'tours.decisionupdate']);
+		Route::get('/tours/decision/{id}', ['uses' => 'App\Http\Controllers\ToursController@decision', 'as' => 'tours.decision']);
+		Route::post('/tours/decisionupdate/{id}', ['uses' => 'App\Http\Controllers\ToursController@postDecision', 'as' => 'tours.decisionupdate']);
 		Route::resource('tours', ToursController::class);
-		Route::post('tours_mass_destroy', ['uses' => 'ToursController@massDestroy', 'as' => 'tours.mass_destroy']);
+		Route::post('tours_mass_destroy', ['uses' => 'App\Http\Controllers\ToursController@massDestroy', 'as' => 'tours.mass_destroy']);
 
 		Route::resource('employees', EmployeesController::class);
-		Route::post('employees_mass_destroy', ['uses' => 'EmployeesController@massDestroy', 'as' => 'employees.mass_destroy']);
+		Route::post('employees_mass_destroy', ['uses' => 'App\Http\Controllers\EmployeesController@massDestroy', 'as' => 'employees.mass_destroy']);
 
 		/*
 		Route::controller(IOCommsController::class)->group(function () {

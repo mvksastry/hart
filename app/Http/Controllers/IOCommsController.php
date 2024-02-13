@@ -46,7 +46,14 @@ use Webpatser\Uuid\Uuid;
 class IOCommsController extends Controller
 {
 
-	use Baseinfo, Comments, Fileupload, Queries, Nexthop, Groupidentity, Trail;
+	use Baseinfo;
+  use Comments; 
+  use Decision; 
+  use Fileupload; 
+  use Groupidentity;
+  use Queries; 
+  use Nexthop;
+  use Trail;
 
   /**
    * Display a listing of the resource.
@@ -76,6 +83,19 @@ class IOCommsController extends Controller
 			return view('communications.index')
 				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
 		}
+
+		if( Auth::user()->hasExactRoles(['supervisor','employee']) )
+		{	
+			$comSelf = Communication::with('user')
+									->where('employee_id', Auth::id() )->get();
+			$comGroup = DB::table('communications')
+							->leftJoin('hops', 'hops.uuid', 'communications.uuid')
+							->leftJoin('users', 'users.id', 'communications.employee_id')
+							->where('hops.next_id', Auth::id())
+							->get();
+			return view('communications.index')
+				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
+		}
 		
 		if( Auth::user()->hasExactRoles(['finance','employee']) )
 		{	
@@ -99,7 +119,7 @@ class IOCommsController extends Controller
 							->leftJoin('hops', 'hops.uuid', 'communications.uuid')
 							->leftJoin('users', 'users.id', 'communications.employee_id')
 							->where('hops.next_id', Auth::id())	
-							->where('communications.status', '>=', 2)
+							->where('communications.status', '>=', 1)
 							->get();
 			//dd($comSelf, $comGroup);
 			return view('communications.index')
@@ -368,7 +388,7 @@ class IOCommsController extends Controller
 
 	public function decision(Request $request, $id)
 	{
-		if( Auth::user()->hasAnyPermission(['ioc_decision', 'ioc_approval']))
+		if( Auth::user()->hasAnyPermission(['ioc_decision', 'ioc_approval', 'perms_special']))
 		{
 			$userGroup = $this->usersByRoles();
 		
@@ -382,8 +402,9 @@ class IOCommsController extends Controller
 									compact('comdetails', 'pathBreadCrumb','bcrumb', 'userGroup'));
 		}
 		else {
-			$message =  "Required Permission Not Found";
-			return redirect()->back()->withErrors(['errors'=>$message]);
+      $swalMsg = "Either select Name or Enter New Name";
+			
+			return redirect()->back()->withErrors(['errors'=>$swalMsg]);
 		}
 	}
 

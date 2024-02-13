@@ -110,11 +110,11 @@
 						<!-- /. tools -->
 					</div>
 					<!-- /.box-header -->
-					<div class="box-body pad">
-						<form>
+					<div class="frm-group">
+						
 							<textarea id="notes" class="textarea" placeholder="Type Notes here"
-                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-						</form>
+                        style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 5px;"></textarea>
+					
 					</div>
 				</div>
 						

@@ -29,44 +29,44 @@ use App\Traits\Trail;
 
 class PathController extends Controller
 {
-    use Baseinfo, Comments, Fileupload, Queries, Nexthop, Groupidentity, Trail;
-				
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-      //
-      //$paths = Path::with('roleName')->get(); 
-      $paths = $this->allPathBreadCrumbArray();
-      //dd($paths);
-      return view('paths.index')->with('paths', $paths);
-    }
+  use Baseinfo, Comments, Fileupload, Queries, Nexthop, Groupidentity, Trail;
+      
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    //
+    //$paths = Path::with('roleName')->get(); 
+    $paths = $this->allPathBreadCrumbArray();
+    //dd($paths);
+    return view('paths.index')->with('paths', $paths);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-      $userGroup = $this->getUserGroup();
-      //dd($userGroup);
-      //Get all roles and pass it to the view
-      //$roles = Role::pluck('name', 'id');
-      return view('paths.create', ['userGroup'=>$userGroup]);
-    }
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+    $userGroup = $this->getUserGroup();
+    //dd($userGroup);
+    //Get all roles and pass it to the view
+    //$roles = Role::pluck('name', 'id');
+    return view('paths.create', ['userGroup'=>$userGroup]);
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
       //
       $this->validate($request, [
         'pathname'  => 'required|regex:/^[\pL\s\-_ 0-9]+$/u|max:250',

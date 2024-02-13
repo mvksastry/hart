@@ -34,7 +34,7 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="container-fluid">
-				@include('communications.flexMenuTop')
+				@include('communications.flexMenuIOComms')
 				<!-- Main row -->
 				<div class="row">
 					<!-- Left col -->
