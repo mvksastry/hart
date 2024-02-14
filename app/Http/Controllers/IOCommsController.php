@@ -313,7 +313,7 @@ class IOCommsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(IOCEditRequest $request, $id)
     {
       
       //dd($id);   
@@ -340,7 +340,7 @@ class IOCommsController extends Controller
         
         //$input['folder'] = $this->folder;
         
-        //$input['year'] = $this->finYear();
+        $ioc->description = $input['description'];
         
         $doSave = $this->toDb($ioc, $input);
         
