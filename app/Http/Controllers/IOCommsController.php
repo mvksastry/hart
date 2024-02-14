@@ -336,7 +336,7 @@ class IOCommsController extends Controller
         else {
           $input['filename'] = "none";
         }
-			
+        
         //$input['folder'] = $this->folder;
         
         //$input['year'] = $this->finYear();
@@ -350,7 +350,7 @@ class IOCommsController extends Controller
           // now make entry in hops table
           $resp = $this->makeNewHopEntry($this->controller, $id);
         }
-			
+        
           //Redirect to the users.index view and display message
           return redirect()->route('iocomms.index')
 								->with('flash_message',

@@ -24,8 +24,8 @@ class IOCEditRequest extends FormRequest
     public function rules()
     {
         return [
-          //'subject' =>    'regex:/^[\pL\s\- .,;0-9_]+$/u|max:250',
-          //'description'=> '',
+          'subject' =>    'required|regex:/^[\pL\s\- \/\., _ 0-9]+$/u|max:150',
+          'description'=> 'required|regex:/^[\pL\s\- \/\., _ 0-9]+$/u|max:250',
         ];
     }
 		
@@ -37,9 +37,7 @@ class IOCEditRequest extends FormRequest
     public function messages()
     {
       return [
-
         'subject.min:1' => 'Subject Not Selected!',
-
         'description.required' => 'Description not entered!'
       ];
     }

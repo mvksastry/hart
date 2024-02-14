@@ -63,11 +63,14 @@
 
                         <?php $users = array(); ?>
                         <div class="panel-body table-responsive">
-                        {!! Form::open(['method' => 'POST', 'route' => ['iocomms.update', $uuid], 'files' => true, 'enctype' => 'multipart/form-data', 'multiple'=>'multiple' ]) !!}
+                        <form method="POST" action="{{ route('iocomms.update', $communication->uuid ) }}" name="editIOComms", id="editIOComms", enctype="multipart/form-data">
+                          
+                          <input hidden type="text" name="uuid" class="form-control" id="uuid" value="{{$communication->uuid}}">
+                          
                           @csrf
                           @method('PUT')
                           
-                        {!! Form::hidden('uuid', $uuid, ["readonly"=>"readonly"]) !!}
+                          
                           <table class="table table-bordered table-striped {{ count($users) > 0 ? 'datatable' : '' }} dt-select">
                             <thead>
                               <tr>
@@ -82,13 +85,11 @@
                                   Upload FIle
                                 </td>
                                 <td>
-                                  {!! Form::file('fileToUpload', null, [ "enctype" => "multipart/form-data"]) !!}
+                                  <input multiple type="file" class="form-control" name="fileToUpload" id="fileToUpload">
                                 </td>
                               </tr>			
                             
-                              {!! Form::model($communication, ['method' => 'PUT', 'route' => ['iocomms.update', $communication->uuid ]]) !!}
-                              {!! Form::hidden('uuid', $uuid, ["readonly"=>"readonly"]) !!}
-
+     
                               <tr>
                                 <td>From </td>
                                 <td>{{ Auth::user()->name }}</td>
@@ -97,7 +98,7 @@
                               <tr>
                                 <td>Subject </td>
                                 <td>
-                                  {!! Form::text('subject', old('subject'), [ 'class' => 'form-control', "placeholder" => "Broad subject area"]) !!}
+                                <input type="text" name="subject" id="subject" class="form-control" value="{{ $communication->subject }}">
                                 </td>
                               </tr>
                                           
@@ -130,8 +131,8 @@
                                   </div>
                                   <!-- /.box-header -->
                                   <div class="box-body pad">
-                                    <textarea name="description" id="notes" class="textarea" placeholder="Type Notes here"
-                                    style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                    <textarea form="editIOComms" name="description" id="description" class="form-control" placeholder="Type Notes here"
+                                    rows="3" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                     {!! $communication->description !!}
                                     </textarea>
                                   </div>
