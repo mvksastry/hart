@@ -194,6 +194,7 @@ class IOCommsController extends Controller
     //
 		if( Auth::user()->hasAnyRole(['employee']) )
 		{
+
 			//Retrieving only the description
 			$input = $request->validated();
 			
@@ -239,7 +240,8 @@ class IOCommsController extends Controller
 	public function uploadIOCFile($request, $input)
 	{
 			$iocFile = $request->file('fileToUpload');
-			$input['destinationPath'] = $this->folder."/".$this->finYear()."/";
+      $folder = $this->roleFolder();
+			$input['destinationPath'] = $folder."/".$this->finYear()."/";
 			$filename = $this->uploadFile($iocFile, $input);
 			return $filename;
 	}
@@ -311,13 +313,13 @@ class IOCommsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IOCEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
       
       //dd($id);   
       if( Auth::user()->hasAnyRole(['employee']) )
       {
-      
+    
         $ioc = Communication::where('uuid', $id)->first();
         
         //Retrieving only the description
@@ -330,7 +332,6 @@ class IOCommsController extends Controller
         if($request->hasFile('fileToUpload'))
         {
           $ioc->filename = $this->uploadIOCFile($request, $input);
-          $ioc->folder = $this->folder;
           $ioc->year = $this->finYear();
         }
         else {

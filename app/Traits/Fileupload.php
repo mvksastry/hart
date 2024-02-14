@@ -23,8 +23,8 @@ trait Fileupload
   {
 
     //$tenant = app(\Hyn\Tenancy\Website\Directory::class)->path();
-
     $fileName =  str_replace(" ", "", $file->getClientOriginalName());
+ 
     // getting file extension
     //$extension = $file->getClientOriginalExtension();
 

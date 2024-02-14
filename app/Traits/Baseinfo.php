@@ -184,10 +184,9 @@ trait Baseinfo
 			
 	public function roleFolder()
 	{
-		$user = Auth::user();
-		$role = $user->roles;
-		
-		switch ($role) {
+		$name = $this->getRole();
+    
+		switch ($name) {
 			
 			case "researcher":
 				return "media/researchers";
