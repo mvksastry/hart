@@ -123,8 +123,9 @@ class IOCommsController extends Controller
 							->leftJoin('hops', 'hops.uuid', 'communications.uuid')
 							->leftJoin('users', 'users.id', 'communications.employee_id')
 							->where('hops.next_id', Auth::id())
+              ->where('communications.status', '<', 2)
 							->get();
-             
+        //dd($comGroup1);     
       }
 
       if( Auth::user()->hasRole('admin') )
@@ -135,7 +136,7 @@ class IOCommsController extends Controller
                 ->where('hops.next_id', Auth::id())	
                 ->where('communications.status', '>=', 2)
                 ->get();
-          
+          //dd($comGroup2);
       }
       $collection = collect($comSelf);
       $merged     = $collection->merge($comGroup1);

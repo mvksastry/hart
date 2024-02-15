@@ -25,6 +25,25 @@ trait Decision
 	
 	public function updateDecision($request, $model)
 	{
+    
+    $decisions_array = array("0" => "None",
+													"1" => "Submitted",
+													"2" => "Pending",
+													"3" => "Returned",
+													"4" => "Rejected",
+													"5" => "Approved",
+													"6" => "Under Review"
+													);
+                          
+    $admin_actions = array("0" => "None",
+													"1" => "Submitted",
+													"2" => "Pending",
+													"3" => "Returned",
+													"4" => "Rejected",
+													"5" => "Forwarded",
+													"6" => "Under Review"
+													);
+                          
 		$all_steps_complete = false;
 		
 		$uuid = $model->uuid;
@@ -40,7 +59,7 @@ trait Decision
 			$model->notes = $this->addComment($model->notes, $notes['notes']);
 		}
 			
-		if( Auth::user()->hasRole('supervisor') )
+		if( Auth::user()->hasAnyRole('supervisor','team_leader') )
 		{
 			If($decis['decision'] == 3 || $decis['decision'] == 4)
 			{
@@ -60,7 +79,7 @@ trait Decision
 			
 		$model->comments = $this->addComment($model->comments, $input['comments']);
 			
-		$model->comments = $this->addComment($model->comments, DECISION[$decis['decision']]);
+		$model->comments = $this->addComment($model->comments, $decisions_array[$decis['decision']]);
 
 		if( Auth::user()->hasRole('director') )
 		{

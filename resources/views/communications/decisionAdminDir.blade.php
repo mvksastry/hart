@@ -131,7 +131,7 @@
                                     {!! Form::text('comments', '',['class' => 'form-control', 'placeholder' => 'Comments']) !!}
                                     <p class="help-block"></p>
                                     @if($errors->has('comments'))
-                                      <p class="help-block">
+                                      <p class="help-block text-danger">
                                         {{ $errors->first('comments') }}
                                       </p>
                                     @endif
@@ -265,7 +265,7 @@
                                     {!! Form::select('decision', $supDecision, old('status'), ['class' => 'form-control', 'placeholder' => '']) !!}
                                     <p class="help-block"></p>
                                     @if($errors->has('decision'))
-                                      <p class="help-block">
+                                      <p class="help-block text-danger">
                                         {{ $errors->first('decision') }}
                                       </p>
                                     @endif
@@ -279,7 +279,7 @@
                                     {!! Form::select('decision', $decision, old('status'), ['class' => 'form-control', 'placeholder' => '']) !!}
                                     <p class="help-block"></p>
                                     @if($errors->has('decision'))
-                                      <p class="help-block">
+                                      <p class="help-block text-danger">
                                         {{ $errors->first('decision') }}
                                       </p>
                                     @endif
