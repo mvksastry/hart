@@ -133,6 +133,8 @@
 						<!-- /.card -->
 					</section>
 					<!-- /.Left col -->
+
+
 					<section class="col-lg-12 connectedSortable">
 						<!-- Custom tabs (Charts with tabs)-->
 						<div class="card card-primary card-outline">
@@ -152,7 +154,7 @@
 							<div class="tab-content p-0">
 								<!-- Morris chart - Sales -->
 								<div class="chart tab-pane active" id="revenue-chart" style="position: relative;">
-									@if (count($comGroup) > 0)
+									@if (count($result) > 0)
 										<table id="example2" class="table table-bordered table-hover">
 											<thead>
 												<tr>
@@ -166,35 +168,40 @@
 												</tr>
 											</thead>
 											<tbody>
-												@foreach ($comGroup as $communication)
-													<?php $tx = explode(';;;', $communication->comments); ?>
-													<tr data-entry-id="{{ $communication->communication_id }}">
-														<td></td>
-														<td>{{ $communication->employee_id }}</td>
-														<td>
-															{!! $communication->description !!}	
-														</td>
-														<td>
-															<a href="/download/{{ $communication->filename }}">
-															{{ $communication->filename }}
-															</a>
-														</td>
-														<td>
-															@foreach($tx as $val)
-																{{ ucfirst($val) }}<br/>
-															@endforeach
-														</td>
-														<td>
-															@if( $communication->status != null)
-																{{ $decision[$communication->status] }}
-															@endif
-														</td>
-														<td>
-														@if( $communication->status < 3 )
-															<a href="{{ route('iocomms.decision',[$communication->uuid]) }}" class="btn btn-xs btn-info">Decision</a>
-														@endif
-														</td>
-													</tr>
+												@foreach ($result as $val)
+                          
+                          @foreach($val as $row)
+                              <?php $tx = explode(';;;', $row->comments); ?>
+                              <tr data-entry-id="{{ $row->communication_id }}">
+                                <td></td>
+                                <td>{{ $row->employee_id }}</td>
+                                <td>
+                                  {{ $row->description }}	
+                                </td>
+                                <td>
+                                  <a href="/download/{{ $row->filename }}">
+                                  {{ $row->filename }}
+                                  </a>
+                                </td>
+                                <td>
+                                  @foreach($tx as $val)
+                                    {{ ucfirst($val) }}<br/>
+                                  @endforeach
+                                </td>
+                                <td>
+                                  @if( $row->status != null)
+                                    {{ $decision[$row->status] }}
+                                  @endif
+                                </td>
+                                <td>
+                                @if( $row->status < 3 )
+                                  <a href="{{ route('iocomms.decision',[$row->uuid]) }}" class="btn btn-xs btn-info">Decision</a>
+                                @endif
+                                </td>
+                              </tr>
+                          @endforeach
+                          
+                          
 												@endforeach
 										</tbody>
 									</table>
@@ -208,8 +215,14 @@
 						</div>
 						<!-- /.card -->
 						<!-- /.card -->
-					</section>
-					<!-- right col -->
+					</section>          
+          
+          
+          
+          
+          
+          
+          
 				</div><!-- /.row (main row) -->
 			</div><!-- /.container-fluid -->
 		</section>

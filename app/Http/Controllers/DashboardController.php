@@ -130,7 +130,7 @@ class DashboardController extends Controller
 														'itEmp','leaves','tours','events','role_name'));
 		}
 
-		if( Auth::user()->hasExactRoles(['admin', 'employee']) )
+		if( Auth::user()->hasExactRoles(['admin', 'team_leader', 'employee']) )
 		{
 			$employee_count = count(User::all());
 			

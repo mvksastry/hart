@@ -70,7 +70,7 @@
 												@endif
 
 												<label for="role" class="col-form-label">Permissions</label>
-												<select class="custom-select form-control rounded-1" name="roles[]" id="roles[]">
+												<select class="form-control selectPerms" multiple name="perms[]" id="perms[]">
 													<option value="0">Select</option>
 													@foreach($permissions as $key => $val)
 													<option value="{{ $key }}">{{ ucfirst($val) }}</option>

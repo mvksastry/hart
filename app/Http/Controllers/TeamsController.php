@@ -71,6 +71,7 @@ class TeamsController extends Controller
         //
       $input = $request->all();
            
+           
       if( $input['existing_name'] != null && $input['new_team_name'] != null)
       {  
         $swalMsg = "Either select Name or Enter New Name";

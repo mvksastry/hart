@@ -179,14 +179,14 @@
                                 <div class="row">
                                   <div class="col-sm-2 form-group">
                                     {!! Form::label('path', 'Default Path*', ['class' => 'control-label']) !!}
-                                      <input type="radio" name="path" value="default">
+                                      <input type="radio" name="path" value="default" checked>
                                       <p class="help-block"></p>
                                       @if($errors->has('start'))
                                         <p class="help-block">
                                           {{ $errors->first('start') }}
                                         </p>
                                       @endif
-                                      <br/>
+                                      
                                   </div>
                                   
                                   <div class="col-sm-10 form-group">

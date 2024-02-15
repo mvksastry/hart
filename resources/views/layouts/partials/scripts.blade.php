@@ -77,6 +77,8 @@
 
 <script>
   $(function() {
+    //Initialize Select2 Elements
+    $('.selectPerms').select2()
     
     //Initialize Select2 Elements
     $('.select2leader').select2()

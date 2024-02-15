@@ -111,19 +111,40 @@ class IOCommsController extends Controller
 				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
 		}
 		
-		if( Auth::user()->hasExactRoles(['admin','employee']) )
+		if( Auth::user()->hasExactRoles(['admin','team_leader','employee']) )
 		{	
 			$comSelf = Communication::with('user')
 									->where('employee_id', Auth::id() )->get();
-			$comGroup = DB::table('communications')
+      
+
+      if( Auth::user()->hasRole('team_leader') )
+      {
+        $comGroup1 = DB::table('communications')
 							->leftJoin('hops', 'hops.uuid', 'communications.uuid')
 							->leftJoin('users', 'users.id', 'communications.employee_id')
-							->where('hops.next_id', Auth::id())	
-							->where('communications.status', '>=', 1)
+							->where('hops.next_id', Auth::id())
 							->get();
+             
+      }
+
+      if( Auth::user()->hasRole('admin') )
+      {
+        $comGroup2 = DB::table('communications')
+                ->leftJoin('hops', 'hops.uuid', 'communications.uuid')
+                ->leftJoin('users', 'users.id', 'communications.employee_id')
+                ->where('hops.next_id', Auth::id())	
+                ->where('communications.status', '>=', 2)
+                ->get();
+          
+      }
+      $collection = collect($comSelf);
+      $merged     = $collection->merge($comGroup1);
+      $merged     = $merged->merge($comGroup2);
+      $result[]   = $merged->all();
+      //dd($result);
 			//dd($comSelf, $comGroup);
 			return view('communications.index')
-				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);
+				->with(['comSelf'=>$comSelf, 'comGroup1'=>$comGroup1, 'comGroup2'=>$comGroup2,'result'=>$result]);
 		}
 		
 		if( Auth::user()->hasExactRoles(['director','employee']) )
@@ -315,7 +336,6 @@ class IOCommsController extends Controller
      */
     public function update(IOCEditRequest $request, $id)
     {
-      
       //dd($id);   
       if( Auth::user()->hasAnyRole(['employee']) )
       {
@@ -429,7 +449,7 @@ class IOCommsController extends Controller
 				]);
 			}
 			
-			$result = $this->dri->updateDecision($request, $comms);
+			$result = $this->updateDecision($request, $comms);
 		
 			return redirect()->route('iocomms.index')
                         ->with('flash_message',

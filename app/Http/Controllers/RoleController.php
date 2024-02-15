@@ -59,22 +59,18 @@ class RoleController extends Controller
     public function store(Request $request)
     {
       //Validate name and permissions field
-    
+ 
       $this->validate($request, [
-          'name'=>'required|unique:roles|max:10',
-          'permissions' =>'required|array',
+          'name'=>'required|unique:roles|max:15',
+          'perms' =>'required|array',
       ]);
         
-      $perms = $request['permissions'];
-
-      $name = $request['name'];
-      dd($perms, $name); 
-      //$role = new Role();
-      //$role->name = $name;
-      //$role->save();
+      $perms = $request['perms'];
+      $roleName = $request['name'];
+      //dd($perms, $name);
       
-      $role = Role::create(['name' => $request->input('name')]);
-      $role->syncPermissions($request->input('permissions'));
+      $role = Role::create(['name' => $roleName]);
+      $role->syncPermissions($perms);
    
       // Looping thru selected permissions
       //foreach ($perms as $permission) 
@@ -145,11 +141,17 @@ class RoleController extends Controller
       
       $curPerms = $role->permissions;
 
-      foreach($curPerms as $row)
+      if(count($curPerms) > 0)
       {
-        $curPermId[] = $row->id;
+        foreach($curPerms as $row)
+        {
+          $curPermId[] = $row->id;
+        }
       }
-      
+      else {
+        $curPermId = [];
+      }
+
       $permSelected = $request['permissions'];    
 
       $diffPerms = array_diff($permSelected, $curPermId);
