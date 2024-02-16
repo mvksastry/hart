@@ -17,6 +17,10 @@
       @hasexactroles('director|employee')
         @include('layouts.menus.director')
       @endhasexactroles
+
+      @hasexactroles('director')
+        @include('layouts.menus.director')
+      @endhasexactroles
       
       @hasexactroles('admin|team_leader|employee')
         @include('layouts.menus.admin')

@@ -27,12 +27,9 @@ trait Decision
 	{
     
     $decisions_array = array("0" => "None",
-													"1" => "Submitted",
-													"2" => "Pending",
-													"3" => "Returned",
-													"4" => "Rejected",
-													"5" => "Approved",
-													"6" => "Under Review"
+      "1" => "Submitted",    "2" => "Pending",	"3" => "Returned", 
+      "4" => "Rejected",	   "5" => "Approved", "6" => "Forwarded", 
+      "7" => "Under Review", "8" => "Notified", "9" => "Sealed" 
 													);
                           
     $admin_actions = array("0" => "None",
@@ -97,9 +94,9 @@ trait Decision
 			$route = "default";
 		}
 			
+    //route changed by admin or director
 		if($route == "include")
 		{
-			//route changed by admin or director
 			$ts = $request->only('groupd');
 			$tx = $ts['groupd'];
 			

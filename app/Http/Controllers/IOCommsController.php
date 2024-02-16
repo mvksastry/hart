@@ -158,8 +158,27 @@ class IOCommsController extends Controller
 							->where('hops.next_id', Auth::id())	
 							->where('communications.status', '>=', 2)
 							->get();
+              
 			return view('communications.index')
 				->with(['comSelf'=>$comSelf, 'comGroup'=>$comGroup]);				
+		}
+    
+    if( Auth::user()->hasExactRoles(['director']) )
+		{	
+			$comSelf = Communication::with('user')
+									->where('employee_id', Auth::id() )->get();
+			$comDir = DB::table('communications')
+							->leftJoin('hops', 'hops.uuid', 'communications.uuid')
+							->leftJoin('users', 'users.id', 'communications.employee_id')
+							->where('hops.next_id', Auth::id())	
+							->where('communications.status', '>=', 2)
+							->get();
+      
+      //dd($result);
+			//dd($comSelf, $comGroup);
+			return view('communications.index')
+				->with(['comSelf'=>$comSelf, 'comDir'=>$comDir]);
+        
 		}
   }
 
@@ -432,7 +451,7 @@ class IOCommsController extends Controller
 
 	public function postDecision(Request $request, $id)
 	{	
-		if( Auth::user()->hasAnyPermission(['ioc_decision', 'ioc_approval']))
+		if( Auth::user()->hasAnyPermission(['ioc_decision', 'ioc_approval','perms_director']))
 		{
 			$uuid = $id;
 			
