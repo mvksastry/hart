@@ -77,9 +77,15 @@ class KanbanController extends Controller
       return view('layouts.kanban.kanbanBoard', compact('kb', 'kc'));
 		}
 
-		if( Auth::user()->hasExactRoles(['director','employee']) )
+		if( Auth::user()->hasExactRoles(['director']) )
 		{
-      return view('layouts.home.employee.kanbanEmployee');
+      $kboards = Kanbanboards::where('posted_by', Auth::user()->name)->get();
+      $kcards = Kanbancards::where('posted_by', Auth::user()->name)->get();
+      $kb = json_encode($kboards);
+      $kc = json_encode($kcards);
+
+      return view('layouts.kanban.kanbanBoard', compact('kb', 'kc'));
+
 		}
 
  		if( Auth::user()->hasExactRoles(['sysadmin']) )

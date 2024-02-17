@@ -177,10 +177,10 @@ class DashboardController extends Controller
 														'itEmp','leaves','tours','events','role_name', 'kbCards'));
 		}
 
-		if( Auth::user()->hasExactRoles(['director','employee']) )
+		if( Auth::user()->hasExactRoles(['director']) )
 		{
 			$employee_count = count(User::all());
-			
+		
 			$project_count = count(Project::all());
 			
 			$notices = Notice::orderBy('notice_id', 'desc')->limit(10)->get();
@@ -218,7 +218,7 @@ class DashboardController extends Controller
 			$itEmp = Itax::with('user')
 						->where('employee_id', Auth::id() )->get();
 
-			return view('dashboard', compact('employee_count','project_count', 'communications','notices',	'reports',
+			return view('layouts.home.director.dashboard', compact('employee_count','project_count', 'communications','notices',	'reports',
 														'itEmp','leaves','tours','events','role_name'));
 		}
 

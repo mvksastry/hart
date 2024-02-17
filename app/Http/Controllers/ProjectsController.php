@@ -69,7 +69,7 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
       }
       
-      if( Auth::user()->hasExactRoles(['director', 'employee']) )
+      if( Auth::user()->hasExactRoles(['director']) )
       {      
         $projects = Project::all();
         return view('projects.index', compact('projects'));       

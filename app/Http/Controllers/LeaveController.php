@@ -43,6 +43,8 @@ class LeaveController extends Controller
      */
   public function index()
   {
+    $groupLeaves = array();
+    
     $leaverecords = Leaverecord::with('leavetype')->where('employee_id', Auth::id())->get();
 
     $ownLeaves = Leave::with('leavetype')->where('employee_id', Auth::id())
@@ -68,7 +70,7 @@ class LeaveController extends Controller
               ->get();
     }
     
-    if( Auth::user()->hasExactRoles(['admin', 'employee']) )
+    if( Auth::user()->hasExactRoles(['admin', 'team_leader', 'employee']) )
     {
       $groupLeaves = DB::table('leaves')
               ->leftJoin('hops', 'hops.uuid', 'leaves.uuid')
@@ -78,7 +80,7 @@ class LeaveController extends Controller
               ->get();
     }
   
-    if( Auth::user()->hasExactRoles(['director', 'employee']) )
+    if( Auth::user()->hasExactRoles(['director']) )
     {
       $groupLeaves = DB::table('leaves')
               ->leftJoin('hops', 'hops.uuid', 'leaves.uuid')
