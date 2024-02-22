@@ -21,11 +21,12 @@
 		</div>
 		<!-- /.content-header -->
     <?php
-      foreach($projects as $val)
+      foreach($projx as $val)
       {
         $goals = $val->goals;
         $tasks = $val->tasks;
       }
+      //dd($projx, $val, $goals, $tasks);
     ?>
     <!-- Main content -->
     <section class="content">
@@ -47,100 +48,191 @@
                 </div>
               </div>
               <div class="card-body p-0">
-                <table class="table table-striped projects table-responsive">
-                  <thead>
-                    <tr>
-                      <th style="width: 1%">
-                          #
-                      </th>
-                      <th style="width: 20%">
-                          Project Name
-                      </th>
-                      <th style="width: 30%">
-                          Team Members
-                      </th>
-                      <th>
-                          Project Progress
-                      </th>
-                      <th style="width: 8%" class="text-center">
-                          Status
-                      </th>
-                      <th style="width: 20%">
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($projects as $row)
+                @hasrole('employee')
+                  <table class="table table-striped projects table-responsive">
+                    <thead>
                       <tr>
-                        <td>
+                        <th style="width: 1%">
                             #
-                        </td>
-                        <td>
-                            <a>
-                              {{ $row->title }}
-                            </a>
-                            <br/>
-                            <small>
-                              Started: {{ date('d-m-Y', strtotime($row->start_date)) }}
-                            </small>
-                        </td>
-                        <td>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar.png') }}">
-                                </li>
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar2.png') }}">
-                                </li>
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar3.png') }}">
-                                </li>
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar4.png') }}">
-                                </li>
-                            </ul>
-                        </td>
-                        <td class="project_progress">
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $row->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $row->progress }}%">
-                                </div>
-                            </div>
-                            <small>
-                            {{ $row->progress }}% Complete
-                            </br>
-                            as on {{ date('d-m-Y', strtotime($row->progress_date)) }}
-                            </small>
-                        </td>
-                        <td class="project-state">
-                            <span class="badge badge-success">On-time</span>
-                        </td>
-                        <td class="project-actions text-right">
-                          @haspermission('project_view')
-                            <a class="btn btn-primary btn-sm mt-1" href="{{ route('projects.show', $row->uuid) }}">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-                          @endhaspermission
-                          @haspermission('project_edit')
-                          <a class="btn btn-info btn-sm mt-1" href="{{ route('projects.edit', $row->uuid) }}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          @endhaspermission
-                          @haspermission('project_delete')
-                          <a class="btn btn-danger btn-sm mt-1" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                          @endhaspermission
-                        </td>
+                        </th>
+                        <th style="width: 20%">
+                            Project Name
+                        </th>
+                        <th style="width: 30%">
+                            Current Goals
+                        </th>
+                        <th>
+                            Project Progress
+                        </th>
+                        <th style="width: 8%" class="text-center">
+                            Status
+                        </th>
+                        <th style="width: 20%">
+                        </th>
                       </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      @foreach($projEmployee as $row)
+                        <tr>
+                          <td>
+                              #
+                          </td>
+                          <td>
+                              <a>
+                                {{ $row->project->title }}
+                              </a>
+                              <br/>
+                              <small>
+                                Started: {{ date('d-m-Y', strtotime($row->project->start_date)) }}
+                              </small>
+                          </td>
+                          <td>
+                              <ul class="list-inline">
+                                  <li class="list-inline-item">
+                                  {{ ucfirst($row->goal) }}
+                                  </li>                             
+                              </ul>
+                          </td>
+                          <td class="project_progress">
+                              <div class="progress progress-sm">
+                                  <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $row->project->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $row->progress }}%">
+                                  </div>
+                              </div>
+                              <small>
+                              {{ $row->project->progress }}% Complete
+                              </br>
+                              as on {{ date('d-m-Y', strtotime($row->project->progress_date)) }}
+                              </small>
+                          </td>
+                          <td class="project-state">
+                              <span class="badge badge-success">On-time</span>
+                          </td>
+                          <td class="project-actions text-right">
+                            @haspermission('project_view')
+                              <a class="btn btn-primary btn-sm mt-1" href="{{ route('projects.show', $row->project->uuid) }}">
+                                  <i class="fas fa-folder">
+                                  </i>
+                                  View
+                              </a>
+                            @endhaspermission
+                            @haspermission('project_edit')
+                              <a class="btn btn-info btn-sm mt-1" href="{{ route('projects.edit', $row->project->uuid) }}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Edit
+                              </a>
+                            @endhaspermission
+                            @haspermission('project_delete')
+                              <a class="btn btn-danger btn-sm mt-1" href="#">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a>
+                            @endhaspermission
+                          </td>
+                        </tr>
+                      @endforeach   
+                    </tbody>
+                  </table>
+                @endhasrole
+                  
+                @hasanyrole('director|admin')
+                  <table class="table table-striped projects table-responsive">
+                      <thead>
+                        <tr>
+                          <th style="width: 1%">
+                              #
+                          </th>
+                          <th style="width: 20%">
+                              Project Name
+                          </th>
+                          <th style="width: 30%">
+                              Team Members
+                          </th>
+                          <th>
+                              Project Progress
+                          </th>
+                          <th style="width: 8%" class="text-center">
+                              Status
+                          </th>
+                          <th style="width: 20%">
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      @foreach($projects as $row)
+                        <tr>
+                          <td>
+                              #
+                          </td>
+                          <td>
+                              <a>
+                                {{ $row->title }}
+                              </a>
+                              <br/>
+                              <small>
+                                Started: {{ date('d-m-Y', strtotime($row->start_date)) }}
+                              </small>
+                          </td>
+                          <td>
+                              <ul class="list-inline">
+                                  <li class="list-inline-item">
+                                      <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar.png') }}">
+                                  </li>
+                                  <li class="list-inline-item">
+                                      <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar2.png') }}">
+                                  </li>
+                                  <li class="list-inline-item">
+                                      <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar3.png') }}">
+                                  </li>
+                                  <li class="list-inline-item">
+                                      <img alt="Avatar" class="table-avatar" src="{{ asset('assets/dist/img/avatar4.png') }}">
+                                  </li>
+                              </ul>
+                          </td>
+                          <td class="project_progress">
+                              <div class="progress progress-sm">
+                                  <div class="progress-bar bg-green" role="progressbar" aria-valuenow="{{ $row->progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $row->progress }}%">
+                                  </div>
+                              </div>
+                              <small>
+                              {{ $row->progress }}% Complete
+                              </br>
+                              as on {{ date('d-m-Y', strtotime($row->progress_date)) }}
+                              </small>
+                          </td>
+                          <td class="project-state">
+                              <span class="badge badge-success">On-time</span>
+                          </td>
+                          <td class="project-actions text-right">
+                            @haspermission('project_view')
+                              <a class="btn btn-primary btn-sm mt-1" href="{{ route('projects.show', $row->uuid) }}">
+                                  <i class="fas fa-folder">
+                                  </i>
+                                  View
+                              </a>
+                            @endhaspermission
+                            @haspermission('project_edit')
+                              <a class="btn btn-info btn-sm mt-1" href="{{ route('projects.edit', $row->uuid) }}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Edit
+                              </a>
+                            @endhaspermission
+                            @haspermission('project_delete')
+                              <a class="btn btn-danger btn-sm mt-1" href="#">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a>
+                            @endhaspermission
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                @endhasanyrole  
+                
               </div>
               <!-- /.card-body -->
             </div>

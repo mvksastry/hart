@@ -47,10 +47,12 @@ class ProjectsController extends Controller
     {
       if( Auth::user()->hasExactRoles(['employee']) )
       {
-        $projects = Project::all();
-        return view('projects.index', compact('projects'));
+        $projEmployee = Projectgoals::with('project')->where('goalowner_id', Auth::id() )->get();
+        $projx = Project::all();
+        //dd($projEmployee, $projx);
+        return view('projects.index', compact('projx','projEmployee'));
       }
-      
+
       if( Auth::user()->hasExactRoles(['supervisor', 'employee']) )
       {      
         $projects = Project::all();
@@ -59,13 +61,11 @@ class ProjectsController extends Controller
       
       if( Auth::user()->hasExactRoles(['admin', 'team_leader', 'employee']) )
       {      
-        //$projects = Project::all();
         $projects = Project::with('proj_owner')
                         ->with('proj_lead')
                         ->with('goals')
                         ->with('tasks')
                         ->get();
-        //dd($projects);
         return view('projects.index', compact('projects'));
       }
       
@@ -77,9 +77,9 @@ class ProjectsController extends Controller
       
       if( Auth::user()->hasExactRoles(['sysadmin', 'employee']) )
       {      
-        
-        
+         
       }
+      
     }
 
     /**
