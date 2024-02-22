@@ -201,7 +201,9 @@
                       </p>
                   </div>
                   <!-- /.tab-pane -->
+                  
                   <div class="tab-pane" id="tab_3">
+                  @if( count($projGoalsAssigned) > 0 )
                     @foreach($projGoalsAssigned as $row)
                       <div class="row">
                         <div class="col-4">
@@ -221,6 +223,9 @@
                         </div>
                       </div>
                     @endforeach
+                  @else
+                     No Information for Display
+                  @endif
                   </div>
                   <!-- /.tab-pane -->
                   <?php 
@@ -231,6 +236,7 @@
                   }
                   ?>
                   <div class="tab-pane" id="tab_4">
+                  @if (count($tasks) > 0 )
                     @foreach($tasks as $xx)                     
                       <div class="row">
                         <div class="col-4">
@@ -244,12 +250,15 @@
                           </p>
                         </div>
                         <div class="col-2">
-                          <a class="btn btn-primary btn-sm mt-1" href="{{ route('projtasks.show', $row->projectgoal_id) }}">
+                          <a class="btn btn-primary btn-sm mt-1" href="{{ route('projtasks.show', $xx->projectgoal_id) }}">
                             <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-book"></i>Update</button>
                           </a>
                         </div>
                       </div>                    
                     @endforeach
+                  @else
+                    No Information to Display
+                  @endif
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_5">

@@ -57,7 +57,7 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));             
       }
       
-      if( Auth::user()->hasExactRoles(['admin', 'employee']) )
+      if( Auth::user()->hasExactRoles(['admin', 'team_leader', 'employee']) )
       {      
         //$projects = Project::all();
         $projects = Project::with('proj_owner')
@@ -179,6 +179,8 @@ class ProjectsController extends Controller
                         ->first();
       //dd($project);                  
       $projGoalsAssigned = Projectgoals::where('goalowner_id', Auth::id())->get();
+      $ck = count($projGoalsAssigned);
+      //dd($ck);
       $latestActivity = Projtask::with('updatedby')->latest()->take(5)->get();
 
       //dd($latestActivity );
